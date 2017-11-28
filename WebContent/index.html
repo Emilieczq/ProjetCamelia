@@ -1,10 +1,28 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Hello</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="indexScript.js" type="text/javascript"></script>
+<title>ISEP Conseil - Login</title>
 </head>
 <body>
-<h1>Bonjour bonjour</h1>
+
+<h1>Bienvenue</h1>
+
+<form name="loginForm" method= "POST">
+	<label for="login">Nom d'utilisateur:</label>
+	<input id="login" type="text" name="login" /><br><br>
+	<label for="password">Mot de passe:</label>
+    <input id="password" type="password" name="password" />
+	<br><br>
+    <input id="submit" type="submit" value="Connexion" onclick="validate();return false;" />
+    <br><br>
+</form>
+<h3 align="center"><a href="http://localhost:8080/ProjetCamelia/forget.jsp">Mot de passe oublié</a></h3>
+
+<div id="message"></div>
+<br>
 </body>
 </html>
