@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+ul,li{
+	list-style :none;
+	padding:0px;
+	margin:0px;	
+}
+*{padding:0px;margin:0px}
+a{text-decoration : none; color : #428bca}
+a:hover{color:black}
+.nav{
+	width:750px;
+}
+.nav> ul li{
+	float : left; 
+	width:100px;
+	height:50px;
+	display:block;
+}
+.act{border-bottom:solid 2px #a4b9dd;
+	 color:#a4b9dd}
+	  
+.nav-con{
+	clear:both;
+	display : none
+}
