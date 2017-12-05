@@ -1,1 +1,42 @@
 @CHARSET "UTF-8";
+
+h1,h3 {
+	display:block;
+	text-align:center;
+}
+
+form {
+	font-weight:bold;
+	text-align:center;
+}
+
+fieldset {
+	text-align:right;
+	border-style:none;
+	width:500px;
+	margin:0 auto;
+}
+
+label {
+	display:inline-block;
+}
+
+input {
+	border-style: solid;
+	border-radius: 5px;
+	margin-left:40px;
+	margin-right:60px;
+}
+
+input:focus{
+	background-color: #FFFFFF;
+}
+
+div {
+	text-align:center;
+}
+
+#submit {
+	text-align:center;
+	margin:0 auto;
+}

@@ -4,13 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>ISEP Conseil - Forget your password</title>
 </head>
 <body>
-<h2>Envoyer un mail</h2>
-<div>
-
-
-</div>
+	<h2 align="center">Envoyer un mail</h2>
+	<div align="center">
+		Votre E-mail : <input id="email" type="text" name="email" />
+	</div>
 </body>
 </html>
