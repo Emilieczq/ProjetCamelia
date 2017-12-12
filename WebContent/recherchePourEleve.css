@@ -1,4 +1,6 @@
 @CHARSET "UTF-8";
+
+
 ul,li{
 	list-style :none;
 	padding:0px;
@@ -11,7 +13,7 @@ a:hover{color:black;}
 
 .title{
 	height:40px;
-	background:#a4b9dd;
+	background:#A9D0F5;
 	font-family: Times;
 	font-size:30px;
 	color:white;
@@ -35,7 +37,8 @@ a:hover{color:black;}
 
 .ligne{
 	border-top: solid 2px #033076;
-	border-radius:20%;
+	border-top-left-radius: 20%;
+	border-top-right-radius: 20%;
 	float:left;
 	width:40%;
 	height:50px;
@@ -44,25 +47,28 @@ a:hover{color:black;}
 
 .icon-user{
 position: absolute;
-left: 0;
+right: 43%;
 z-index:5;
-background-image: url(/pictures/search.png); 
+background-image: url(pictures/search.png); 
+background-size: 35px 35px;
 background-repeat: no-repeat; 
 background-position: 0px 0px; 
-width: 20px; 
-height: 20px; 
+width: 35px; 
+height: 35px; 
 }
 .search{
+	
 	float:left;
 	font-family: Times;
 	font-size:20px;
 	width:20%;
 	height:50px;
 	border-bottom: solid 2px #033076;
-	border-top: white;
-	border-right:white; 
-	border-left:white; 
-	border-radius:12%;
+	border-top: transparent;
+	border-right:transparent; 
+	border-left:transparent; 
+	border-bottom-left-radius: 20%;
+	border-bottom-right-radius: 20%;
 }
 .nav> ul li{
 	float : left; 

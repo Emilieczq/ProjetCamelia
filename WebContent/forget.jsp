@@ -4,11 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="indexStyle.css">
 <title>ISEP Conseil - Forget your password</title>
 </head>
 <body>
-	<h2 align="center">Envoyer un mail</h2>
+<img src="pictures/login3.jpg" border='0'width='100%' height='100%' style='position: absolute;left:0px;top:0px;z-index: -1'/>
+	
 	<div align="center">
+	<h2 align="center">Envoyer un mail</h2>
 		Votre E-mail : <input id="email" type="text" name="email" />
 	</div>
 </body>
