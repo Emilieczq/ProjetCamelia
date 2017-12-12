@@ -35,6 +35,8 @@ public class UserServlet extends HttpServlet {
 //		}else {
 //			out.print("0");
 //		}
+		
+		/// tentative pour git
 	}
 
 }
