@@ -12,7 +12,11 @@
 	
 	<div align="center">
 	<h2 align="center">Envoyer un mail</h2>
+	<form action="forget_email
+	" method="post" target="_blank">
 		Votre E-mail : <input id="email" type="text" name="email" />
+	<input type="submit" value="Submit">
+	</form>
 	</div>
 </body>
 </html>
