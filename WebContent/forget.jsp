@@ -15,7 +15,7 @@
 	<form action="forget_email" method="post" target="_blank">
 		Votre E-mail : <input id="email" type="text" name="email" />
 		<br/><br/>
-		<input type="submit" value="Submit">
+		<input type="submit" value="Envoyer" class = "button">
 	
 	</form>
 		
