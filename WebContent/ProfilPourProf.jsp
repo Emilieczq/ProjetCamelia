@@ -9,14 +9,14 @@
 </head>
 <body>
 <img src="pictures/try.jpg" border='0'width='100%' height='100%' style='position: absolute;left:0px;top:0px;z-index: -1'/>
-<%@ include file = "menu.jsp" %>
+<%@ include file = "MenuPourProf.jsp" %>
 <div class = "white">
 </div>
 <div class = "white">
 </div>
 <br>
 <center>
- <input type="button" value="Motifier" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/eleveMotifier.jsp'"  />
+ <input type="button" value="Modifier" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/ProfModifier.jsp'"  />
 </center>
 </body>
 </html>
