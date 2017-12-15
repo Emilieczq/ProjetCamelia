@@ -1,67 +1,20 @@
 @CHARSET "UTF-8";
-
-h1,h3 {
-	display:block;
-	text-align:center;
+body{
+	font-size : 18px;
 }
 
-form {
-	font-weight:bold;
-	text-align:center;
+.white{
+	height: 50px;
 }
-
-fieldset {
-	text-align:right;
-	border-style:none;
-	width:500px;
-	margin:0 auto;
-}
-
-label {
-	display:inline-block;
-}
-
-input {
-	width:200px;
-	font-size : 14px;
-	border-style: solid #ccc;
-	border-radius: 5px;
-	margin-left:40px;
-	margin-right:60px;
-}
-
-input:focus{
-	background-color: #FFFFFF;
-	
-}
-
-div {
-	text-align:center;
-}
-
-#submit {
-	text-align:center;
-}
-
-.center{
-			position: absolute;
-            top: 40%;
-            left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            -moz-transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            -o-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);   
-			
-
-
-     }
-.title{
-	font-size : 60px;
+.title1{
+	font-size : 30px;
 	color: transparent;
 	background-color : black;
 	text-shadow : rgba(255,255,255,0.5) 0 5px 6px, rgba(255,255,255,0.2) 1px 3px 3px;
 	-webkit-background-clip : text;
+}
+#RDV{
+	margin:0 auto;
 }
 .button {
 	position: relative;
@@ -71,6 +24,7 @@ div {
 	color:#FFF;
 	text-decoration:none;
 	line-height:43px;
+	font-size:15px;
 	font-family:'Oswald', Helvetica;
 	
 	margin: 20px;
@@ -130,8 +84,32 @@ div {
 	background-image:-o-linear-gradient(top, #A9D0F5, #6585EA);
 	background-image:linear-gradient(top, #A9D0F5, #6585EA);
 }
-#tips{
-	text-align: right;   
+.select{
+	margin-left:50px;
+	margin-right:20px;
+	appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    width: 200px;
+    height: 28px;
+    border-style: solid #ccc;
+	border-radius: 5px;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: 8px 8px, 8px 8px, 30px 30px, 1px 30px;
+    background-image: repeating-linear-gradient(225deg, rgb(105, 123, 149) 0%, rgb(105, 123, 149) 50%, transparent 50%, transparent 100%),
+    repeating-linear-gradient(135deg, rgb(105, 123, 149) 0%, rgb(105, 123, 149) 50%, transparent 50%, transparent 100%),
+    linear-gradient(#FFFFFF 0%, #FFFFFF, #FFFFFF 100%),
+    repeating-linear-gradient( rgb(191, 204, 220) 0%, rgb(191, 204, 220) 100%);
+    background-position:  175px 10px, 183px 10px, right top, 167px top;
+    
+	
 }
-
-
+#but{
+	margin-left:75px;
+	font-size : 13px;
+	border-style: solid #ccc;
+	border-radius: 5px;
+	width: 198px;
+	height: 50px;
+}

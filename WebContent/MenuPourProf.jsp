@@ -22,9 +22,9 @@
 
 <div class="nav">
 <ul class="nav-ul">
-	<li class = "act"><a href="http://localhost:8080/ProjetCamelia/recherchePourEleve.jsp">Recherche</a></li>
-	<li><a href = "http://localhost:8080/ProjetCamelia/ProfilPourEleve.jsp"> Profil</a></li>
-	<li><a href = "http://localhost:8080/ProjetCamelia/DemandeDeContact.jsp"> Demande de contact</a></li>
+	<li class = "act"><a href="">Recherche</a></li>
+	<li><a href = ""> Profil</a></li>
+	<li><a href = "http://localhost:8080/ProjetCamelia/ListeDesContactes.jsp"> Liste des contacts</a></li>
 </ul>
 
 </div>

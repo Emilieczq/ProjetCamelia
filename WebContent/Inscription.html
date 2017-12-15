@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Inscription</title>
+<link rel="stylesheet" type="text/css" href="inscription.css">
+<script type="text/javascript" src="inscriptionCheck.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+</script>
+
+
+
+</head>
+<body>
+<img src="pictures/inscription.jpg" border='0'width='100%' height='100%' style='position: absolute;left:0px;top:0px;z-index: -1'/>
+<br>
+<center><p class="title">Inscription<p></center>
+
+<div class="droit">
+	<form name="inscription" id ="signupForm" method="get" action="">
+	
+	
+	<div id = "normal">
+		<label for="prenom">Prénom:</label>
+		<input id="prenom" type="text" name="prenom" class="normal" required />
+		<br><br>
+		<label for="nom">Nom:</label>
+		<input id="nom" type="text" name="nom" class="normal" required/>
+		<br><br>
+	</div>
+	
+		<label for="annee">Année d’étude:</label>
+		<select id = "annee" name = "annee" class="select"  required>
+			<option value="" disabled selected></option> 
+  			<option valeur="A1">A1</option>
+  			<option valeur="A2">A2</option>
+  			<option valeur="A3">A3</option>
+		</select>
+		
+		<br><br>
+		<div id="alternancechoisir">
+		<input type="radio" id="alternance" name="Alternance" value="alternance" required>
+    	<label for="alternance">Alternance</label>
+    	<input type="radio" id="nom_alternance" name="Alternance" value="nom_alternance">
+    	<label for="nom_alternance">Non Alternance</label>
+    	</div>
+    	<br>
+    	<label for="promotion">Promotion:</label>
+		<select id = "promotion" name = "promotion" class="select"  required>
+		
+			<option value="" disabled selected></option> 
+  			<option >2019</option>
+  			<option >2018</option>
+  			<option>2017</option>
+		</select>
+		<br><br>
+		<label for="parcour">Parcours:</label>
+		<select id = "parcour" name = "parcour" class="selectlong"  required>
+			<option value=""></option> 
+  			<option value = "architecte_des_système_d'information">ARCHITECTE DES SYSTÈMES D’INFORMATION</option>
+  			<option value ="ingénieur_en_business_intelligence"> INGÉNIEUR EN BUSINESS INTELLIGENCE</option>
+  			<option value ="ingénieur_logiciel"> INGÉNIEUR LOGICIEL</option>
+  			<option value ="ingénieur_numerique_et_santé"> INGÉNIEUR NUMÉRIQUE ET SANTÉ</option>
+  			<option value ="architecte_télècom&IOT"> ARCHITECTE TÉLÉCOM & IOT</option>
+  			<option value ="ingénieur_en_sécurité_numérique_et_réseaux"> INGÉNIEUR EN SÉCURITÉ NUMÉRIQUE ET RÉSEAUX</option>
+  			<option value ="concepteur_de_systèmes_embarqués"> CONCEPTEUR DE SYSTÈMES EMBARQUÉS</option>
+  			<option value ="innovation_et_création d'entreprise"> INNOVATION ET CRÉATION D’ENTREPRISE</option>
+		</select>
+		<br><br>
+		<label for="email">Email:</label>
+		<input id="email" type="text" name="email" required/>@isep.fr
+		<br><br>
+    	<label for="password">Mot de passe:</label>
+		<input id="password" type="password" name="password" class="normal" required/>
+		<br>
+		
+		<div id="tips">
+			<p id="addEspace">	Au moins 1 minuscule et 1 majuscule;</p>
+			<p id ="addEspace1">Au moins 1 chiffre;</p>
+			<p id ="addEspace2">Au moins 1 caractère spécial;</p>
+			<p id ="addEspace3">Au moins 8 caractères;</p>
+		</div>
+		<label for="ConfirmationPassword">Confirmation du mot de passe:</label>
+		<input id="ConfirmationPassword" type="password" name="ConfirmationPassword" class="normal"  required />
+		 <div id="msg" style="color:red;"></div>
+		
+	<br>
+		
+	 <input id="submit" type="submit" value="Enregistrer" class = "button" onclick="validatePassword();"/>
+	 <input type="button" value="Retour" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/index.html'"  />
+	</form>
+</div>
+
+</body>
+</html>
