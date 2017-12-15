@@ -106,7 +106,7 @@ public class sendEmailServlet extends HttpServlet {
 			Connection con = DriverManager.getConnection(DB_URL, USER, PASSWORD);
 			
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from Emails");
+			ResultSet rs = stmt.executeQuery("select * from Users");
 			while (rs.next()) {
 				System.out.println(rs.getString("Email"));
 				if (rs.getString("Email").equals(email)) {
