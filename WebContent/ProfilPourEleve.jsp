@@ -16,11 +16,9 @@
 </div>
 <br>
 <center>
-<<<<<<< HEAD
+
  <input type="button" value="Modifier" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/eleveModifier.jsp'"  />
-=======
- <input type="button" value="Modifier" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/eleveModifier.jsp'"  />
->>>>>>> dde0b322a49cc4944ae1071b7d2517b36914317d
+
 </center>
 </body>
 </html>
