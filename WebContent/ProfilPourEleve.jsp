@@ -16,7 +16,7 @@
 </div>
 <br>
 <center>
- <input type="button" value="Motivier" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/eleveMotifier.jsp'"  />
+ <input type="button" value="Modifier" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/eleveModifier.jsp'"  />
 </center>
 </body>
 </html>
