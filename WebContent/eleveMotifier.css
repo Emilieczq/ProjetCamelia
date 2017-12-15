@@ -1,76 +1,26 @@
 @CHARSET "UTF-8";
-
-h1,h3 {
-	display:block;
-	text-align:center;
+body{
+	background:url(pictures/blue.jpg);
+	font-size : 18px;
 }
-
-form {
-	font-weight:bold;
-	text-align:center;
-}
-
-fieldset {
-	text-align:right;
-	border-style:none;
-	width:500px;
-	margin:0 auto;
-}
-
-label {
-	display:inline-block;
-}
-
-input {
-	width:200px;
-	font-size : 14px;
+.normal {
+	width: 210px;
+	font-size : 20px;
 	border-style: solid #ccc;
 	border-radius: 5px;
-	margin-left:40px;
-	margin-right:60px;
-}
-
-input:focus{
-	background-color: #FFFFFF;
+	margin-left:50px;
+	margin-right:20px;
 	
-}
-
-div {
-	text-align:center;
-}
-
-#submit {
-	text-align:center;
-}
-
-.center{
-			position: absolute;
-            top: 40%;
-            left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            -moz-transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            -o-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);   
-			
-
-
-     }
-.title{
-	font-size : 60px;
-	color: transparent;
-	background-color : black;
-	text-shadow : rgba(255,255,255,0.5) 0 5px 6px, rgba(255,255,255,0.2) 1px 3px 3px;
-	-webkit-background-clip : text;
 }
 .button {
 	position: relative;
-	width:140px;
+	width:210px;
 	height:35px;
 	text-align:center;
 	color:#FFF;
 	text-decoration:none;
 	line-height:43px;
+	font-size:15px;
 	font-family:'Oswald', Helvetica;
 	
 	margin: 20px;
@@ -130,8 +80,43 @@ div {
 	background-image:-o-linear-gradient(top, #A9D0F5, #6585EA);
 	background-image:linear-gradient(top, #A9D0F5, #6585EA);
 }
-#tips{
-	text-align: right;   
+.droit{
+
+	padding-right : 180px;
+	text-align:right;
+	border-style:none;
+	width:600px;
+	margin:0 auto;
 }
-
-
+#situation1{
+	margin-right:20px;
+}
+#historie{
+	margin-right:120px;
+}
+.subTitle{
+	padding-right : 75px;
+	color:#4d70ab;
+	font-size : 25px;
+}
+.select{
+	margin-left:50px;
+	margin-right:20px;
+	appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    width: 215px;
+    height: 28px;
+    border-style: solid #ccc;
+	border-radius: 5px;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: 8px 8px, 8px 8px, 30px 30px, 1px 30px;
+    background-image: repeating-linear-gradient(225deg, rgb(105, 123, 149) 0%, rgb(105, 123, 149) 50%, transparent 50%, transparent 100%),
+    repeating-linear-gradient(135deg, rgb(105, 123, 149) 0%, rgb(105, 123, 149) 50%, transparent 50%, transparent 100%),
+    linear-gradient(#FFFFFF 0%, #FFFFFF, #FFFFFF 100%),
+    repeating-linear-gradient( rgb(191, 204, 220) 0%, rgb(191, 204, 220) 100%);
+    background-position:  175px 10px, 183px 10px, right top, 167px top;
+    
+	
+}
