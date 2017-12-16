@@ -18,16 +18,13 @@
 <br>
 
 <input  id = "f" type="file" accept="image/*" onchange="change()"/>
-<<<<<<< HEAD:WebContent/eleveModifier.jsp
+</form>
 <br><br>
 
 </center>
 
-=======
-</form>
-</center>
+
 <form>
->>>>>>> dde0b322a49cc4944ae1071b7d2517b36914317d:WebContent/eleveMotifier.jsp
 <div class = "droit">
 		<label for="numero">Numéro d'étudiant:</label>
 		<input id="numero" type="text" name="numero" class="normal"/>
