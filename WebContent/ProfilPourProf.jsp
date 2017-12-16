@@ -17,14 +17,7 @@
 <br>
 <center>
 
-<jsp:useBean id="professeur" scope="application" class="fr.isepconseil.vo.Professeur"/>
-
-<jsp:setProperty property="poste" name="professeur"/>
-<jsp:setProperty property="bureau" name="professeur"/>
-<jsp:setProperty property="tel" name="professeur"/>
-<jsp:setProperty property="email" name="professeur"/>
-
-
+<jsp:useBean id="professeur" scope="request" class="fr.isepconseil.vo.Professeur"/>
 <h3>Poste :<jsp:getProperty property="poste" name="professeur"/></h3>
 <h3>Bureau :<jsp:getProperty property="bureau" name="professeur"/></h3>
 <h3>Tel :<jsp:getProperty property="tel" name="professeur"/></h3>
