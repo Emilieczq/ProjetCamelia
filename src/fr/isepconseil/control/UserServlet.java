@@ -55,12 +55,14 @@ public class UserServlet extends HttpServlet {
 	        User user=new User();  
 	        user.setEmail(login);  
 	        user.setPassword(password);  
-	        UserDAOProxy userDAOProxy=new UserDAOProxy();  
+	        request.setAttribute("user", user);
+	        UserDAOProxy userDAOProxy=new UserDAOProxy(); 
+	        
 	        try {  
 	              
 	            if(userDAOProxy.findLogin(user)){  
 	                System.out.println("right");
-	                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProfilPourEleve.jsp");
+	                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Welcome.jsp");
 	                dispatcher.forward(request,response);
 	                
 	            }else {  
@@ -71,7 +73,8 @@ public class UserServlet extends HttpServlet {
 	        }  
 	    }  
 	    
-	    
+       
+
 		
 		
 		
