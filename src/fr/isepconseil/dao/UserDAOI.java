@@ -1,19 +1,26 @@
 package fr.isepconseil.dao;
 
-import fr.isepconseil.vo.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class UserDAOImpI implements IUserDAO {
-	private Connection conn = null;
+import fr.isepconseil.dbc.DatabaseConnection;
+import fr.isepconseil.vo.User;
+
+public class UserDAOI {
+	private DatabaseConnection dbc = null;
 	private PreparedStatement pstmt = null;
+	private Connection conn = null;
 
-	public UserDAOImpI(Connection conn) {
-		this.conn = conn;
+	public UserDAOI() {
+		try {
+			dbc = new DatabaseConnection();
+			conn = dbc.getConnection();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
-
-	@Override
+	
 	public boolean findLogin(User user) throws Exception {
 		boolean flag = false;
 		try {
@@ -36,7 +43,6 @@ public class UserDAOImpI implements IUserDAO {
 					throw e;
 				}
 			}
-
 		}
 		return flag;
 	}

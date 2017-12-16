@@ -1,13 +1,6 @@
 package fr.isepconseil.control;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.isepconseil.dao.UserDAOProxy;
+import fr.isepconseil.dao.UserDAOI;
 import fr.isepconseil.vo.User;
 
 /**
@@ -25,12 +18,6 @@ import fr.isepconseil.vo.User;
 @WebServlet("/UserServlet")
 public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver"; // need to download MySQL JDBC jar
-	static final String DB_URL = "jdbc:mysql://localhost:3306/Camelia"; // correct the project name
-
-	static final String USER = "root"; // your server user name
-	static final String PASSWORD = "123456"; // your password
 
 	public UserServlet() {
 		super();
@@ -51,17 +38,17 @@ public class UserServlet extends HttpServlet {
 			user.setEmail(login);
 			user.setPassword(password);
 			request.setAttribute("user", user);
-			UserDAOProxy userDAOProxy = new UserDAOProxy();
+			UserDAOI userDAO = new UserDAOI();
 
 			try {
 
-				if (userDAOProxy.findLogin(user)) {
+				if (userDAO.findLogin(user)) {
 					System.out.println("right login and password"); // to be deleted
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/recherchePourEleve.jsp");
 					dispatcher.forward(request, response);
 
 				} else {
-					user = new User(); // clear all the information in JavaBean => not sure
+					user = new User(); // clear all the information in JavaBean
 					System.out.println("wrong login or wrong password"); // to be deleted
 					info="La connexion a échoué, merci d'essayer de nouveau";
 					request.setAttribute("info", info);
