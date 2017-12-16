@@ -3,7 +3,7 @@ package fr.isepconseil.vo;
 public class User {
 	private String email; // => email in Database
 	private String password; // => password in Database
-	private String type; // => "Student" or "Teacher" or "OldStudent"
+	private String type; // => "Etudiant" or "Professeur"
 
 	public String getEmail() {
 		return email;

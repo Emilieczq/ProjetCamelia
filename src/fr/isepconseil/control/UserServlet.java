@@ -1,6 +1,7 @@
 package fr.isepconseil.control;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.isepconseil.dao.UserDAOI;
+import fr.isepconseil.vo.Professeur;
 import fr.isepconseil.vo.User;
 
 /**
@@ -41,10 +43,21 @@ public class UserServlet extends HttpServlet {
 			UserDAOI userDAO = new UserDAOI();
 
 			try {
-
 				if (userDAO.findLogin(user)) {
 					System.out.println("right login and password"); // to be deleted
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/recherchePourEleve.jsp");
+					// check the user is teacher or student or old student
+					if (userDAO.defineType(user)=="Professeur") {
+						Professeur professeur = new Professeur();
+						userDAO.setProfesseur(user, professeur);
+						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListeDesContactes.jsp");
+						dispatcher.forward(request, response);
+					} else {
+						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/recherchePourEleve.jsp");
+						dispatcher.forward(request, response);
+					}
+					
+					userDAO.defineType(user);
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListeDesContactes.jsp");
 					dispatcher.forward(request, response);
 
 				} else {
