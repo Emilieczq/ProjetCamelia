@@ -29,6 +29,7 @@ public class Professeur {
 	}
 	public Professeur() {
 		// TODO Auto-generated constructor stub
+		
 	}
 
 }

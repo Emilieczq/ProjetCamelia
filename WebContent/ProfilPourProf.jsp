@@ -16,7 +16,21 @@
 </div>
 <br>
 <center>
- <input type="button" value="Modifier" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/ProfModifier.jsp'"  />
+
+<jsp:useBean id="professeur" scope="application" class="fr.isepconseil.vo.Professeur"/>
+
+<jsp:setProperty property="poste" name="professeur"/>
+<jsp:setProperty property="bureau" name="professeur"/>
+<jsp:setProperty property="tel" name="professeur"/>
+<jsp:setProperty property="email" name="professeur"/>
+
+
+<h3>Poste :<jsp:getProperty property="poste" name="professeur"/></h3>
+<h3>Bureau :<jsp:getProperty property="bureau" name="professeur"/></h3>
+<h3>Tel :<jsp:getProperty property="tel" name="professeur"/></h3>
+<h3>Email :<jsp:getProperty property="email" name="professeur"/></h3>
+
+<input type="button" value="Modifier" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/ProfModifier.jsp'"  />
 </center>
 </body>
 </html>

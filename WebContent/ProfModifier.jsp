@@ -19,7 +19,8 @@
 <input  id = "f" type="file" accept="image/*" onchange="change()"/>
 </form>
 </center>
-<form>
+
+<form action="/ProjetCamelia/ProfilPourProf.jsp">
 <div class = "droit">
 <label for="poste">Poste:</label>
 <input id="poste" type="text" name="poste" class="normal"/>
@@ -33,7 +34,7 @@
 <label for="email">Email:</label>
 <input id="email" type="text" name="email" class="normal"/>
 <br><br>
-<input id="submit" type="submit" value="Enregistrer" class = "button" onclick="validate();"/>
+<input id="submit" type="submit" value="Enregistrer" class = "button"/>
 <input type="button" value="Retour" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/ProfilPourProf.jsp'"  />
 </div>
 </form>
