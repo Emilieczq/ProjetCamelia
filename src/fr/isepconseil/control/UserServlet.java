@@ -42,12 +42,12 @@ public class UserServlet extends HttpServlet {
 //		PrintWriter out = response.getWriter();
 		
 	    List<String> info=new ArrayList<String>();  
-	    if(login==null||"".equals(login)){ //用户名输入格式问题  
+	    if(login==null||"".equals(login)){ 
 	        info.add("Login ne peut pas être vide !");  
 	        System.out.println("Login ne peut pas être vide !");  
 	    }  
 	  
-	    if(password==null||"".equals(password)){//密码输入格式问题  
+	    if(password==null||"".equals(password)){ 
 	        info.add("Mot de passe ne peut pas être vide !");  
 	        System.out.println("Mot de passe ne peut pas être vide !");  
 	    }  
@@ -59,20 +59,17 @@ public class UserServlet extends HttpServlet {
 	        try {  
 	              
 	            if(userDAOProxy.findLogin(user)){  
-//	                info.add("用户登录成功，欢迎"+user.getEmail()+"光临！"); 
 	                System.out.println("right");
 	                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProfilPourEleve.jsp");
-	                dispatcher.forward(request,response);//跳转
+	                dispatcher.forward(request,response);
 	                
 	            }else {  
-//	                info.add("用户登录失败，错误的用户名和密码"); 
 	            		System.out.println("wrong");
 	            }                         
 	        } catch (Exception e) {  
 	            e.printStackTrace();  
 	        }  
 	    }  
-//	    request.setAttribute("info", info);//保存错误信息  
 	    
 	    
 		
