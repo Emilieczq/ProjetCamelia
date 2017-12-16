@@ -21,7 +21,7 @@ public class UserDAOProxy implements IUserDAO {
 		boolean flag=false;  
         try {  
             flag=dao.findLogin(user);
-        } catch (Exception e) {  
+        } catch (Exception e) {
             throw e;  
         }finally{  
             dbc.close();  

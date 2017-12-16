@@ -23,7 +23,6 @@ public class UserDAOImpI implements IUserDAO {
 			pstmt.setString(2, user.getPassword());
 			ResultSet rSet = pstmt.executeQuery();
 			if (rSet.next()) {
-				user.setEmail(rSet.getString(1));
 				flag = true;
 			}
 

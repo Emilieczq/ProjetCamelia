@@ -61,7 +61,8 @@ public class UserServlet extends HttpServlet {
 					dispatcher.forward(request, response);
 
 				} else {
-					System.out.println("wrong"); // to be deleted
+					user = new User(); // clear all the information in JavaBean => not sure
+					System.out.println("wrong login or wrong password"); // to be deleted
 					info="La connexion a échoué, merci d'essayer de nouveau";
 					request.setAttribute("info", info);
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
