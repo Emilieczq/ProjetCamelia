@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="eleveMotifier.css">
+<link rel="stylesheet" type="text/css" href="eleveModifier.css">
 <script src="eleveMotifier.js" type="text/javascript"></script>
 <title>Le profil de prof</title>
 </head>
