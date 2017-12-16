@@ -5,11 +5,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class UserDAOImp implements IUserDAO {
+public class UserDAOImpI implements IUserDAO {
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 
-	public UserDAOImp(Connection conn) {
+	public UserDAOImpI(Connection conn) {
 		this.conn = conn;
 	}
 

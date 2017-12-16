@@ -13,7 +13,7 @@ public class UserDAOProxy implements IUserDAO {
         } catch (Exception e) {  
             e.printStackTrace();  
         }  
-        dao=new UserDAOImp(dbc.getConnection());  
+        dao=new UserDAOImpI(dbc.getConnection());  
           
     }  
 	@Override
