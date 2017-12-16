@@ -39,7 +39,6 @@ public class UserServlet extends HttpServlet {
 		String login = request.getParameter("login"); // login => email
 		String password = request.getParameter("password");
 		response.setContentType("text/html");
-//		PrintWriter out = response.getWriter();
 		
 	    List<String> info=new ArrayList<String>();  
 	    if(login==null||"".equals(login)){ 
@@ -62,7 +61,7 @@ public class UserServlet extends HttpServlet {
 	              
 	            if(userDAOProxy.findLogin(user)){  
 	                System.out.println("right");
-	                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Welcome.jsp");
+	                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/recherchePourEleve.jsp");
 	                dispatcher.forward(request,response);
 	                
 	            }else {  
