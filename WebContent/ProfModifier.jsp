@@ -24,12 +24,6 @@
 <label for="poste">Poste:</label>
 <input id="poste" type="text" name="poste" class="normal"/>
 <br><br>
-<label for="ville">Ville:</label>
-<input id="ville" type="text" name="ville" class="normal"/>
-<br><br>
-<label for="pays">Pays:</label>
-<input id="pays" type="text" name="pays" class="normal"/>
-<br><br>
 <label for="bureau">Bureau:</label>
 <input id="bureau" type="text" name="bureau" class="normal"/>
 <br><br>
