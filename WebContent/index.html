@@ -14,7 +14,7 @@
 
 <div class= "center">
 <p class="title">Bienvenue<p>
-	<form name="loginForm" method= "POST">
+	<form name="loginForm" method= "POST" action="UserServlet">
 		<fieldset>
 			<label for="login">Nom d'utilisateur:</label>
 			<input id="login" type="text" name="login" />
@@ -24,7 +24,7 @@
 			<br><br>
 	    </fieldset>
 	    
-	    <input id="submit" type="submit" value="Connexion" class = "button" onclick="validate();return false;" />
+	    <input id="submit" type="submit" value="Connexion" class = "button"/>
 	  <input type="button" value="Inscription" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/Inscription.html'" />
 	    <br>
 	</form>
