@@ -49,16 +49,14 @@ public class UserServlet extends HttpServlet {
 					if (userDAO.defineType(user)=="Professeur") {
 						Professeur professeur = new Professeur();
 						userDAO.setProfesseur(user, professeur);
-						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListeDesContactes.jsp");
+						professeur = userDAO.getProfesseur();
+						request.setAttribute("professeur", professeur);
+						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProfilPourProf.jsp");
 						dispatcher.forward(request, response);
 					} else {
 						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/recherchePourEleve.jsp");
 						dispatcher.forward(request, response);
 					}
-					
-					userDAO.defineType(user);
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ListeDesContactes.jsp");
-					dispatcher.forward(request, response);
 
 				} else {
 					user = new User(); // clear all the information in JavaBean

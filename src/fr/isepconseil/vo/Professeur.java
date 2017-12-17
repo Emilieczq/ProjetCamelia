@@ -1,6 +1,8 @@
 package fr.isepconseil.vo;
 
-public class Professeur {
+import java.io.Serializable;
+
+public class Professeur implements Serializable{
 	private String poste,bureau,tel,email;
 	
 	public String getPoste() {

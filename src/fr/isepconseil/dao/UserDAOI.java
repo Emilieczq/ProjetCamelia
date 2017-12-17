@@ -13,6 +13,7 @@ public class UserDAOI {
 	private DatabaseConnection dbc = null;
 	private PreparedStatement pstmt = null;
 	private Connection conn = null;
+	private Professeur professeur = null;
 
 	public UserDAOI() {
 		try {
@@ -50,7 +51,6 @@ public class UserDAOI {
 	}
 	
 	public String defineType(User user) {
-		String type = null;
 		try {
 			String sql = "select Students.id_Student from Students, Users where UserS.email=? and Users.id_User=Students.id_User ;";
 			pstmt = conn.prepareStatement(sql);
@@ -59,10 +59,7 @@ public class UserDAOI {
 			
 			if (rSet.next()) {
 				user.setType("Etudiant");
-				type = "Etudiant";
-			} else {
-				user.setType("Professeur");
-				type = "Professeur";
+				return "Etudiant";
 			}
 
 		} catch (Exception e) {
@@ -76,24 +73,27 @@ public class UserDAOI {
 				}
 			}
 		}
-		return type;
+		return "Professeur";
 	}
 	public void setProfesseur(User user, Professeur professeur) {
 		String sql1 = "select * from Teachers where Id_User = (Select Id_User from Users where Email = ?);";
+		
 		try {
 			pstmt = conn.prepareStatement(sql1);
 			pstmt.setString(1, user.getEmail());
-			ResultSet rSet1 = pstmt.executeQuery();
+			ResultSet rSet = pstmt.executeQuery();
 			
-			String office = rSet1.getString("office");
-			System.out.println(office);
-			professeur.setBureau(office);
+			if (rSet.next()) {
+				String office = rSet.getString("office");
+				String tel = rSet.getString("phone");
+				professeur.setBureau(office);
+				professeur.setTel(tel);
+			}
+			
 			// name...
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("here");
-//			e.printStackTrace();
+			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -103,7 +103,11 @@ public class UserDAOI {
 				}
 			}
 		}
-		
+		this.professeur = professeur;
+	}
+	
+	public Professeur getProfesseur() {
+		return professeur;
 	}
 
 }
