@@ -12,6 +12,7 @@ import fr.isepconseil.vo.User;
 public class UserDAOI {
 	private DatabaseConnection dbc = null;
 	private PreparedStatement pstmt = null;
+	private PreparedStatement pstmt2 = null;
 	private Connection conn = null;
 	private Professeur professeur = null;
 
@@ -77,20 +78,28 @@ public class UserDAOI {
 	}
 	public void setProfesseur(User user, Professeur professeur) {
 		String sql1 = "select * from Teachers where Id_User = (Select Id_User from Users where Email = ?);";
-		
+		String sql2 = "select * from Users where Email = ?;";
 		try {
 			pstmt = conn.prepareStatement(sql1);
 			pstmt.setString(1, user.getEmail());
 			ResultSet rSet = pstmt.executeQuery();
 			
 			if (rSet.next()) {
-				String office = rSet.getString("office");
-				String tel = rSet.getString("phone");
-				professeur.setBureau(office);
-				professeur.setTel(tel);
+				professeur.setBureau(rSet.getString("office"));
+				professeur.setTel( rSet.getString("phone"));
+				professeur.setEmail(user.getEmail());
+				professeur.setPoste(rSet.getString("poste"));
+				
 			}
 			
-			// name...
+			pstmt2 = conn.prepareStatement(sql2);
+			pstmt2.setString(1, user.getEmail());
+			ResultSet rSet2 = pstmt2.executeQuery();
+			
+			if(rSet2.next()) {
+				professeur.setPrenom(rSet2.getString("firstName"));
+				professeur.setNom(rSet2.getString("lastName"));
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -3,7 +3,7 @@ package fr.isepconseil.vo;
 import java.io.Serializable;
 
 public class Professeur implements Serializable{
-	private String poste,bureau,tel,email;
+	private String poste,bureau,tel,email,nom,prenom;
 	
 	public String getPoste() {
 		return poste;
@@ -29,8 +29,19 @@ public class Professeur implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public String getPrenom() {
+		return prenom;
+	}
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
 	public Professeur() {
-		// TODO Auto-generated constructor stub
 		
 	}
 

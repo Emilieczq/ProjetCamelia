@@ -26,7 +26,7 @@ if(info!=null){
 <%    
 }  
 %> 
-	<form name="loginForm" method= "POST" action="UserServlet">
+	<form name="loginForm" method= "POST" action="loginServlet"> 
 		<fieldset>
 			<label for="login">Nom d'utilisateur:</label>
 			<input id="login" type="text" name="login" />
