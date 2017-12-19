@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +22,13 @@ import fr.isepconseil.dbc.DatabaseConnection;
 public class InscriptionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DatabaseConnection dbc = null;
-
+	private Connection connexion = null;
+	private Statement statement1 = null;
+	private Statement statement2 = null;
+	private Statement statement3 = null;
+	private ResultSet resultat;
+	private int ajout;
+	private int ajout2;
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -43,64 +50,100 @@ public class InscriptionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Connection connexion = null;
-		Statement statement = null;
-		ResultSet ajout = null;
+
 
 		response.setContentType("text/html");
 		try {
 			dbc = new DatabaseConnection();
 			connexion = dbc.getConnection();
-			statement = connexion.createStatement();
+			statement1 = connexion.createStatement();
+			statement2 = connexion.createStatement();
+			statement3 = connexion.createStatement();
 
 			PrintWriter out = response.getWriter();
 			String iPrenom = request.getParameter("prenom");
 			String iNom = request.getParameter("nom");
 			String iAnnee = request.getParameter("annee");
-			String iAlternance = request.getParameter("alternance");
+			String sAlternance = request.getParameter("alternance");
+			System.out.println(sAlternance);
+			int iAlternance = 1;
+			if (sAlternance == "alternance"){
+				iAlternance = 0;
+			}
+
 			String iPromotion = request.getParameter("promotion");
 			String iParcours = request.getParameter("parcours");
 			String iEmail = request.getParameter("email");
 			String iPassword = request.getParameter("password");
 			String iConPassword = request.getParameter("ConfirmationPassword");
-			String info = null;
-			if ((iPrenom == null || "".equals(iPrenom))||(iNom == null || "".equals(iNom))||(iEmail == null
-					|| "".equals(iEmail))||(iPassword == null || "".equals(iPassword))) {
-				info = "La connexion a echoue, merci d'essayer de nouveau";
+
+			if (iPrenom != null || iNom != null ||iEmail != null
+				||iPassword != null ||sAlternance != null ||iParcours != null||iAnnee != null  ) {
+				ajout = statement1.executeUpdate( "Insert into Users(email, password,firstName, lastName) values ('" +iEmail+"','" +iPassword+"', '"+iPrenom+"','"+ iNom+"');");
+				resultat = statement2.executeQuery("select id_User from Users;");
+				System.out.println("Marche1");
+				while (resultat.next()){
+					int idUtilisateur = resultat.getInt( "id_User" );
+				    ajout2 = statement3.executeUpdate( "Insert into Students(id_User, parcours, studyyear, alternance) values ('" +idUtilisateur+"','" +iParcours+"','" +iAnnee+"', '"+iAlternance+"');");
+				}
+		        			
 			}
-			ajout = statement.executeQuery( "Insert into Users(firstName, lastName, email, password) values ('"+iPrenom+"','"+ iNom+"','" +iEmail+"','" +iPassword+"') " );
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			System.out.println("Exception declenchee");
 			e.printStackTrace();
 		}
 		finally {
 
-			if ( ajout != null ) {
+			if ( resultat != null ) {
 				try {
 
-					ajout.close();
+					resultat.close();
+					System.out.println("Fermeture du resulset");
+
+				} catch ( SQLException ignore ) {
+				}
+				
+			}
+			if ( statement1 != null ) {
+				try {
+
+					statement1.close();
+					System.out.println("Fermeture du statement");
 
 				} catch ( SQLException ignore ) {
 				}
 			}
-			System.out.println("Fermeture du resulset");
-			if ( statement != null ) {
+			if ( statement2 != null ) {
 				try {
 
-					statement.close();
+					statement2.close();
+					System.out.println("Fermeture du statement");
+
 				} catch ( SQLException ignore ) {
 				}
 			}
-			System.out.println("Fermeture du statement");
+			if ( statement3 != null ) {
+				try {
+
+					statement3.close();
+					System.out.println("Fermeture du statement");
+
+				} catch ( SQLException ignore ) {
+				}
+			}
 
 			if ( connexion != null ) {
 				try {
 
 					connexion.close();
+					System.out.println("Fermeture du connection");
+
 				} catch ( SQLException ignore ) {
 				}
 			}
-			System.out.println("Fermeture du connection");
 
 
 

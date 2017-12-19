@@ -17,7 +17,7 @@
 <center><p class="title">Inscription<p></center>
 
 <div class="droit">
-	<form name="inscription" id ="signupForm" method="get" action="">
+	<form name="inscription" id ="signupForm" method="post" action="InscriptionServlet">
 	
 	
 	<div id = "normal">
@@ -39,9 +39,9 @@
 		
 		<br><br>
 		<div id="alternancechoisir">
-		<input type="radio" id="alternance" name="alternance" value="alternance" required>
+		<input type="radio" id="alternance" name="alternance" required>
     	<label for="alternance">Alternance</label>
-    	<input type="radio" id="nom_alternance" name="alternance" value="non_alternance">
+    	<input type="radio" id="non_alternance" name="alternance" >
     	<label for="non_alternance">Non Alternance</label>
     	</div>
     	<br>
