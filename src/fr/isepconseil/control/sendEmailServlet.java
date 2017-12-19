@@ -15,7 +15,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,15 +46,18 @@ public class sendEmailServlet extends HttpServlet {
 		
 
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();	
+		PrintWriter out = response.getWriter();
+		RequestDispatcher dispatcher = null;
 		
 		if (checkEmail(email)) {
-			out.print("Votre mot de passe a bien envoyé à votre email !");
+			//out.print("Votre mot de passe a bien envoyé à votre email !");
+			dispatcher = request.getRequestDispatcher("forgetSucced.html");
 			sendEmail(email);
 		} else {
-			out.print("Cette adresse est invalide.");
+			dispatcher = request.getRequestDispatcher("forgetWrong.html");
+			//out.print("Cette adresse est invalide.");
 		}
-
+		dispatcher.forward(request, response);
 	}
 	
 	private void sendEmail(String to) { // (to do) send a link to reset password, not send the password directly
