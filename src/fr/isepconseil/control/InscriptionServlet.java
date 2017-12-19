@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
@@ -20,21 +21,21 @@ import fr.isepconseil.dbc.DatabaseConnection;
 public class InscriptionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DatabaseConnection dbc = null;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public InscriptionServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public InscriptionServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
+
 	}
 
 	/**
@@ -42,11 +43,15 @@ public class InscriptionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		Connection connexion = null;
+		Statement statement = null;
+		ResultSet ajout = null;
+
 		response.setContentType("text/html");
 		try {
 			dbc = new DatabaseConnection();
-			Connection connexion = dbc.getConnection();
+			connexion = dbc.getConnection();
+			statement = connexion.createStatement();
 
 			PrintWriter out = response.getWriter();
 			String iPrenom = request.getParameter("prenom");
@@ -58,15 +63,47 @@ public class InscriptionServlet extends HttpServlet {
 			String iEmail = request.getParameter("email");
 			String iPassword = request.getParameter("password");
 			String iConPassword = request.getParameter("ConfirmationPassword");
-			Statement statement = connexion.createStatement();
-			/* Exécution d'une requête de lecture */
-			ResultSet ajout = statement.executeQuery( "Insert into Users(firstName, lastName, email, password) values ('"+iPrenom+"','"+ iNom+"','" +iEmail+"','" +iPassword+"') " );
+			String info = null;
+			if ((iPrenom == null || "".equals(iPrenom))||(iNom == null || "".equals(iNom))||(iEmail == null
+					|| "".equals(iEmail))||(iPassword == null || "".equals(iPassword))) {
+				info = "La connexion a echoue, merci d'essayer de nouveau";
+			}
+			ajout = statement.executeQuery( "Insert into Users(firstName, lastName, email, password) values ('"+iPrenom+"','"+ iNom+"','" +iEmail+"','" +iPassword+"') " );
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-	
-	}
+		finally {
 
-}
+			if ( ajout != null ) {
+				try {
+
+					ajout.close();
+
+				} catch ( SQLException ignore ) {
+				}
+			}
+			System.out.println("Fermeture du resulset");
+			if ( statement != null ) {
+				try {
+
+					statement.close();
+				} catch ( SQLException ignore ) {
+				}
+			}
+			System.out.println("Fermeture du statement");
+
+			if ( connexion != null ) {
+				try {
+
+					connexion.close();
+				} catch ( SQLException ignore ) {
+				}
+			}
+			System.out.println("Fermeture du connection");
+
+
+
+		}
+
+	}}
