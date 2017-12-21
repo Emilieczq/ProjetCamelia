@@ -1,6 +1,8 @@
 package fr.isepconseil.control;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.isepconseil.dao.UserDAOI;
+import fr.isepconseil.dbc.DatabaseConnection;
+import fr.isepconseil.vo.Etudiant;
 import fr.isepconseil.vo.Professeur;
 import fr.isepconseil.vo.User;
 
@@ -20,6 +24,9 @@ import fr.isepconseil.vo.User;
 @WebServlet("/loginServlet")
 public class loginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private DatabaseConnection dbc = null;
+	private Connection connexion = null;
+	private Statement statement1 = null;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -71,6 +78,11 @@ public class loginServlet extends HttpServlet {
 						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProfilPourProf.jsp");
 						dispatcher.forward(request, response);
 					} else {
+						Etudiant etudiant = new Etudiant();
+						userDAO.setEtudiant(user, etudiant);
+						etudiant = userDAO.getEtudiant();
+						session.setAttribute("etudiant", etudiant);
+						
 						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/recherchePourEleve.jsp");
 						dispatcher.forward(request, response);
 					}

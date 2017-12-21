@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import fr.isepconseil.dbc.DatabaseConnection;
+import fr.isepconseil.vo.Etudiant;
 import fr.isepconseil.vo.Professeur;
 import fr.isepconseil.vo.User;
 
@@ -15,6 +16,7 @@ public class UserDAOI {
 	private PreparedStatement pstmt2 = null;
 	private Connection conn = null;
 	private Professeur professeur = null;
+	private Etudiant etudiant = null;
 
 	public UserDAOI() {
 		try {
@@ -87,6 +89,7 @@ public class UserDAOI {
 			if (rSet.next()) {
 				professeur.setBureau(rSet.getString("office"));
 				professeur.setTel( rSet.getString("phone"));
+				user.setId(rSet.getInt("id_User"));
 				professeur.setEmail(user.getEmail());
 				professeur.setPoste(rSet.getString("poste"));
 				
@@ -115,8 +118,51 @@ public class UserDAOI {
 		this.professeur = professeur;
 	}
 	
+	public void setEtudiant(User user, Etudiant etudiant) {
+		String sql1 = "select * from Students where Id_User = (Select Id_User from Users where Email = ?);";
+		String sql2 = "select * from Users where Email = ?;";
+		try {
+			pstmt = conn.prepareStatement(sql1);
+			pstmt.setString(1, user.getEmail());
+			ResultSet rSet = pstmt.executeQuery();
+			
+			if (rSet.next()) {
+				etudiant.setParcours(rSet.getString("parcours"));
+				etudiant.setAnnee( rSet.getString("studyyear"));
+				user.setId(rSet.getInt("id_User"));
+				etudiant.setEmail(user.getEmail());
+				etudiant.setAlternance(rSet.getInt("alternance"));
+				etudiant.setToeic(rSet.getInt("toeic"));
+				
+			}
+			
+			pstmt2 = conn.prepareStatement(sql2);
+			pstmt2.setString(1, user.getEmail());
+			ResultSet rSet2 = pstmt2.executeQuery();
+			
+			if(rSet2.next()) {
+				etudiant.setPrenom(rSet2.getString("firstName"));
+				etudiant.setNom(rSet2.getString("lastName"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		this.etudiant = etudiant;
+	}
 	public Professeur getProfesseur() {
 		return professeur;
+	}
+	public Etudiant getEtudiant(){
+		return etudiant;
 	}
 
 }

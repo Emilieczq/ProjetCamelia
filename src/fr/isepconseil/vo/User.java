@@ -4,6 +4,7 @@ public class User {
 	private String email; // => email in Database
 	private String password; // => password in Database
 	private String type; // => "Etudiant" or "Professeur"
+	private int id;
 
 	public String getEmail() {
 		return email;
@@ -11,6 +12,14 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getPassword() {

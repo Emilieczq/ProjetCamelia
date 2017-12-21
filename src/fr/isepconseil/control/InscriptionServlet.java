@@ -80,10 +80,11 @@ public class InscriptionServlet extends HttpServlet {
 			if (iPrenom != null || iNom != null ||iEmail != null
 				||iPassword != null ||sAlternance != null ||iParcours != null||iAnnee != null  ) {
 				ajout = statement1.executeUpdate( "Insert into Users(email, password,firstName, lastName) values ('" +iEmail+"','" +iPassword+"', '"+iPrenom+"','"+ iNom+"');");
-				resultat = statement2.executeQuery("select id_User from Users;");
+				resultat = statement2.executeQuery("select id_User from Users where email = '"+iEmail+"';");
 				System.out.println("Marche1");
 				while (resultat.next()){
 					int idUtilisateur = resultat.getInt( "id_User" );
+					
 				    ajout2 = statement3.executeUpdate( "Insert into Students(id_User, parcours, studyyear, alternance) values ('" +idUtilisateur+"','" +iParcours+"','" +iAnnee+"', '"+iAlternance+"');");
 				}
 		        			
