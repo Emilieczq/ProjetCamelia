@@ -27,28 +27,62 @@
 <%
 
 	Etudiant etudiant = (Etudiant)request.getSession().getAttribute("etudiant");
-	String email = etudiant.getEmail();
+	String eemail = etudiant.getEmail();
+	String eannee = etudiant.getAnnee();
+	String eparcours = etudiant.getParcours();
+	int ealternance1 = etudiant.getAlternance();
+	String eprenom = etudiant.getPrenom();
+	String enom = etudiant.getNom();
+	if (ealternance1 == 0){
+		String ealternance = "Alternant" ;
+	}
+	else{
+		String ealternance = "Non-Alternant";
+	}
+	
 
 
 %>
 
 <form name="elevemodifier" method="post" action="EleveModifierServlet">
 <div class = "droit">
-		<label for="numero">Numéro d'étudiant:</label>
-		<input id="numero" type="text" name="numero" class="normal"/>
-		<br><br>
-<!-- 		<label for="annee">Année d’étude:</label>
-		<input id="annee" type="text" name="annee" class="normal"/>
-		<br><br> -->
-		<label for="promotion">Promotion:</label>
-		<input id="promotion" type="text" name="promotion" class="normal"/>
-		<br><br>
-		<label for="parcours">Parcours:</label>
-		<input id="parcours" type="text" name="parcours" class="normal"/>
+
+<%=eprenom %> <%=enom %>
+<br>
+		<%= eemail%>
 		<br><br>
 
-		<p>Email = <%= email%></p>
+
+		
+		<label for="promotion">Année d’étude:  <%= eannee %></label>
+		<select id = "annee" name = "promotion" class="select"  >
+			<option value="" disabled selected></option> 
+  			<option valeur="A1">A1</option>
+  			<option valeur="A2">A2</option>
+  			<option valeur="A3">A3</option>
+		</select>
 		<br><br>
+		<label for="parcours">Parcours: 		<%= eparcours %></label>
+
+<select id = "parcours" name = "parcours" class="selectlong"  >
+			<option value=""></option> 
+  			<option value = "architecte_des_systèmes_d information">ARCHITECTE DES SYSTÈMES D’INFORMATION</option>
+  			<option value ="ingénieur_en_business_intelligence"> INGÉNIEUR EN BUSINESS INTELLIGENCE</option>
+  			<option value ="ingénieur_logiciel"> INGÉNIEUR LOGICIEL</option>
+  			<option value ="ingénieur_numerique_et_santé"> INGÉNIEUR NUMÉRIQUE ET SANTÉ</option>
+  			<option value ="architecte_télècom&IOT"> ARCHITECTE TÉLÉCOM & IOT</option>
+  			<option value ="ingénieur_en_sécurité_numérique_et_réseaux"> INGÉNIEUR EN SÉCURITÉ NUMÉRIQUE ET RÉSEAUX</option>
+  			<option value ="concepteur_de_systèmes_embarqués"> CONCEPTEUR DE SYSTÈMES EMBARQUÉS</option>
+  			<option value ="innovation_et_création d'entreprise"> INNOVATION ET CRÉATION D’ENTREPRISE</option>
+		</select>		<br><br>
+
+		<div id="alternancechoisir">  <label for="alternance">Alternance</label>
+		
+		<input type="radio" id="alternance" name="alternance" value = "alternance">
+    	<input type="radio" id="non_alternance" name="alternance" value = "non_alternance">
+    	<label for="non_alternance">Non Alternance</label>
+    	</div>
+    	<br>
 		<label for="toeic">Toeic:</label>
 		<input id="toeic" type="text" name="toeic" class="normal" />
 </div>
