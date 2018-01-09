@@ -24,8 +24,13 @@ public class RechercheServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DatabaseConnection dbc = null;
 	private Connection connexion = null;
-	private Statement statement = null;
-	private ResultSet resultat;
+	private Statement fnameRecherche = null;
+	private Statement lnameRecherche = null;
+	private Statement idRecherche = null;
+	
+	private ResultSet resultatFnameRecherche;
+	private ResultSet resultatLnameRecherche;
+	private ResultSet resultatIdRecherche;
 
 
 	/**
@@ -51,22 +56,39 @@ public class RechercheServlet extends HttpServlet {
 		try {
 			dbc = new DatabaseConnection();
 			connexion = dbc.getConnection();
-			statement = connexion.createStatement();
-
+			fnameRecherche = connexion.createStatement();
+			lnameRecherche = connexion.createStatement();
+			idRecherche = connexion.createStatement();
+			
 			PrintWriter out = response.getWriter();
 			String recherche = request.getParameter("search");
 			System.out.println(recherche);
 
 
 			if (recherche != null ) {
-				resultat = statement.executeQuery("select firstName from Users where email = '"+recherche+"';");
-				while (resultat.next()){
-					String nameRech = resultat.getString( "firstName" );
-
+				resultatFnameRecherche = fnameRecherche.executeQuery("select firstName from Users where email = '"+recherche+"';");
+				while (resultatFnameRecherche.next()){
+					String fnameRech = resultatFnameRecherche.getString( "firstName" );
+					System.out.println(fnameRech);
+					request.setAttribute("fnameRech", fnameRech );
+				}
+				
+				resultatLnameRecherche = lnameRecherche.executeQuery("select lastName from Users where email = '"+recherche+"';");
+				while (resultatLnameRecherche.next()){
+					String lnameRech = resultatLnameRecherche.getString( "lastName" );
+					System.out.println(lnameRech);
+					request.setAttribute("lnameRech", lnameRech );
+				}
+				
+				resultatIdRecherche = idRecherche.executeQuery("select id_User from Users where email = '"+recherche+"';");
+				while (resultatIdRecherche.next()){
+					String idRech = resultatIdRecherche.getString( "id_User" );
+					System.out.println(idRech);
+					request.setAttribute("idRech", idRech );
 				}
 
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp"); //a modifier, page de resultat
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/resarchResult.jsp"); //a modifier, page de resultat
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -75,20 +97,20 @@ public class RechercheServlet extends HttpServlet {
 		}
 		finally {
 
-			if ( resultat != null ) {
+			if ( resultatFnameRecherche != null ) {
 				try {
 
-					resultat.close();
-					System.out.println("Fermeture du resulset");
+					resultatFnameRecherche.close();
+					System.out.println("Fermeture du resultat");
 
 				} catch ( SQLException ignore ) {
 				}
 
 			}
-			if ( statement != null ) {
+			if ( fnameRecherche != null ) {
 				try {
 
-					statement.close();
+					fnameRecherche.close();
 					System.out.println("Fermeture du statement");
 
 				} catch ( SQLException ignore ) {

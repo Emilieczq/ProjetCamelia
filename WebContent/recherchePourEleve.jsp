@@ -23,8 +23,12 @@
 <div class = "ligne"></div>
 
 <div>
-<input type ="text" name = "search" class = "search" placeholder="Search">
-<i class = "icon-user"></i>
+	<form method="post" action="RechercheServlet">
+		Recherche : <input type ="text" name = "search" class = "search" placeholder="Search">
+		<input type="submit" value="Envoyer" class = "button">
+		<i class = "icon-user"></i>
+	
+	</form>
 </div>
 
 <div class="ligne"></div>
