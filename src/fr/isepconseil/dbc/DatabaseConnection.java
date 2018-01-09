@@ -8,7 +8,7 @@ public class DatabaseConnection {
     static final String DB_URL = "jdbc:mysql://localhost:3306/Camelia?autoReconnect=true&useSSL=false"; // correct the project name
 
     static final String USER = "root"; // your server user name
-    static final String PASSWORD = "root"; // your password
+    static final String PASSWORD = "123456"; // your password
     private Connection connection=null; 
     
 	public DatabaseConnection() throws Exception{  
