@@ -127,6 +127,7 @@ public class UserDAOI {
 			ResultSet rSet = pstmt.executeQuery();
 			
 			if (rSet.next()) {
+				etudiant.setIdEtudiant(rSet.getInt("id_Student"));
 				etudiant.setParcours(rSet.getString("parcours"));
 				etudiant.setAnnee( rSet.getString("studyyear"));
 				user.setId(rSet.getInt("id_User"));

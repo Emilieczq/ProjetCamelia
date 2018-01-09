@@ -13,6 +13,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="DemandeDeContact.css">
+<script type="text/javascript" src="inscriptionCheck.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -30,7 +31,7 @@
 		</center>
 		<div class="white"></div>
 		<br>
-		<form id="demande" action="">
+		<form id="demande"  method= "POST" action="EleveContactServlet">
 			<center>
 				<label for="professeur">Professeur:</label>
 				<%
@@ -51,7 +52,7 @@
 				   int i =0;
 				   while (resultat1.next()){
 					   
-					 	profs.add(resultat1.getString( "lastName" )+" " + resultat1.getString( "firstName" ));
+					 	profs.add(resultat1.getString( "firstName" )+" " + resultat1.getString( "lastName" ));
 					 	i++;
 				   }
 				   System.out.println(profs);
@@ -70,10 +71,9 @@
 				</select> <br>
 				<br> <label for="but" id="But">But:</label>
 				<textarea id="but" name = "but"></textarea>
-				<br>
-				<br> <br>
-				<br> <input id="submit" type="submit" value="Demander un RDV"
-					class="button" onclick="validatePassword();" />
+				<br><br> <br><br> 
+				<input id="submit" type="submit" value="Demander un RDV"
+					class="button" onclick="return validate();" />
 
 			</center>
 		</form>

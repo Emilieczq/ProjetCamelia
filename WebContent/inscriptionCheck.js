@@ -32,3 +32,8 @@ function validatePassword() {
     	return true;
     }
 }
+
+function validate(){
+	
+	var profName = document.getElementById('profName').value();
+}

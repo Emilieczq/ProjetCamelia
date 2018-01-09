@@ -4,7 +4,16 @@ public class Etudiant {
 
 	
 	private String parcours,annee,email,nom,prenom;
-	private int toeic, alternance;
+	private int idEtudiant, toeic, alternance;
+	
+	public int getIdEtudiant(){
+		return idEtudiant;
+	}
+	
+	public void setIdEtudiant(int idEtudiant){
+		this.idEtudiant=idEtudiant;
+	}
+	
 	public String getParcours() {
 		return parcours;
 	}
