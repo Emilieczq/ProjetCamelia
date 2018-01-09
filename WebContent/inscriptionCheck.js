@@ -33,7 +33,3 @@ function validatePassword() {
     }
 }
 
-function validate(){
-	
-	var profName = document.getElementById('profName').value();
-}

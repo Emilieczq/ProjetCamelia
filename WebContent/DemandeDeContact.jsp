@@ -35,7 +35,6 @@
 			<center>
 				<label for="professeur">Professeur:</label>
 				<%
-					String[] professeurs;
 				   List<String> profs = new ArrayList<String>();
 				   DatabaseConnection dbc = null;
 				   Connection connexion = null;
@@ -70,10 +69,10 @@
 					
 				</select> <br>
 				<br> <label for="but" id="But">But:</label>
-				<textarea id="but" name = "but"></textarea>
+				<textarea id="but" name = "but" required></textarea>
 				<br><br> <br><br> 
 				<input id="submit" type="submit" value="Demander un RDV"
-					class="button" onclick="return validate();" />
+					class="button" onclick="" />
 
 			</center>
 		</form>

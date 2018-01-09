@@ -68,7 +68,7 @@ public class EleveContactServlet extends HttpServlet {
 				int idTeacher = resultat.getInt( "id_Teacher" );
 				ajout = statement2.executeUpdate( "Insert into RDV(id_Teacher, id_Student,subject) values ('" +idTeacher+"', '"+idStudent+"','"+ but+"');");
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/recherchePourEleve.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ContactSuccess.html");
 			dispatcher.forward(request, response);
 			
 			
