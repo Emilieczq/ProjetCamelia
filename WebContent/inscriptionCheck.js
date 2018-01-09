@@ -17,19 +17,20 @@ function validatePassword() {
     if (p.search(/[0-9]/) < 0) {
         errors.push("Your password must contain at least one digit."); 
     }
-    if (p.search(/[!@#$%^&*]/) < 0) {
+    if (p.search(/[!@#$%^&*-_']/) < 0) {
         errors.push("Your password must contain at least one special character."); 
     }
     if (errors.length > 0) {
         alert(errors.join("\n"));
         return false;
     }if(p!=cp){
-    	document.getElementById("msg").innerHTML="Enter twice the password is not the same";
+    	document.getElementById("msg").innerHTML="Entered twice the password is not the same";
     	return false;
     }
     if(p==cp){
     	document.getElementById("msg").innerHTML=" ";
     	return true;
     }
+    if()
     return true;
 }

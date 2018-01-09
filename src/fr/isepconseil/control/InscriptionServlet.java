@@ -71,11 +71,11 @@ public class InscriptionServlet extends HttpServlet {
 				iAlternance = 0;
 			}
 
-			String iPromotion = request.getParameter("promotion");
 			String iParcours = request.getParameter("parcours");
 			String iEmail = request.getParameter("email");
 			String iPassword = request.getParameter("password");
-			String iConPassword = request.getParameter("ConfirmationPassword");
+
+				
 
 			if (iPrenom != null || iNom != null ||iEmail != null
 				||iPassword != null ||sAlternance != null ||iParcours != null||iAnnee != null  ) {
