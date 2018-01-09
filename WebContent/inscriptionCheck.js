@@ -6,30 +6,29 @@ function validatePassword() {
         errors = [];
     var cp = document.getElementById('ConfirmationPassword').value;
     if (p.length < 8) {
-        errors.push("Your password must be at least 8 characters"); 
+        errors.push("Le mot de passe doit contenir au moins 8 caractères."); 
     }
     if (p.search(/[a-z]/i) < 0) {
-        errors.push("Your password must contain at least one lowercase letters.");
+        errors.push("Le mot de passe doit contenir au moins 1 minuscule.");
     }
     if (p.search(/[A-Z]/i) < 0) {
-        errors.push("Your password must contain at least one Capital letters.");
+        errors.push("Le mot de passe doit contenir au moins 1 majuscule.");
     }
     if (p.search(/[0-9]/) < 0) {
-        errors.push("Your password must contain at least one digit."); 
+        errors.push("Le mot de passe doit contenir au moins 1 chiffre."); 
     }
     if (p.search(/[!@#$%^&*-_']/) < 0) {
-        errors.push("Your password must contain at least one special character."); 
+        errors.push("Le mot de passe doit contenir au moins 1 caractère spécial."); 
     }
     if (errors.length > 0) {
         alert(errors.join("\n"));
         return false;
-    }if(p!=cp){
-    	document.getElementById("msg").innerHTML="Entered twice the password is not the same";
-    	return false;
     }
-    if(p==cp){
+    if(p!=cp){
+    	document.getElementById("msg").innerHTML="Vérifiez votre mot de ";
+    	return false;
+    }else{
     	document.getElementById("msg").innerHTML=" ";
     	return true;
     }
-    return true;
 }
