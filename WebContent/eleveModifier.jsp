@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="../eleveModifier.css">
-<script src="controller/eleveModifier.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="eleveModifier.css">
+<script src="eleveModifier.js" type="text/javascript"></script>
 <title>Editer son profil</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
 </div>
 <center>
 <form>
-<img id = "preview" src="../pictures/people.png"width="100"height="103" name = "pic" alt="">
+<img id = "preview" src="pictures/people.png"width="100"height="103" name = "pic" alt="">
 <br>
 
 <input  id = "f" type="file" accept="image/*" onchange="change()"/>

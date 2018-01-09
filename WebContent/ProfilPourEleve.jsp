@@ -4,34 +4,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"  type="text/css"  href="../recherchePourEleve.css"/>
+<link rel="stylesheet" type="text/css" href="profilPourEleve.css">
 <title>Insert title here</title>
 </head>
 <body>
+<img src="pictures/try.jpg" border='0'width='100%' height='100%' style='position: absolute;left:0px;top:0px;z-index: -1'/>
 <%@ include file = "menu.jsp" %>
-<br>
 <div class = "white">
 </div>
 <div class = "white">
 </div>
 <br>
-
-
 <center>
-<div class ="test">
 
-<div class = "ligne"></div>
-
-<div>
-<input type ="text" name = "search" class = "search" placeholder="Search">
-<i class = "icon-user"></i>
-</div>
-
-<div class="ligne"></div>
-
-</div>
+ <input type="button" value="Modifier" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/eleveModifier.jsp'"  />
 
 </center>
-
 </body>
 </html>

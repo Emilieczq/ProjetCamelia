@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="../eleveModifier.css">
-<script src="controller/eleveMotifier.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="eleveModifier.css">
+<script src="eleveMotifier.js" type="text/javascript"></script>
 <title>Le profil de prof</title>
 </head>
 <body>
@@ -14,13 +14,13 @@
 </div>
 <center>
 <form>
-<img id = "preview" src="../pictures/people.png"width="100"height="103" name = "pic" alt="">
+<img id = "preview" src="pictures/people.png"width="100"height="103" name = "pic" alt="">
 <br>
 <input  id = "f" type="file" accept="image/*" onchange="change()"/>
 </form>
 </center>
 
-<form action="/ProjetCamelia/Vue/ProfilPourProf.jsp">
+<form action="/ProjetCamelia/ProfilPourProf.jsp">
 <div class = "droit">
 <label for="poste">Poste:</label>
 <input id="poste" type="text" name="poste" class="normal"/>
@@ -35,7 +35,7 @@
 <input id="email" type="text" name="email" class="normal"/>
 <br><br>
 <input id="submit" type="submit" value="Enregistrer" class = "button"/>
-<input type="button" value="Retour" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/Vue/ProfilPourProf.jsp'"  />
+<input type="button" value="Retour" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/ProfilPourProf.jsp'"  />
 </div>
 </form>
 

@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"  type="text/css"  href="../recherchePourEleve.css"/>
+<link rel="stylesheet"  type="text/css"  href="recherchePourEleve.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script type="text/javascript" src = "controller/recherchePourEleve.js"></script>
+<script type="text/javascript" src = "recherchePourEleve.js"></script>
 </head>
 
 <body>
@@ -22,9 +22,9 @@
 
 <div class="nav">
 <ul class="nav-ul">
-	<li class = "act"><a href="http://localhost:8080/ProjetCamelia/Vue/JSP/recherchePourEleve.jsp">Recherche</a></li>
-	<li><a href = "http://localhost:8080/ProjetCamelia/Vue/JSP/ProfilPourEleve.jsp"> Profil</a></li>
-	<li><a href = "http://localhost:8080/ProjetCamelia/Vue/JSP/DemandeDeContact.jsp"> Demande de contact</a></li>
+	<li class = "act"><a href="">Recherche</a></li>
+	<li><a href = "http://localhost:8080/ProjetCamelia/ProfilPourProf.jsp"> Profil</a></li>
+	<li><a href = "http://localhost:8080/ProjetCamelia/ListeDesContactes.jsp"> Liste des contacts</a></li>
 </ul>
 
 </div>

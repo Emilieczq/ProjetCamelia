@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="../profilPourEleve.css">
+<link rel="stylesheet" type="text/css" href="profilPourEleve.css">
 <title>Insert title here</title>
 </head>
 <body>
-<img src="../pictures/try.jpg" border='0'width='100%' height='100%' style='position: absolute;left:0px;top:0px;z-index: -1'/>
+<img src="pictures/try.jpg" border='0'width='100%' height='100%' style='position: absolute;left:0px;top:0px;z-index: -1'/>
 <%@ include file = "MenuPourProf.jsp" %>
 <div class = "white">
 </div>
@@ -46,7 +46,7 @@
 
 
 
-<input type="button" value="Modifier" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/Vue/ProfModifier.jsp'"  />
+<input type="button" value="Modifier" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/ProfModifier.jsp'"  />
 </center>
 </body>
 </html>

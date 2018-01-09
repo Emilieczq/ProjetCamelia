@@ -6,13 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../indexStyle.css">
+<link rel="stylesheet" type="text/css" href="indexStyle.css">
 <title>ISEP Conseil - Login</title>
 </head>
 <body>
-<img src="../pictures/login3.jpg" border='0'width='100%' height='100%' style='position: absolute;left:0px;top:0px;z-index: -1'/>
+<img src="pictures/login3.jpg" border='0'width='100%' height='100%' style='position: absolute;left:0px;top:0px;z-index: -1'/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="controller/indexScript.js" type="text/javascript"></script>
+<script src="indexScript.js" type="text/javascript"></script>
 
 
 <div class= "center">
@@ -26,7 +26,7 @@ if(info!=null){
 <%    
 }  
 %> 
-	<form name="loginForm" method= "POST" action="../../loginServlet"> 
+	<form name="loginForm" method= "POST" action="loginServlet"> 
 		<fieldset>
 			<label for="login">Nom d'utilisateur:</label>
 			<input id="login" type="text" name="login" />
@@ -37,10 +37,10 @@ if(info!=null){
 	    </fieldset>
 	    
 	    <input id="submit" type="submit" value="Connexion" class = "button"/>
-	  <input type="button" value="Inscription" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/Vue/Inscription.html'" />
+	  <input type="button" value="Inscription" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/Inscription.html'" />
 	    <br>
 	</form>
-	<h3><a href="http://localhost:8080/ProjetCamelia/Vue/JSP/forget.jsp">Mot de passe oublié</a></h3>
+	<h3><a href="http://localhost:8080/ProjetCamelia/forget.jsp">Mot de passe oublié</a></h3>
 </div>
 
 
