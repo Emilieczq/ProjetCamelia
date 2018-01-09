@@ -74,6 +74,10 @@ public class InscriptionServlet extends HttpServlet {
 			String iParcours = request.getParameter("parcours");
 			String iEmail = request.getParameter("email");
 			String iPassword = request.getParameter("password");
+			if (iParcours.contains("'")){
+				iParcours.replace("\'", "'");
+				System.out.println(iParcours);
+			}
 
 				
 
@@ -84,7 +88,6 @@ public class InscriptionServlet extends HttpServlet {
 				System.out.println("Marche1");
 				while (resultat.next()){
 					int idUtilisateur = resultat.getInt( "id_User" );
-					
 				    ajout2 = statement3.executeUpdate( "Insert into Students(id_User, parcours, studyyear, alternance) values ('" +idUtilisateur+"','" +iParcours+"','" +iAnnee+"', '"+iAlternance+"');");
 				}
 		        			
