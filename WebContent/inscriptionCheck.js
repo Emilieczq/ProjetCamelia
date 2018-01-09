@@ -25,7 +25,7 @@ function validatePassword() {
         return false;
     }
     if(p!=cp){
-    	document.getElementById("msg").innerHTML="Vérifiez votre mot de ";
+    	document.getElementById("msg").innerHTML="Vérifiez votre mot de passe.";
     	return false;
     }else{
     	document.getElementById("msg").innerHTML=" ";
