@@ -31,6 +31,5 @@ function validatePassword() {
     	document.getElementById("msg").innerHTML=" ";
     	return true;
     }
-    if()
     return true;
 }
