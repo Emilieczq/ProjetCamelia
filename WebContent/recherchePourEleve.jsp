@@ -24,8 +24,7 @@
 
 <div>
 	<form method="post" action="RechercheServlet">
-		Recherche : <input type ="text" name = "search" class = "search" placeholder="Search">
-		<input type="submit" value="Envoyer" class = "button">
+	 <input type ="text" name = "search" class = "search" placeholder="Search">
 		<i class = "icon-user"></i>
 	
 	</form>
