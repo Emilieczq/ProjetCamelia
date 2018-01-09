@@ -32,7 +32,7 @@ public class sendEmailServlet extends HttpServlet {
     static final String DB_URL = "jdbc:mysql://localhost:3306/Camelia"; // correct the project name
 
     static final String USER = "root"; // your server user name
-    static final String PASSWORD = "123456"; // your password
+    static final String PASSWORD = "root"; // your password
     
     private String pass = null;
     
@@ -51,10 +51,10 @@ public class sendEmailServlet extends HttpServlet {
 		
 		if (checkEmail(email)) {
 			//out.print("Votre mot de passe a bien envoyé à votre email !");
-			dispatcher = request.getRequestDispatcher("forgetSucced.html");
+			dispatcher = request.getRequestDispatcher("Vue/JSP/forgetSucced.html");
 			sendEmail(email);
 		} else {
-			dispatcher = request.getRequestDispatcher("forgetWrong.html");
+			dispatcher = request.getRequestDispatcher("Vue/JSP/forgetWrong.html");
 			//out.print("Cette adresse est invalide.");
 		}
 		dispatcher.forward(request, response);

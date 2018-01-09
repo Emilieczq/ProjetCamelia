@@ -89,7 +89,7 @@ public class InscriptionServlet extends HttpServlet {
 				}
 		        			
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Vue/JSP/index.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

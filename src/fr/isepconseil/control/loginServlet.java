@@ -75,7 +75,7 @@ public class loginServlet extends HttpServlet {
 						professeur = userDAO.getProfesseur();
 						session.setAttribute("professeur", professeur); //session
 						
-						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProfilPourProf.jsp");
+						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Vue/JSP/ProfilPourProf.jsp");
 						dispatcher.forward(request, response);
 					} else {
 						Etudiant etudiant = new Etudiant();
@@ -83,7 +83,7 @@ public class loginServlet extends HttpServlet {
 						etudiant = userDAO.getEtudiant();
 						session.setAttribute("etudiant", etudiant);
 						
-						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/recherchePourEleve.jsp");
+						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Vue/JSP/recherchePourEleve.jsp");
 						dispatcher.forward(request, response);
 					}
 
@@ -92,7 +92,7 @@ public class loginServlet extends HttpServlet {
 					System.out.println("wrong login or wrong password"); // to be deleted
 					info="La connexion a échoué, merci d'essayer de nouveau";
 					request.setAttribute("info", info);
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Vue/JSP/index.jsp");
 					dispatcher.forward(request, response);
 				}
 			} catch (Exception e) {
@@ -100,7 +100,7 @@ public class loginServlet extends HttpServlet {
 			}
 		} else {
 			request.setAttribute("info", info);
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Vue/JSP/index.jsp");
 			dispatcher.forward(request, response);
 		}
 	}

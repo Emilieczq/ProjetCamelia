@@ -84,7 +84,7 @@ public class EleveModifierServlet extends HttpServlet {
 			
 					        			
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProfilPourEleve.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Vue/JSP/ProfilPourEleve.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
