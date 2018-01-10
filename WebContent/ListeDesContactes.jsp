@@ -62,36 +62,35 @@
 	statement3 = connexion.createStatement();
 
 	rset = statement1.executeQuery("select * from Camelia.RDV where id_Teacher = (select id_Teacher from Camelia.Teachers where id_User =" + id_User + ");");
-				
+	
+	List<String> buts = new ArrayList<String>();
+	
 	while (rset.next()) {
 		int id_Student = rset.getInt("id_Student");
 		rset2 = statement2.executeQuery("select * from Students where id_Student=" + id_Student+";");
 		rset3 = statement3.executeQuery("select * from Users where id_User = (select id_User from Students where id_Student = "+ id_Student+");");
-		while (rset2.next()) {
-			System.out.println(rset3.getString("firstName"));
-			System.out.println(rset3.getString("lastName"));
-			System.out.println(rset3.getString("email"));
-			System.out.println(rset2.getString("studyyear"));
-			System.out.println(rset2.getString("parcours"));
-			System.out.println(rset.getString("subject"));
-			
+		
+		while (rset3.next()) {
 %>
 	<tr>
 		<td><%= rset3.getString("firstName")%></td>
 		<td><%= rset3.getString("lastName")%></td>
 		<td><%= rset3.getString("email")%></td>
+		
+		<% 
+			if(rset2.next()){
+		%>
 		<td><%= rset2.getString("studyyear")%></td>
 		<td><%= rset2.getString("parcours")%></td>
 		<td> <%= rset.getString("subject")%></td>
 	</tr>
 
 <% 		
+			}
 		}
 	}
-	System.out.println(idEtudiants);
 
 %>
-
 
 </table>
 </center>
