@@ -1,8 +1,8 @@
 package fr.isepconseil.vo;
 
-import java.io.Serializable;
 
-public class Professeur implements Serializable{
+public class Professeur{
+	
 	private String poste,bureau,tel,email,nom,prenom;
 	
 	public String getPoste() {
@@ -40,9 +40,6 @@ public class Professeur implements Serializable{
 	}
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
-	}
-	public Professeur() {
-		
 	}
 
 }

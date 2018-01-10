@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>   
+     <%@ page import="fr.isepconseil.vo.Professeur" %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,18 +22,33 @@
 </form>
 </center>
 
+
+<%
+
+	Professeur professeur = (Professeur)request.getSession().getAttribute("professeur");
+	String pprenom = professeur.getPrenom();
+	String pnom = professeur.getNom();
+	String pemail = professeur.getEmail();
+	String pposte = professeur.getPoste();
+	String pbureau = professeur.getBureau();
+	String ptel = professeur.getTel();
+	
+
+
+%>
+
 <form action="/ProjetCamelia/ProfilPourProf.jsp">
 <div class = "droit">
-<label for="poste">Poste:</label>
+<label for="poste">Poste: <%=pposte%></label>
 <input id="poste" type="text" name="poste" class="normal"/>
 <br><br>
-<label for="bureau">Bureau:</label>
+<label for="bureau">Bureau:  <%=pbureau%></label>
 <input id="bureau" type="text" name="bureau" class="normal"/>
 <br><br>
-<label for="tel">Tel:</label>
+<label for="tel">Tel:  <%=ptel%></label>
 <input id="tel" type="text" name="tel" class="normal"/>
 <br><br>
-<label for="email">Email:</label>
+<label for="email">Email:  <%=pemail%></label>
 <input id="email" type="text" name="email" class="normal"/>
 <br><br>
 <input id="submit" type="submit" value="Enregistrer" class = "button"/>
