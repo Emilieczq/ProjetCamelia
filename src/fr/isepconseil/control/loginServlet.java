@@ -62,7 +62,7 @@ public class loginServlet extends HttpServlet {
 			User user = new User();
 			user.setEmail(login);
 			user.setPassword(password);
-			request.setAttribute("user", user);
+			session.setAttribute("user", user);
 			UserDAOI userDAO = new UserDAOI();
 
 			try {
@@ -88,8 +88,6 @@ public class loginServlet extends HttpServlet {
 					}
 
 				} else {
-					user = new User(); // clear all the information in JavaBean
-					System.out.println("wrong login or wrong password"); // to be deleted
 					info="La connexion a échoué, merci d'essayer de nouveau";
 					request.setAttribute("info", info);
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");

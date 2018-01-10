@@ -16,9 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import fr.isepconseil.dbc.DatabaseConnection;
 import fr.isepconseil.vo.Etudiant;
 
-/**
- * Servlet implementation class EleveContactServlet
- */
 @WebServlet("/EleveContactServlet")
 public class EleveContactServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,26 +26,10 @@ public class EleveContactServlet extends HttpServlet {
 	private ResultSet resultat;
 	private int ajout;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public EleveContactServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		try {
 			dbc = new DatabaseConnection();
 			connexion = dbc.getConnection();
@@ -62,19 +43,15 @@ public class EleveContactServlet extends HttpServlet {
 			int idStudent = etudiant.getIdEtudiant();
 			
 			if(profName!=null && but!=null){
-				
-			resultat = statement1.executeQuery("SELECT id_Teacher from Camelia.Teachers where id_User = (select id_User from Camelia.Users where concat(firstName,' ',lastName)=\"anna jo\");");	
-			while(resultat.next()){
-				int idTeacher = resultat.getInt( "id_Teacher" );
-				ajout = statement2.executeUpdate( "Insert into RDV(id_Teacher, id_Student,subject) values ('" +idTeacher+"', '"+idStudent+"','"+ but+"');");
-			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ContactSuccess.html");
-			dispatcher.forward(request, response);
-			
-			
+				resultat = statement1.executeQuery("SELECT id_Teacher from Camelia.Teachers where id_User = (select id_User from Camelia.Users where concat(firstName,' ',lastName)='"+profName+"');");	
+				while(resultat.next()){
+					int idTeacher = resultat.getInt( "id_Teacher" );
+					ajout = statement2.executeUpdate( "Insert into RDV(id_Teacher, id_Student,subject) values ('" +idTeacher+"', '"+idStudent+"','"+ but+"');");
+				}
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ContactSuccess.html");
+				dispatcher.forward(request, response);
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (resultat != null) {
@@ -110,7 +87,6 @@ public class EleveContactServlet extends HttpServlet {
 				} catch (SQLException ignore) {
 				}
 			}
-
 		}
 	}
 }
