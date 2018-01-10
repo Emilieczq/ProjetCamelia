@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<img src="pictures/try.jpg" border='0'width='100%' height='100%' style='position: absolute;left:0px;top:0px;z-index: -1'/>
+
 <%@ include file = "MenuPourProf.jsp" %>
 <div class = "white">
 </div>
@@ -36,15 +36,15 @@
 
 %>
 
-
-<h3>Nom = <%= nom%></h3>
-<h3>Prénom = <%= prenom%></h3>
-<h3>Email = <%= email%></h3>
-<h3>Tél = <%= tel%></h3>
-<h3>Bureau = <%=bureau %></h3>
-<h3>Poste = <%= poste%></h3>
-
-
+<div class="cycle">
+<br><br>
+<p class="pen_style">Nom : <%= nom%></p><br>
+<p class="pen_style">Prénom : <%= prenom%></p><br>
+<p class="pen_style">Email : <%= email%></p><br>
+<p class="pen_style">Tél : <%= tel%></p><br>
+<p class="pen_style">Bureau : <%=bureau %></p><br>
+<p class="pen_style">Poste : <%= poste%></p> 
+</div>
 
 <input type="button" value="Modifier" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/ProfModifier.jsp'"  />
 </center>
