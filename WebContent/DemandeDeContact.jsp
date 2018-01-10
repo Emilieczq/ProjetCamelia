@@ -39,14 +39,11 @@
 				   DatabaseConnection dbc = null;
 				   Connection connexion = null;
 				   Statement statement1 = null;
-
 				   ResultSet resultat1;
 				   dbc = new DatabaseConnection();
 				   connexion = dbc.getConnection();
 				   statement1 = connexion.createStatement();
-
-						
-				   resultat1 = statement1.executeQuery("select*from Camelia.Users where id_User in (select id_User from Camelia.Teachers);");
+				   resultat1 = statement1.executeQuery("select * from Camelia.Users where id_User in (select id_User from Camelia.Teachers);");
 				  
 				   int i =0;
 				   while (resultat1.next()){
