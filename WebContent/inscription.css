@@ -131,13 +131,7 @@ body{
 #addEspace3{
 	margin-right:55px;
 }
-#email{
-	width: 170px;
-	font-size : 20px;
-	border-style: solid #ccc;
-	border-radius: 5px;
-	margin-left:50px;
-}
+
 .selectlong{
 	margin-left:10px;
 	width: 270px;
