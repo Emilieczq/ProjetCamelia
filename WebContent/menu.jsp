@@ -15,6 +15,9 @@
 
 <div class = "title">
 &nbsp;ISEP Conseil
+
+<a href="http://localhost:8080/ProjetCamelia/index.jsp" class="deconnexiton">Déconnexion</a>
+
 </div>
 <div class = "white">
 </div>
