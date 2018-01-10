@@ -1,7 +1,9 @@
-<%@page import="java.util.Iterator"%>  
-<%@page import="java.util.List"%>  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.Iterator"%>  
+<%@page import="java.util.List"%> 
+<%@ page import="fr.isepconseil.vo.User" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,6 +20,19 @@
 <div class= "center">
 <p class="title">Bienvenue<p>
 <%  
+// Remove all the existant attributes in session => useful when you click déconnexion or rewrite address index.jsp
+
+if(request.getSession().getAttribute("user")!=null){
+	request.getSession().removeAttribute("user");
+}
+if(request.getSession().getAttribute("etudiant")!=null){
+	request.getSession().removeAttribute("etudiant");
+}
+if(request.getSession().getAttribute("professeur")!=null){
+	request.getSession().removeAttribute("professeur");
+}
+
+
 String info= (String) request.getAttribute("info");  
 if(info!=null){  
      
