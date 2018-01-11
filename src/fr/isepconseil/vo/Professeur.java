@@ -3,7 +3,8 @@ package fr.isepconseil.vo;
 
 public class Professeur{
 	
-	private String poste,bureau,tel,email,nom,prenom;
+	private String poste,bureau,email,nom,tel,prenom;
+
 	
 	public String getPoste() {
 		return poste;

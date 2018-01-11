@@ -37,7 +37,7 @@
 
 %>
 
-<form action="/ProjetCamelia/ProfilPourProf.jsp">
+<form name="ProfModifier" method="post" action="ProfModifierServlet">
 <div class = "droit">
 <label for="poste">Poste: <%=pposte%></label>
 <input id="poste" type="text" name="poste" class="normal"/>
@@ -48,10 +48,11 @@
 <label for="tel">Tel:  <%=ptel%></label>
 <input id="tel" type="text" name="tel" class="normal"/>
 <br><br>
-<label for="email">Email:  <%=pemail%></label>
-<input id="email" type="text" name="email" class="normal"/>
+<label>Email :</label> 
+<input id ="email" type="text" name ="email" value= <%= pemail %> class="normal_nochange" disabled/><br><br>
+
 <br><br>
-<input id="submit" type="submit" value="Enregistrer" class = "button"/>
+<input id="submit" type="submit" value="Enregistrer" class = "button" onclick="validate();"/>
 <input type="button" value="Retour" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/ProfilPourProf.jsp'"  />
 </div>
 </form>
