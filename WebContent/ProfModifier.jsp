@@ -39,16 +39,16 @@
 
 <form name="ProfModifier" method="post" action="ProfModifierServlet">
 <div class = "droit">
-<label for="poste">Poste: <%=pposte%></label>
-<input id="poste" type="text" name="poste" class="normal"/>
+<label for="poste">Poste:</label>
+<input id="poste" type="text" name="poste" value=<%=pposte%> class="normal"/>
 <br><br>
-<label for="bureau">Bureau:  <%=pbureau%></label>
-<input id="bureau" type="text" name="bureau" class="normal"/>
+<label for="bureau">Bureau:</label>
+<input id="bureau" type="text" name="bureau" value=<%=pbureau%> class="normal"/>
 <br><br>
-<label for="tel">Tel:  <%=ptel%></label>
-<input id="tel" type="text" name="tel" class="normal"/>
+<label for="tel">Tel:</label>
+<input id="tel" type="text" name="tel" value=<%=ptel%> class="normal"/>
 <br><br>
-<label>Email :</label> 
+<label>Email:</label> 
 <input id ="email" type="text" name ="email" value= <%= pemail %> class="normal_nochange" disabled/><br><br>
 
 <br><br>

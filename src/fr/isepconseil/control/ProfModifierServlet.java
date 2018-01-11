@@ -77,14 +77,15 @@ public class ProfModifierServlet extends HttpServlet {
 			resultat = statement.executeQuery("select id_User from Users where email = '" + iemail + "';");
 
 			System.out.println("Marche1"); // test a delete
+			
 			while (resultat.next()) {
-				if (pPoste != null) {
+				if (pPoste != null && !pPoste.equals("")) {
 					int idUser = resultat.getInt("id_User");
 					modif = statementbis.executeUpdate(
 							"Update Teachers set poste = '" + pPoste + "' where id_User = '" + idUser + "';"); 
 					professeur.setPoste(pPoste);
 				}
-				if (pBureau != null) {
+				if (pBureau != null && !pBureau.equals("")) {
 					int idUser = resultat.getInt("id_User");
 					modif = statementbis.executeUpdate(
 							"Update Teachers set office = '" + pBureau + "' where id_User = '" + idUser + "';");
