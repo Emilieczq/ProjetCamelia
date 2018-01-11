@@ -49,9 +49,9 @@ public class InscriptionServlet extends HttpServlet {
 			String iAnnee = request.getParameter("annee");
 			String sAlternance = request.getParameter("alternance");
 			System.out.println(sAlternance);
-			int iAlternance = 1;
+			int iAlternance = 0;
 			if (sAlternance == "alternance") {
-				iAlternance = 0;
+				iAlternance = 1;
 			}
 
 			String iParcours = request.getParameter("parcours");

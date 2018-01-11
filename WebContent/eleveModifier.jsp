@@ -76,9 +76,9 @@
 	// decide to choose alternance or non-alternance if user has selected before
 	String al0="",al1="";
 	if(ealternance==0){
-		al0="selected";
+		al0="checked";
 	}else if (ealternance==1){
-		al1="selected";
+		al1="checked";
 	}
 
 %>
@@ -110,10 +110,10 @@
 
 			<div id="alternancechoisir">
 
-				<input type="radio" id="alternance" name="alternance" value="1">
-				<label for="alternance" <%= al1 %>>Alternance</label>
-				<input type="radio" id="non_alternance" name="alternance" value="0"> 
-				<label for="non_alternance" <%= al0 %>>Non Alternance</label>
+				<input type="radio" id="alternance" name="alternance" value="1" checked =<%= al1 %>>
+				<label for="alternance" >Alternance</label>
+				<input type="radio" id="non_alternance" name="alternance" value="0" checked =<%= al0 %>> 
+				<label for="non_alternance" >Non Alternance</label>
 			</div>
 			<br> <label for="toeic">Toeic :</label> <input id="toeic"
 				type="text" name="toeic" class="normal" value= "<%=etudiant.getToeic() %>" />
