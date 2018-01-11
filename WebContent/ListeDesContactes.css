@@ -11,6 +11,7 @@
 border-top-width: 1px;
 border-top-style: solid;
 border-top-color: #4d70ab;
+background: #4d70ab;
 }
 
 .table-1 {
@@ -23,13 +24,22 @@ border-bottom-color: #4d70ab;
 padding: 5px 40px;
 font-size: 18px;
 font-family: Verdana;
-color: #4d70ab;
+
 }
 
 /* Alternating background colors */
 .table-1 tr:nth-child(even) {
-background: rgb(238, 211, 210)
+background: rgba(94, 162, 222, 0.29)
 }
 .table-1 tr:nth-child(odd) {
-background: #FFF
+background: white
+}
+th{
+background: #4d70ab;
+color:white;
+    
+    
+    
+
+
 }

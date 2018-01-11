@@ -17,7 +17,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<img src="pictures/try.jpg" border='0'width='100%' height='100%' style='position: absolute;left:0px;top:0px;z-index: -1'/>
 <%@ include file = "MenuPourProf.jsp" %>
 <div class = "white">
 </div>
@@ -97,13 +96,13 @@
 <div class = "white">
 </div>
 <br>
-<center> <p class="title1">Les demandes traitées:</p></center>
+<!-- <center> <p class="title1">Les demandes traitées:</p></center>
 <div class = "white">
 </div>
 <center>
 
 <table id = "traitees" class="table-1">
-<!-- Table header -->
+Table header
 <thead>
         <tr>
             <th scope="col" id="prenom">Prénom</th>
@@ -116,7 +115,7 @@
 </thead>
 
 </table>
-</center>
+</center> -->
 
 </body>
 </html>

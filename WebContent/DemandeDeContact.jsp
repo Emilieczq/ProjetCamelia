@@ -18,8 +18,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<img src="pictures/try.jpg" border='0' width='100%' height='100%'
-		style='position: absolute; left: 0px; top: 0px; z-index: -1' />
 	<%@ include file="menu.jsp"%>
 	<div class="white"></div>
 	<div class="white"></div>
@@ -31,8 +29,12 @@
 		</center>
 		<div class="white"></div>
 		<br>
+		
 		<form id="demande"  method= "POST" action="EleveContactServlet">
 			<center>
+			<div class="cycle">
+			<div class="white"></div>
+			<div class="white"></div>
 				<label for="professeur">Professeur:</label>
 				<%
 				   List<String> profs = new ArrayList<String>();
@@ -65,16 +67,21 @@
 					%>
 					
 				</select> <br>
-				<br> <label for="but" id="But">But:</label>
-				<textarea id="but" name = "but" required></textarea>
-				<br><br> <br><br> 
+				<br> <label for="but" id="But" >But:</label>
+				<textarea id="but" name = "but" required style="resize: none;vertical-align:top;"></textarea>
+				<br><br> <br>
 				<input id="submit" type="submit" value="Demander un RDV"
 					class="button" onclick="" />
-
+          </div>
 			</center>
 		</form>
 
 	</div>
+<div style="position:absolute; bottom:0;font-size:0px; ">
+
+<img  src="pictures/blue1.png"/>
+
+</div>
 
 </body>
 </html>

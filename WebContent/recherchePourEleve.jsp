@@ -25,7 +25,7 @@
 <div>
 	<form method="post" action="RechercheServlet">
 	 <input type ="text" name = "search" class = "search" placeholder="Search">
-		<i class = "icon-user"></i>
+		<i class = "icon-user" type="submit" onclick=""></i>
 	
 	</form>
 </div>
