@@ -19,13 +19,14 @@
 	String eannee = etudiant.getAnnee();
 	String eparcours = etudiant.getParcours();
 	int ealternance1 = etudiant.getAlternance();
+	System.out.println("Ici on a alternance = " + ealternance1);
 	String eprenom = etudiant.getPrenom();
 	String enom = etudiant.getNom();
 	String ealternance ="";
-	if (ealternance1 == 0){
+	if (ealternance1 == 1){
 		 ealternance = "Alternant" ;
 	}
-	else if(ealternance1 == 1){
+	else if(ealternance1 == 0){
 		 ealternance = "Non-Alternant";
 	}
 	int etoeic1 = etudiant.getToeic();
