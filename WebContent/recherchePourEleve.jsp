@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"  type="text/css"  href="recherchePourEleve.css"/>
+<script src="recherchePourEleve.js" type="text/javascript"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -20,20 +21,18 @@
 <center>
 <div class ="test">
 
-<div class = "ligne"></div>
-
-<div>
-	<form method="post" action="RechercheServlet">
-	 <input type ="text" name = "search" class = "search" placeholder="Search">
-		<i class = "icon-user" type="submit" onclick=""></i>
-	
-	</form>
-</div>
-
-<div class="ligne"></div>
+	<div class = "ligne"></div>
+	<div>
+		<form method="get" action="RechercheServlet">
+		 <input type ="text" name = "search" class = "search" placeholder="Search">
+			<input class = "icon-user" type="submit" onclick="recherche();return false;"/>
+		</form>
+	</div>
+	<div class="ligne"></div>
 
 </div>
 
+<div id = "message"></div>
 </center>
 
 </body>

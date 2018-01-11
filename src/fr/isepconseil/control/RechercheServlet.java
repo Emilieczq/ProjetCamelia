@@ -6,8 +6,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,107 +17,80 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.isepconseil.dbc.DatabaseConnection;
 
-/**
- * Servlet implementation class RechercheServlet
- */
 @WebServlet("/RechercheServlet")
 public class RechercheServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DatabaseConnection dbc = null;
 	private Connection connexion = null;
-	private Statement fnameRecherche = null;
-	private Statement lnameRecherche = null;
-	private Statement idRecherche = null;
+	private Statement statement = null;
 	
-	private ResultSet resultatFnameRecherche;
-	private ResultSet resultatLnameRecherche;
-	private ResultSet resultatIdRecherche;
+	private ResultSet rset;
 
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
 	public RechercheServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		try {
 			dbc = new DatabaseConnection();
 			connexion = dbc.getConnection();
-			fnameRecherche = connexion.createStatement();
-			lnameRecherche = connexion.createStatement();
-			idRecherche = connexion.createStatement();
+			statement = connexion.createStatement();
 			
-			PrintWriter out = response.getWriter();
 			String recherche = request.getParameter("search");
+//			recherche.toLowerCase();
 			System.out.println(recherche);
-
-
+			
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			List<String> results = new ArrayList<String>();
+			
 			if (recherche != null ) {
-				resultatFnameRecherche = fnameRecherche.executeQuery("select firstName from Users where email = '"+recherche+"';");
-				while (resultatFnameRecherche.next()){
-					String fnameRech = resultatFnameRecherche.getString( "firstName" );
-					System.out.println(fnameRech);
-					request.setAttribute("fnameRech", fnameRech );
-				}
+				/*
+				 * we can search any students by email or firstName+" "+lastName or lastName+" "+firstName
+				 * ignore we write in upper case or in lower case
+				 */
+//				rset = statement.executeQuery("select distinct * from Users where exists (select * from Students, Users where Students.id_User=Users.id_User) "
+//						+ "and email like '%"+recherche+"%' or lower(concat(firstName,'' '',lastName)) like '%"+recherche+"%' "
+//								+ "or lower(concat(lastName,'' '',firstName)) like '%"+recherche+"%';");
+//				rset = statement.executeQuery("select distinct * from Users where exists (select * from Students, Users where Students.id_User=Users.id_User)"
+//						+ "and email like '%" +recherche+"%';");
+//				rset = statement.executeQuery("select * from Users where email like '%"+recherche+"%';");
+				rset = statement.executeQuery("select * from Users where email = '"+recherche+"';");
 				
-				resultatLnameRecherche = lnameRecherche.executeQuery("select lastName from Users where email = '"+recherche+"';");
-				while (resultatLnameRecherche.next()){
-					String lnameRech = resultatLnameRecherche.getString( "lastName" );
-					System.out.println(lnameRech);
-					request.setAttribute("lnameRech", lnameRech );
-				}
 				
-				resultatIdRecherche = idRecherche.executeQuery("select id_User from Users where email = '"+recherche+"';");
-				while (resultatIdRecherche.next()){
-					String idRech = resultatIdRecherche.getString( "id_User" );
-					System.out.println(idRech);
-					request.setAttribute("idRech", idRech );
+				while (rset.next()){
+					results.add(rset.getString( "firstName" ) + " " + rset.getString( "lastName" ));
 				}
-
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/resarchResult.jsp"); //a modifier, page de resultat
-			dispatcher.forward(request, response);
+			
+			if(results.size()==0) {
+				out.println("Il n'y a aucun résultat associé.");
+			}else {
+				for(String result:results) {
+					out.println(result);
+				}
+			}
+			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			System.out.println("Exception declenchee");
 			e.printStackTrace();
 		}
 		finally {
 
-			if ( resultatFnameRecherche != null ) {
+			if ( rset != null ) {
 				try {
-
-					resultatFnameRecherche.close();
+					rset.close();
 					System.out.println("Fermeture du resultat");
 
 				} catch ( SQLException ignore ) {
 				}
-
 			}
-			if ( fnameRecherche != null ) {
+			if ( statement != null ) {
 				try {
-
-					fnameRecherche.close();
+					statement.close();
 					System.out.println("Fermeture du statement");
-
 				} catch ( SQLException ignore ) {
 				}
 			}
 		}
-
 	}
 }

@@ -19,6 +19,12 @@ a:hover{color:black;}
 	color:white;
 	
 }
+/*
+à corriger
+*/
+#message{
+	display:block;
+}
 .deconnexiton{
 font-family: Times;
 font-size:20px;
@@ -47,7 +53,6 @@ text-decoration : underline;
 }
 .test{
 	width : 1041px;
-
 }
 
 .ligne{
