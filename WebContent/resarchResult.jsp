@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>    <%@ page import="fr.isepconseil.vo.Etudiant" %>
-    
+    pageEncoding="UTF-8"%>    
+<%@ page import="fr.isepconseil.vo.Etudiant" %>
+<%@page import=" java.util.List"%>
+<%@page import=" java.util.ArrayList"%> 
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,23 +23,25 @@
       
 
 <center>
+<%
+List<String> results = (ArrayList<String>)request.getAttribute("results");
+List<String> ids = (ArrayList<String>)request.getAttribute("ids");
+		
+if(results.isEmpty()){
+%>
+	<p>Il n'y a aucun résultat associé.</p>
+<% 	
+}
+else{
+	for(int i=0; i<results.size();i++) {
+%>
+		<p><%=i+1 %> : <a href="profil.jsp?id=<%=ids.get(i)%>"></a><%=results.get(i) %> </p> 
+<%	
+	}
+}
+%>
+<p> </p>
 
- <p> Le prénom de la personne que vous rechercher :  <%  String fname = (String) request.getAttribute("fnameRech");
- out.println( fname ); %>
-</p>
-<p> Le nom de la personne que vous rechercher : 
-
- <%  String lname = (String) request.getAttribute("lnameRech");
- out.println( lname ); %>
- </p>
- 
- <p> L'id de la personne que vous rechercher : 
- 
-  <%  String id = (String) request.getAttribute("idRech");
- out.println( id ); %>
- </p>
-
- <input type="button" value="Recherche" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/recherchePourEleve.jsp'"  />
 
 </center>
 </body>
