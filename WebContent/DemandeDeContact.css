@@ -92,7 +92,7 @@ body{
     -webkit-appearance:none;
     width: 200px;
     height: 28px;
-    border-style: solid #ccc;
+    border-style: solid black;
 	border-radius: 5px;
     background-color: white;
     background-repeat: no-repeat;
@@ -112,4 +112,13 @@ body{
 	border-radius: 5px;
 	width: 198px;
 	height: 50px;
+}
+
+.cycle{
+	width:470px;
+	height: 470px;
+	border-radius:50%;
+	border-top:solid 2px #033076;
+	border-left:solid 2px #033076;
+	
 }
