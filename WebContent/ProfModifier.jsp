@@ -18,9 +18,11 @@
 </div>
 <br>
 <center>
+
 <form>
 <img id = "preview" src="pictures/people.png"width="100"height="103" name = "pic" alt="">
 <br>
+
 <input  id = "f" type="file" accept="image/*" onchange="change()"/>
 </form>
 </center>
