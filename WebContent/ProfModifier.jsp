@@ -11,9 +11,12 @@
 <title>Le profil de prof</title>
 </head>
 <body>
-<br>
+<%@ include file = "MenuPourProf.jsp" %>
 <div class = "white">
 </div>
+<div class = "white">
+</div>
+<br>
 <center>
 <form>
 <img id = "preview" src="pictures/people.png"width="100"height="103" name = "pic" alt="">
@@ -39,16 +42,16 @@
 
 <form name="ProfModifier" method="post" action="ProfModifierServlet">
 <div class = "droit">
-<label for="poste">Poste:</label>
+<label for="poste">Poste :</label>
 <input id="poste" type="text" name="poste" value=<%=pposte%> class="normal"/>
 <br><br>
-<label for="bureau">Bureau:</label>
+<label for="bureau">Bureau :</label>
 <input id="bureau" type="text" name="bureau" value=<%=pbureau%> class="normal"/>
 <br><br>
-<label for="tel">Tel:</label>
+<label for="tel">Tél :</label>
 <input id="tel" type="text" name="tel" value=<%=ptel%> class="normal"/>
 <br><br>
-<label>Email:</label> 
+<label>Email :</label> 
 <input id ="email" type="text" name ="email" value= <%= pemail %> class="normal_nochange" disabled/><br><br>
 
 <br><br>
@@ -56,6 +59,9 @@
 <input type="button" value="Retour" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/ProfilPourProf.jsp'"  />
 </div>
 </form>
+<div style="bottom:0px;font-size:0px;">
+<img  src="pictures/double1.png" style="height:200px;width:1600px"/>
+</div>
 
 </body>
 </html>

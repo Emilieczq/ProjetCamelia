@@ -48,5 +48,8 @@
 
 <input type="button" value="Modifier" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/ProfModifier.jsp'"  />
 </center>
+
+
+
 </body>
 </html>
