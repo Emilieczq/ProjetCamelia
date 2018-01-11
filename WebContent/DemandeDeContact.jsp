@@ -69,7 +69,7 @@
 				</select> <br>
 				<br> <label for="but" id="But" >But:</label>
 				<textarea id="but" name = "but" required style="resize: none;vertical-align:top;"></textarea>
-				<br><br>
+				<br><br><br>
 				<input id="submit" type="submit" value="Demander un RDV"
 					class="button" onclick="" />
           </div>
@@ -77,10 +77,10 @@
 		</form>
 
 	</div>
-<div style="position:absolute; bottom:0;font-size:0px; ">
 
-<img  src="pictures/blue1.png"/>
 
+<div style="bottom:0px;font-size:0px;">
+<img  src="pictures/blue1.png" style="height:200px;width:1200px"/>
 </div>
 
 </body>

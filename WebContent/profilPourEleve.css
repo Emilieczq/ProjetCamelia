@@ -80,6 +80,8 @@
 	height: 400px;
 	border-radius:50%;
 	border-top:solid 2px #033076;
-	border-buttom:solid 2px white;
+	border-right:transparent; 
+	border-left:transparent; 
+	border-bottom-left-radius: transparent; 
 	
 }
