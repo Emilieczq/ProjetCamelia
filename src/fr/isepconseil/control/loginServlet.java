@@ -75,7 +75,7 @@ public class loginServlet extends HttpServlet {
 						professeur = userDAO.getProfesseur();
 						session.setAttribute("professeur", professeur); //session
 						
-						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProfilPourProf.jsp");
+						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/recherchePourProf.jsp");
 						dispatcher.forward(request, response);
 					} else {
 						Etudiant etudiant = new Etudiant();

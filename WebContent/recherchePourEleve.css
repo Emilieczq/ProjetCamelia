@@ -66,6 +66,8 @@ text-decoration : underline;
 }
 
 .icon-user{
+border-color:white;
+background-color:white;
 position: absolute;
 right: 43%;
 z-index:5;
