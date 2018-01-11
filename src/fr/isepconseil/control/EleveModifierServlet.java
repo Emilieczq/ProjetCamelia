@@ -120,6 +120,9 @@ public class EleveModifierServlet extends HttpServlet {
 							"Update Students set toeic = '" + mToeic + "' where id_User = '" + idUser + "';");
 					etudiant.setToeic(Integer.parseInt(mToeic)); // comme parcours
 				}
+			}else {
+				// => update toeic to 0
+				// => etudiant.setToeic(0);
 			}
 			resultat = statement14.executeQuery("select id_User from Users where email = '" + iemail + "';");
 			System.out.println("Marche1"); // test a delete

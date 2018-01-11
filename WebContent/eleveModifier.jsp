@@ -91,9 +91,9 @@
 			<label for="promotion">Année d’étude : </label>
 			<select id="annee" name="promotion" class="select">
 				<option value="" <%= a0 %>></option>
-				<option valeur="A1" <%= a1 %>>A1</option>
-				<option valeur="A2" <%= a2 %>>A2</option>
-				<option valeur="A3" <%= a3 %>>A3</option>
+				<option value="A1" <%= a1 %>>A1</option>
+				<option value="A2" <%= a2 %>>A2</option>
+				<option value="A3" <%= a3 %>>A3</option>
 			</select> <br><br> 
 			<label for="parcours">Parcours :</label> <select
 				id="parcours" name="parcours" class="selectlong">
@@ -116,7 +116,7 @@
 				<label for="non_alternance" <%= al0 %>>Non Alternance</label>
 			</div>
 			<br> <label for="toeic">Toeic :</label> <input id="toeic"
-				type="text" name="toeic" class="normal" />
+				type="text" name="toeic" class="normal" value= "<%=etudiant.getToeic() %>" />
 		</div>
 		<br><br><br>
 <div class = "droit">
@@ -193,9 +193,9 @@
 <label for="annee2">Année d’étude :</label>
 		<select id = "annee2" name = "annee2" class="select">
 			<option value="" disabled selected></option> 
-  			<option valeur="A1">A1</option>
-  			<option valeur="A2">A2</option>
-  			<option valeur="A3">A3</option>
+  			<option value="A1">A1</option>
+  			<option value="A2">A2</option>
+  			<option value="A3">A3</option>
 		</select>
 		
 		<br><br>
@@ -272,9 +272,6 @@
 
 
 </div>
-
-
-
 
 <input id="submit" type="submit" value="Enregistrer" class = "button" onclick="validate();"/>
 <input type="button" value="Retour" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/ProfilPourEleve.jsp'"  />
