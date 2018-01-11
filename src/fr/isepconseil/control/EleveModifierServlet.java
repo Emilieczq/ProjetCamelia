@@ -69,8 +69,6 @@ public class EleveModifierServlet extends HttpServlet {
 			User user = new User();
 			Etudiant etudiant = (Etudiant) request.getSession().getAttribute("etudiant");
 			String iemail = etudiant.getEmail();
-			String ipassword = user.getPassword(); // !!! password can't be store in session, it's too dangerous!!!
-			// il faut utiliser BDD pour récupérer le password
 
 			/*
 			 * too many statements, 
@@ -134,7 +132,6 @@ public class EleveModifierServlet extends HttpServlet {
 			}
 
 			user.setEmail(iemail);
-			user.setPassword(ipassword);
 			session.setAttribute("user", user); // => user in session, not request (état faux dans userDao, mais corrigé à mon coté
 			/*
 			 * inutile à utiliser userDao. userDao est seulement utilisé dans login
