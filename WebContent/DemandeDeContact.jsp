@@ -69,7 +69,7 @@
 				</select> <br>
 				<br> <label for="but" id="But" >But:</label>
 				<textarea id="but" name = "but" required style="resize: none;vertical-align:top;"></textarea>
-				<br><br> <br>
+				<br><br>
 				<input id="submit" type="submit" value="Demander un RDV"
 					class="button" onclick="" />
           </div>

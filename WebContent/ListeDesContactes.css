@@ -1,4 +1,3 @@
-@CHARSET "UTF-8";
 .title1{
 	font-size : 30px;
 	color: transparent;
@@ -15,13 +14,16 @@ background: #4d70ab;
 }
 
 .table-1 {
+
+width:1200px;
+table-layout:fixed;
 border-bottom-width: 1px;
 border-bottom-style: solid;
 border-bottom-color: #4d70ab;
 }
 /* Padding and font style */
 .table-1 td, .table-1 th {
-padding: 5px 40px;
+
 font-size: 18px;
 font-family: Verdana;
 
@@ -37,9 +39,11 @@ background: white
 th{
 background: #4d70ab;
 color:white;
-    
-    
-    
+padding: 5px 40px;
 
-
+}
+td{
+	 word-wrap:break-word;
+	 text-align:center;
+	 padding: 3px 30px;
 }
