@@ -79,8 +79,8 @@
 	</div>
 
 
-<div style="position:absolute; bottom:0;font-size:0px; ">
-<img  src="pictures/blue1.png" style="height:200px;width:950px"/>
+<div style="bottom:0px;font-size:0px;">
+<img  src="pictures/blue1.png" style="height:200px;width:1200px"/>
 </div>
 
 </body>
