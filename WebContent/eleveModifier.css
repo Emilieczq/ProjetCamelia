@@ -3,7 +3,7 @@ body{
 	background:url(pictures/blue.jpg);
 	font-size : 18px;
 }
-.normal {
+.normal, .normal_nochange {
 	width: 210px;
 	font-size : 20px;
 	border-style: solid #ccc;
@@ -12,12 +12,15 @@ body{
 	margin-right:20px;
 	
 }
+.normal_nochange {
+	background:#f3f3f3;
+}
 .button {
 	position: relative;
 	width:210px;
 	height:35px;
 	text-align:center;
-	color:#FFF;
+	color:#FFFFFF;
 	text-decoration:none;
 	line-height:43px;
 	font-size:15px;
