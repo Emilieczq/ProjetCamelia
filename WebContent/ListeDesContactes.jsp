@@ -44,8 +44,6 @@
 
 <%
 	User user = (User)request.getSession().getAttribute("user");
-	System.out.println(user.getEmail());
-	System.out.println(user.getId());
 		
 	int id_User = user.getId();
 	List<String> idEtudiants = new ArrayList<String>();
@@ -54,22 +52,24 @@
 	Statement statement1 = null, statement2 = null,statement3 = null;
 	
 	ResultSet rset = null, rset2 = null, rset3 = null;
-	dbc = new DatabaseConnection();
-	connexion = dbc.getConnection();
-	statement1 = connexion.createStatement();
-	statement2 = connexion.createStatement();
-	statement3 = connexion.createStatement();
-
-	rset = statement1.executeQuery("select * from Camelia.RDV where id_Teacher = (select id_Teacher from Camelia.Teachers where id_User =" + id_User + ");");
 	
-	List<String> buts = new ArrayList<String>();
+	try{
+		dbc = new DatabaseConnection();
+		connexion = dbc.getConnection();
+		statement1 = connexion.createStatement();
+		statement2 = connexion.createStatement();
+		statement3 = connexion.createStatement();
 	
-	while (rset.next()) {
-		int id_Student = rset.getInt("id_Student");
-		rset2 = statement2.executeQuery("select * from Students where id_Student=" + id_Student+";");
-		rset3 = statement3.executeQuery("select * from Users where id_User = (select id_User from Students where id_Student = "+ id_Student+");");
+		rset = statement1.executeQuery("select * from Camelia.RDV where id_Teacher = (select id_Teacher from Camelia.Teachers where id_User =" + id_User + ");");
 		
-		while (rset3.next()) {
+		List<String> buts = new ArrayList<String>();
+		
+		while (rset.next()) {
+			int id_Student = rset.getInt("id_Student");
+			rset2 = statement2.executeQuery("select * from Students where id_Student=" + id_Student+";");
+			rset3 = statement3.executeQuery("select * from Users where id_User = (select id_User from Students where id_Student = "+ id_Student+");");
+			
+			while (rset3.next()) {
 %>
 	<tr>
 		<td><%= rset3.getString("firstName")%></td>
@@ -84,7 +84,42 @@
 		<td> <%= rset.getString("subject")%></td>
 	</tr>
 
-<% 		
+<% 			
+				}
+			}
+		}
+	} catch (Exception e) {
+		System.out.println("Exception declenchee");
+		e.printStackTrace();
+	}
+	finally {
+
+		if ( rset != null ) {
+			try {
+				rset.close();
+				System.out.println("Fermeture du resultat");
+			} catch ( SQLException ignore ) {
+			}
+		}
+		if ( statement1 != null ) {
+			try {
+				statement1.close();
+				System.out.println("Fermeture du statement");
+			} catch ( SQLException ignore ) {
+			}
+		}
+		if ( statement2 != null ) {
+			try {
+				statement2.close();
+				System.out.println("Fermeture du statement");
+			} catch ( SQLException ignore ) {
+			}
+		}
+		if ( statement3 != null ) {
+			try {
+				statement3.close();
+				System.out.println("Fermeture du statement");
+			} catch ( SQLException ignore ) {
 			}
 		}
 	}

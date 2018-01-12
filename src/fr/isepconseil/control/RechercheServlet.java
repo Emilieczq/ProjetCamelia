@@ -48,15 +48,12 @@ public class RechercheServlet extends HttpServlet {
 				 * we can search any students by email or firstName+" "+lastName or lastName+" "+firstName
 				 * ignore we write in upper case or in lower case
 				 */
-				rset = statement.executeQuery("select distinct * from Users where exists (select * from Students, Users where Students.id_User=Users.id_User) "
-						+ "and email like '%"+recherche+"%' or lower(concat(firstName,'' '',lastName)) like '%"+recherche+"%' "
+				rset = statement.executeQuery("select distinct * from Users where exists (select * from Students where id_User= Users.id_Use)r"
+						+ "and (email like '%"+recherche+"%' or lower(concat(firstName,'' '',lastName)) like '%"+recherche+"%' "
 								+ "or lower(concat(lastName,'' '',firstName)) like '%"+recherche+"%'"
-										+ ";");
-//				rset = statement.executeQuery("select distinct * from Users where exists (select * from Students, Users where Students.id_User=Users.id_User)"
-//						+ "and email like '%" +recherche+"%';");
-//				rset = statement.executeQuery("select * from Users where email like '%"+recherche+"%';");
+										+ ");");
 				
-				
+						
 				while (rset.next()){
 					System.out.println("result" + rset.getString( "firstName" )); // à supprimer
 					results.add(rset.getString( "firstName" ) + " " + rset.getString( "lastName" ));
@@ -64,6 +61,9 @@ public class RechercheServlet extends HttpServlet {
 				}
 			}
 			
+			/*
+			 * for AJAX, not success
+			 */
 //			if(results.size()==0) {
 //				out.println("Il n'y a aucun résultat associé.");
 //			}else {
@@ -88,7 +88,6 @@ public class RechercheServlet extends HttpServlet {
 				try {
 					rset.close();
 					System.out.println("Fermeture du resultat");
-
 				} catch ( SQLException ignore ) {
 				}
 			}
