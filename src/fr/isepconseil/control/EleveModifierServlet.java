@@ -30,11 +30,11 @@ public class EleveModifierServlet extends HttpServlet {
 	private Connection connexion = null;
 	private Statement statement = null;
 	private Statement statementbis = null;
-	private Statement statementidstud = null;
+//	private Statement statementidstud = null;
 	private Statement statementcheckstage = null;
 	private ResultSet resultat = null;
 	private ResultSet resultatstage = null;
-	private ResultSet checkstage = null;
+//	private ResultSet checkstage = null;
 	private int modif;
 	private int stagemodif;
 	private int stagemodif2;
@@ -56,7 +56,7 @@ public class EleveModifierServlet extends HttpServlet {
 			connexion = dbc.getConnection();
 			statement = connexion.createStatement();
 			statementbis = connexion.createStatement();
-			statementidstud = connexion.createStatement();
+//			statementidstud = connexion.createStatement();
 			statementcheckstage = connexion.createStatement();
 
 			HttpSession session = request.getSession(true);
@@ -82,7 +82,10 @@ public class EleveModifierServlet extends HttpServlet {
 			String s1Job = request.getParameter("HPoste");
 			String s1Town =  request.getParameter("Hville2");
 			String s1Country = request.getParameter("hPays2");
-			String s1Salaries = request.getParameter("salaires");
+			String s1Salariesstring = request.getParameter("salaires");
+
+
+			
 			String s1Start = request.getParameter("debut3");
 			String s1End = request.getParameter("fin3");
 			
@@ -90,7 +93,8 @@ public class EleveModifierServlet extends HttpServlet {
 			String s2Job = request.getParameter("HPoste1");
 			String s2Town =  request.getParameter("Hville3");
 			String s2Country = request.getParameter("hPays3");
-			String s2Salaries = request.getParameter("salaires1");
+			String s2Salariesstring = request.getParameter("salaires1");
+
 			String s2Start = request.getParameter("debut4");
 			String s2End = request.getParameter("fin4");
 
@@ -111,7 +115,7 @@ public class EleveModifierServlet extends HttpServlet {
 			System.out.println("Marche1"); // test a delete
 			while (resultat.next()) {
 				int idUser = resultat.getInt("id_User");
-				resultatstage = statementidstud.executeQuery("select id_User from Stages where id_User = '" + idUser + "';");
+//				resultatstage = statementidstud.executeQuery("select id_User from Stages where id_User = '" + idUser + "';");
 
 				if (mPromo != null) {
 
@@ -142,12 +146,14 @@ public class EleveModifierServlet extends HttpServlet {
 				// Modifier la BDD      id_User int not null, dans table students à la place de id_student
 				// et     foreign key (id_User) references Users(id_User),
 
-				if(s1Firm !=null && s1Job !=null && s1Salaries != null){
-					stagemodif = statementcheckstage.executeUpdate("Update Stages set sFirm = '" + s1Firm + "',sJob = '" + s1Job + "',sSalary = '" + s1Salaries + "' where id_User = '" + idUser + "' and sYear =  'A2';");
+				if(s1Firm !=null && s1Job !=null && s1Salariesstring != "" && s1Start !=null && s1End !=null){
+					int s1Salaries = Integer.parseInt(s1Salariesstring);
+					stagemodif = statementcheckstage.executeUpdate("Update Stages set sFirm = '" + s1Firm + "',sJob = '" + s1Job + "',sSalary = '" + s1Salaries + "',sStart = '" + s1Start + "',sEnd = '" + s1End + "' where id_User = '" + idUser + "' and sYear =  'A2';");
 			
 				}
-				if (s2Firm !=null && s2Job !=null && s2Salaries != null){
-					stagemodif2 = statementcheckstage.executeUpdate("Update Stages set sFirm = '" + s2Firm + "',sJob = '" + s2Job + "',sSalary = '" + s2Salaries + "' where id_User = '" + idUser + "' and sYear =  'A3';");
+				if (s2Firm !=null && s2Job !=null && s2Salariesstring != "" && s1Start !=null && s1End !=null){
+					int s2Salaries = Integer.parseInt(s2Salariesstring);
+					stagemodif2 = statementcheckstage.executeUpdate("Update Stages set sFirm = '" + s2Firm + "',sJob = '" + s2Job + "',sSalary = '" + s2Salaries + "',sStart = '" + s2Start + "',sEnd = '" + s2End + "' where id_User = '" + idUser + "' and sYear =  'A3';");
 				}
 				
 					
@@ -176,14 +182,7 @@ public class EleveModifierServlet extends HttpServlet {
 			user.setEmail(iemail);
 
 			session.setAttribute("user", user); // => user in session, not request (état faux dans userDao, mais corrigé à mon coté
-			/*
-			 * inutile à utiliser userDao. userDao est seulement utilisé dans login
-			 * une fois user et etudiant ou professeur sont créé, si on change des données, on changes sur l'objet directement, pas créer un nouveau
-			 */
-			/*			UserDAOI userDAO = new UserDAOI();
-			Etudiant etudiant2 = new Etudiant();
-			userDAO.setEtudiant(user, etudiant2);
-			etudiant = userDAO.getEtudiant();*/
+
 
 			session.setAttribute("etudiant", etudiant); // => comme tu as déjà modifié etudiant, quand tu utilises setAttribute, il va remplacé ce "nouveau" etudiant
 

@@ -188,21 +188,22 @@
 
 <br><br>
 <div id = "HStage">
-<p class = "subTitle">Mon premier Stage (A1)</p>
+<p class = "subTitle">Mon premier Stage (A2)</p>
+<p> Merci d'entrer l'intégralité des données demandées</p>
 <br><br>
 
-<label for="HEntreprises">Entreprises :</label>
+<label for="HEntreprises">Entreprise :</label>
 <input id="HEntreprises" type="text" name="HEntreprises" class="normal"/>
 <br><br>
 <label for="HPoste">Poste :</label>
 <input id="HPoste" type="text" name="HPoste" class="normal"/>
 <br><br>
-<label for="Hville2">Ville :</label>
+<!-- <label for="Hville2">Ville :</label>
 <input id="Hville2" type="text" name="Hville2" class="normal"/>
 <br><br>
 <label for="HPays2">Pays :</label>
 <input id="HPays2" type="text" name="HPays2" class="normal"/>
-<br><br>
+<br><br> -->
 
 <label for="salaires">Salaire :</label>
 <input id="salaires" type="text" name="salaires" class="normal"/>
@@ -222,21 +223,23 @@
 <br><br>
 
 <br><br>
-<p class = "subTitle">Mon deuxième stage (A2)</p>
+<p class = "subTitle">Mon deuxième stage (A3)</p>
+<p> Merci d'entrer l'intégralité des données demandées</p>
+
 
 <br><br>
-<label for="HEntreprises1">Entreprises :</label>
+<label for="HEntreprises1">Entreprise :</label>
 <input id="HEntreprises1" type="text" name="HEntreprises1" class="normal"/>
 <br><br>
 <label for="HPoste1">Poste :</label>
 <input id="HPoste1" type="text" name="HPoste1" class="normal"/>
 <br><br>
-<label for="Hville3">Ville :</label>
+<!-- <label for="Hville3">Ville :</label>
 <input id="Hville3" type="text" name="Hville3" class="normal"/>
 <br><br>
 <label for="HPays3">Pays :</label>
 <input id="HPays3" type="text" name="HPays3" class="normal"/>
-<br><br>
+<br><br> -->
 
 <label for="salaires1">Salaire :</label>
 <input id="salaires1" type="text" name="salaires1" class="normal"/>
@@ -247,12 +250,12 @@
 <br><br>
 <label for="missions1">Missions principales :</label>
 <input id="missions1" type="text" name="missions1" class="normal"/> -->
-<br><br>
+<!-- <br><br> -->
 <label for="debut4">Début du stage :</label>
 <input id="debut4" type="date" name="debut4" class="normal"/>
 <br><br>
 <label for="fin4">Fin du stage :</label>
-<input id="fin4" type="date" name="fin4" class="normal"/> -->
+<input id="fin4" type="date" name="fin4" class="normal"/> 
 
 
 </div>
