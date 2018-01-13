@@ -188,17 +188,9 @@
 
 <br><br>
 <div id = "HStage">
-<p class = "subTitle">Mon premier Stage</p>
+<p class = "subTitle">Mon premier Stage (A1)</p>
 <br><br>
-<label for="annee2">Année d’étude :</label>
-		<select id = "annee2" name = "annee2" class="select">
-			<option value="" disabled selected></option> 
-  			<option value="A1">A1</option>
-  			<option value="A2">A2</option>
-  			<option value="A3">A3</option>
-		</select>
-		
-		<br><br>
+
 <label for="HEntreprises">Entreprises :</label>
 <input id="HEntreprises" type="text" name="HEntreprises" class="normal"/>
 <br><br>
@@ -216,12 +208,12 @@
 <input id="salaires" type="text" name="salaires" class="normal"/>
 <br><br>
 
-<label for="competences">Compétences :</label>
+<!-- <label for="competences">Compétences :</label>
 <input id="competences" type="text" name="competences" class="normal"/>
 <br><br>
 <label for="missions">Missions principales :</label>
 <input id="missions" type="text" name="missions" class="normal"/>
-<br><br>
+<br><br> -->
 <label for="debut3">Début du stage :</label>
 <input id="debut3" type="date" name="debut3" class="normal"/>
 <br><br>
@@ -230,17 +222,9 @@
 <br><br>
 
 <br><br>
-<p class = "subTitle">Mon deuxième stage</p>
+<p class = "subTitle">Mon deuxième stage (A2)</p>
+
 <br><br>
-<label for="annee3">Année d’étude :</label>
-		<select id = "annee3" name = "annee3" class="select">
-			<option value="" disabled selected></option> 
-  			<option valeur="A1">A1</option>
-  			<option valeur="A2">A2</option>
-  			<option valeur="A3">A3</option>
-		</select>
-		
-		<br><br>
 <label for="HEntreprises1">Entreprises :</label>
 <input id="HEntreprises1" type="text" name="HEntreprises1" class="normal"/>
 <br><br>
@@ -258,17 +242,17 @@
 <input id="salaires1" type="text" name="salaires1" class="normal"/>
 <br><br>
 
-<label for="competences1">Compétences :</label>
+<!-- <!-- <label for="competences1">Compétences :</label>
 <input id="competences1" type="text" name="competences1" class="normal"/>
 <br><br>
 <label for="missions1">Missions principales :</label>
-<input id="missions1" type="text" name="missions1" class="normal"/>
+<input id="missions1" type="text" name="missions1" class="normal"/> -->
 <br><br>
 <label for="debut4">Début du stage :</label>
 <input id="debut4" type="date" name="debut4" class="normal"/>
 <br><br>
 <label for="fin4">Fin du stage :</label>
-<input id="fin4" type="date" name="fin4" class="normal"/>
+<input id="fin4" type="date" name="fin4" class="normal"/> -->
 
 
 </div>

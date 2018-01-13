@@ -26,9 +26,13 @@ public class InscriptionServlet extends HttpServlet {
 	private Statement statement1 = null;
 	private Statement statement2 = null;
 	private Statement statement3 = null;
+	private Statement statement4 = null;
+	private Statement statement5 = null;
 	private ResultSet resultat;
 	private int ajout;
 	private int ajout2;
+	private int ajout3;
+	private int ajout4;
 
 	public InscriptionServlet() {
 		super();
@@ -43,6 +47,8 @@ public class InscriptionServlet extends HttpServlet {
 			statement1 = connexion.createStatement();
 			statement2 = connexion.createStatement();
 			statement3 = connexion.createStatement();
+			statement4 = connexion.createStatement();
+			statement5 = connexion.createStatement();
 
 			String iPrenom = request.getParameter("prenom");
 			String iNom = request.getParameter("nom");
@@ -68,6 +74,14 @@ public class InscriptionServlet extends HttpServlet {
 					ajout2 = statement3.executeUpdate(
 							"Insert into Students(id_User, parcours, studyyear, alternance) values ('" + idUtilisateur
 									+ "','" + iParcours + "','" + iAnnee + "', '" + iAlternance + "');");
+					for(int i=2; i<4; i++){
+						ajout3 = statement4.executeUpdate("Insert into Stages(id_User, sYear) values ('" + idUtilisateur + "', 'A"+i+"');");
+
+					}
+					for(int i=2; i<4; i++){
+						ajout3 = statement5.executeUpdate("Insert into Echange(id_User, eYear) values ('" + idUtilisateur + "', 'A"+i+"');");
+
+					}
 				}
 			}
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
@@ -104,6 +118,22 @@ public class InscriptionServlet extends HttpServlet {
 			if (statement3 != null) {
 				try {
 					statement3.close();
+					System.out.println("Fermeture du statement");
+
+				} catch (SQLException ignore) {
+				}
+			}
+			if (statement4 != null) {
+				try {
+					statement4.close();
+					System.out.println("Fermeture du statement");
+
+				} catch (SQLException ignore) {
+				}
+			}
+			if (statement5 != null) {
+				try {
+					statement5.close();
 					System.out.println("Fermeture du statement");
 
 				} catch (SQLException ignore) {
