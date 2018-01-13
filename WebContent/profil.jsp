@@ -11,10 +11,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="profil.css">
 <title>Insert title here</title>
 </head>
 <body>
+<% User user = (User) request.getSession().getAttribute("user");
+  if(user.getType().equals("student")){%>
+  
+	  <%@ include file = "menu.jsp" %>
+	  <% } else { %>
+	  
+		  <%@ include file = "MenuPourProf.jsp" %>
+		  <% }%>
+
 <%  
+	
 	int id =  Integer.parseInt(request.getParameter("id"));  // get attribute by URL
 	String type = request.getParameter("type"); // get attribute by URL
 	DatabaseConnection dbc = null;
@@ -32,30 +43,47 @@
 			rset = statement.executeQuery("select * from Users, Students where Users.id_User=" + id + " and Students.id_User=" + id+ ";");
 			
 			while (rset.next()) {
+		
  %>
- <table>
+
+<br>
+<div class = "white">
+</div>
+<div class = "white">
+</div>
+<br>
+<center>
+<p class="tips">Eleve</p>
+<div class = "white">
+</div>
+<div class="carreau">
+ <table class="table-student">
+    <tr>
+ 		<td></td>
+ 		<td></td>
+ 	</tr>
  	<tr>
- 		<td>Nom</td>
+ 		<td>Nom :</td>
  		<td><%=rset.getString("lastName") %></td>
  	</tr>
  	<tr>
- 		<td>Prénom</td>
+ 		<td>Prénom :</td>
  		<td><%=rset.getString("firstName") %></td>
  	</tr>
  	<tr>
- 		<td>Email</td>
+ 		<td>Email :</td>
  		<td><%=rset.getString("email") %></td>
  	</tr>
  	<tr>
- 		<td>Parcours</td>
+ 		<td>Parcours :</td>
  		<td><%=rset.getString("parcours") %></td>
  	</tr>
  	<tr>
- 		<td>Année d'études</td>
+ 		<td>Année d'études :</td>
  		<td><%=rset.getString("studyyear") %></td>
  	</tr>
  	 <tr>
- 		<td>TOEIC</td>
+ 		<td>TOEIC :</td>
  		<td><%=rset.getInt("toeic") %></td>
  	</tr>
  	<tr>
@@ -63,7 +91,8 @@
  		<td></td>
  	</tr>
  </table>
- 
+ </div>
+
  <%
 			}
 		}else{ //result of profil of teacher
@@ -71,8 +100,21 @@
 			
 			while (rset2.next()) {
  %>
- <p><%=id %></p>
- <table>
+<br>
+<div class = "white">
+</div>
+<div class = "white">
+</div>
+<br>
+<center>
+<p class="tips">Professeur</p>
+<div class = "white">
+</div>
+ <table class="table-teacher">
+ 	<tr>
+ 		<td></td>
+ 		<td></td>
+ 	</tr>
  	<tr>
  		<td>Nom</td>
  		<td><%=rset2.getString("lastName") %></td>
@@ -96,6 +138,10 @@
  	<tr>
  		<td>Poste</td>
  		<td><%=rset2.getString("poste") %></td>
+ 	</tr>
+ 	<tr>
+ 		<td></td>
+ 		<td></td>
  	</tr>
  </table>
  
@@ -142,7 +188,7 @@
  <br><br> 
  
  <%
- User user = (User) request.getSession().getAttribute("user");
+
  if(user.getType().equals("student")) {
  %>
  	<input type="button" value="Return" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/recherchePourEleve.jsp'" />
@@ -150,10 +196,13 @@
  }else{
  %>
 	<input type="button" value="Return" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/recherchePourProf.jsp'" />
+ </center>
 <%	 
  }
 
 %>
-
+<div style="bottom:0px;font-size:0px;">
+<img  src="pictures/blue1.png" style="height:200px;width:1200px"/>
+</div>
 </body>
 </html>

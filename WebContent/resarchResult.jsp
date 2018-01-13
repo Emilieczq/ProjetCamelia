@@ -3,6 +3,7 @@
 <%@ page import="fr.isepconseil.vo.Etudiant" %>
 <%@page import=" java.util.List"%>
 <%@page import=" java.util.ArrayList"%> 
+<%@ page import="fr.isepconseil.vo.User" %>
  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,7 +13,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file = "menu.jsp" %>
+<% User user = (User) request.getSession().getAttribute("user");
+  if(user.getType().equals("student")){%>
+  
+	  <%@ include file = "menu.jsp" %>
+	  <% } else { %>
+	  
+		  <%@ include file = "MenuPourProf.jsp" %>
+		  <% }%>
 <br><br><br><br><br><br>
 
 <img src="pictures/blue3.png" width="1300" height="100" />     

@@ -1,18 +1,15 @@
 @CHARSET "UTF-8";
-body{
-	font-size : 18px;
+@CHARSET "UTF-8";
+.white{
+	height: 50px;
 }
-.normal, .normal_nochange {
-	width: 210px;
-	font-size : 20px;
-	border-style: solid #ccc;
-	border-radius: 5px;
-	margin-left:50px;
-	margin-right:20px;
-	
-}
-.normal_nochange {
-	background:#f3f3f3;
+.tips{
+font-size : 40px;
+color: transparent;
+background-color : black;
+text-shadow : rgba(255,255,255,0.5) 0 5px 6px, rgba(255,255,255,0.2) 1px 3px 3px;
+-webkit-background-clip : text;
+
 }
 .button {
 	position: relative;
@@ -82,43 +79,37 @@ body{
 	background-image:-o-linear-gradient(top, #A9D0F5, #6585EA);
 	background-image:linear-gradient(top, #A9D0F5, #6585EA);
 }
-.droit{
+.table-student {
+table-layout:fixed;
+border-left-style:solid;
+border-left-width: 2px;
+border-left-color: #4d70ab;
 
-	padding-right : 180px;
-	text-align:right;
-	border-style:none;
-	width:600px;
-	margin:0 auto;
+border-radius:23%;
 }
-#situation1{
-	margin-right:20px;
+.table-student td{
+font-size: 20px;
+font-family: Times;
+word-wrap:break-word;
+padding: 15px;
+padding-right:10px;
+	
 }
-#historie{
-	margin-right:120px;
+.table-teacher {
+table-layout:fixed;
+border-right-style:solid;
+border-right-width: 2px;
+border-right-color: #4d70ab;
+width:450px;
+height: 450px;
+border-radius:50%;
 }
-.subTitle{
-	padding-right : 75px;
-	color:#4d70ab;
-	font-size : 25px;
-}
-.select{
-	margin-left:50px;
-	margin-right:20px;
-	appearance:none;
-    -moz-appearance:none;
-    -webkit-appearance:none;
-    width: 215px;
-    height: 28px;
-    border-style: solid #ccc;
-	border-radius: 5px;
-    background-color: white;
-    background-repeat: no-repeat;
-    background-size: 8px 8px, 8px 8px, 30px 30px, 1px 30px;
-    background-image: repeating-linear-gradient(225deg, rgb(105, 123, 149) 0%, rgb(105, 123, 149) 50%, transparent 50%, transparent 100%),
-    repeating-linear-gradient(135deg, rgb(105, 123, 149) 0%, rgb(105, 123, 149) 50%, transparent 50%, transparent 100%),
-    linear-gradient(#FFFFFF 0%, #FFFFFF, #FFFFFF 100%),
-    repeating-linear-gradient( rgb(191, 204, 220) 0%, rgb(191, 204, 220) 100%);
-    background-position:  175px 10px, 183px 10px, right top, 167px top;
-    
+.table-teacher td{
+font-size: 20px;
+font-family: Times;
+word-wrap:break-word;
+padding: 5px;
+padding-right:50px;
+
 	
 }
