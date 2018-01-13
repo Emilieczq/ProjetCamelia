@@ -20,6 +20,7 @@
 <%
 List<String> results = (ArrayList<String>)request.getAttribute("results");
 List<String> ids = (ArrayList<String>)request.getAttribute("ids");
+List<String> types = (ArrayList<String>)request.getAttribute("types");
 		
 if(results.isEmpty()){
 %>
@@ -34,7 +35,7 @@ else{
 	for(int i=0; i<results.size();i++) {
 		System.out.println(ids.get(i));
 		%>
-				<p><%=i+1 %> : <a href="http://localhost:8080/ProjetCamelia/profil.jsp?id=<%=ids.get(i)%>"><%=results.get(i) %> </a> </p> 
+				<p><%=i+1 %> : <a href="http://localhost:8080/ProjetCamelia/profil.jsp?id=<%=ids.get(i)%>&type=<%=types.get(i)%>"><%=results.get(i) %> </a> </p> 
 		<%	
 	}
 }

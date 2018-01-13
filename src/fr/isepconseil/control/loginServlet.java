@@ -62,7 +62,6 @@ public class loginServlet extends HttpServlet {
 			User user = new User();
 			user.setEmail(login);
 			user.setPassword(password);
-			session.setAttribute("user", user);
 			UserDAOI userDAO = new UserDAOI();
 
 			try {
@@ -73,6 +72,7 @@ public class loginServlet extends HttpServlet {
 						Professeur professeur = new Professeur();
 						userDAO.setProfesseur(user, professeur);
 						professeur = userDAO.getProfesseur();
+						user.setType("teacher");
 						session.setAttribute("professeur", professeur); //session
 						
 						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/recherchePourProf.jsp");
@@ -81,11 +81,13 @@ public class loginServlet extends HttpServlet {
 						Etudiant etudiant = new Etudiant();
 						userDAO.setEtudiant(user, etudiant);
 						etudiant = userDAO.getEtudiant();
+						user.setType("student");
 						session.setAttribute("etudiant", etudiant);
 						
 						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/recherchePourEleve.jsp");
 						dispatcher.forward(request, response);
 					}
+					session.setAttribute("user", user);
 
 				} else {
 					info="La connexion a échoué, merci d'essayer de nouveau";

@@ -23,9 +23,9 @@ public class RechercheServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DatabaseConnection dbc = null;
 	private Connection connexion = null;
-	private Statement statement = null;
+	private Statement statement = null, statement2 = null;
 	
-	private ResultSet rset;
+	private ResultSet rset, rset2;
 
 	public RechercheServlet() {
 		super();
@@ -35,14 +35,17 @@ public class RechercheServlet extends HttpServlet {
 			dbc = new DatabaseConnection();
 			connexion = dbc.getConnection();
 			statement = connexion.createStatement();
+			statement2 = connexion.createStatement();
 			
 			String recherche = request.getParameter("search");
-//			recherche.toLowerCase(null);
+//			recherche.toLowerCase();
 			System.out.println(recherche);
 			
 			response.setContentType("text/html");
 			List<String> results = new ArrayList<String>();
 			List<String> ids = new ArrayList<String>();
+			List<String> types = new ArrayList<String>();
+			
 			if (recherche != null ) {
 				/*
 				 * we can search any students by email or firstName+" "+lastName or lastName+" "+firstName
@@ -58,11 +61,21 @@ public class RechercheServlet extends HttpServlet {
 					System.out.println("result" + rset.getString( "firstName" )); // à supprimer
 					results.add(rset.getString( "firstName" ) + " " + rset.getString( "lastName" ));
 					ids.add(rset.getInt( "id_User" )+"");
+					
+					rset2 = statement2.executeQuery("select * from Students where id_User=" + rset.getInt( "id_User" ) +";");
+					if(rset2.next()) {
+						types.add("student");
+					}else {
+						types.add("teacher");
+					}
 				}
 			}
 			
 			request.setAttribute("results", results); 
 			request.setAttribute("ids", ids);
+			request.setAttribute("types", types);
+			
+			System.out.println(types); // à supprimer
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/resarchResult.jsp"); 
 			dispatcher.forward(request, response);
@@ -72,7 +85,6 @@ public class RechercheServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		finally {
-
 			if ( rset != null ) {
 				try {
 					rset.close();
@@ -80,9 +92,23 @@ public class RechercheServlet extends HttpServlet {
 				} catch ( SQLException ignore ) {
 				}
 			}
+			if ( rset2 != null ) {
+				try {
+					rset2.close();
+					System.out.println("Fermeture du resultat");
+				} catch ( SQLException ignore ) {
+				}
+			}
 			if ( statement != null ) {
 				try {
 					statement.close();
+					System.out.println("Fermeture du statement");
+				} catch ( SQLException ignore ) {
+				}
+			}
+			if ( statement2 != null ) {
+				try {
+					statement2.close();
 					System.out.println("Fermeture du statement");
 				} catch ( SQLException ignore ) {
 				}
