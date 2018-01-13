@@ -30,7 +30,7 @@
 	</div>
 	
 		<label for="annee">Année d’étude:</label>
-		<select id = "annee" name = "annee" class="select"  required>
+		<select id = "annee" name = "annee" class="select" onclick="check()" required>
 			<option value="" disabled selected></option> 
   			<option value="A1">A1</option>
   			<option value="A2">A2</option>
@@ -49,6 +49,7 @@
 		<label for="parcours">Parcours:</label>
 		<select id = "parcours" name = "parcours" class="selectlong"  required>
 			<option value=""></option> 
+			<option value="PAS DE PARCOURS">--</option> 
   			<option value ="ARCHITECTE DES SYSTEMES D''INFORMATION">ARCHITECTE DES SYSTÈMES D’INFORMATION</option>
   			<option value ="INGENIEUR EN BUSINESS INTELLIGENCE"> INGÉNIEUR EN BUSINESS INTELLIGENCE</option>
   			<option value ="INGENIEUR LOGICIEL"> INGÉNIEUR LOGICIEL</option>

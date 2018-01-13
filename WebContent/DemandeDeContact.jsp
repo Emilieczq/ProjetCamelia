@@ -13,6 +13,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="DemandeDeContact.css">
+<script type="text/javascript" src="DemandeDeContact.js"></script>
 <script type="text/javascript" src="inscriptionCheck.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -68,8 +69,9 @@
 					
 				</select> <br>
 				<br> <label for="but" id="But" >But:</label>
-				<textarea id="but" name = "but" required style="resize: none;vertical-align:top;"></textarea>
-				<br><br><br>
+				<textarea id="but" name = "but"  onkeyup="wordStatic(this);" maxlength="120" required style="resize: none;vertical-align:top;"></textarea>
+				<br><div class="textarea_counter">(<span id="num">0</span>/120)</div>  
+				<br><br>
 				<input id="submit" type="submit" value="Demander un RDV"
 					class="button" onclick="" />
           </div>
