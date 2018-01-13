@@ -34,7 +34,7 @@ else{
 	for(int i=0; i<results.size();i++) {
 		System.out.println(ids.get(i));
 		%>
-				<p><%=i+1 %> : <a href="http://localhost:8080/ProjetCamelia/profil.jsp?id="><%=results.get(i) %> </a> </p> 
+				<p><%=i+1 %> : <a href="http://localhost:8080/ProjetCamelia/profil.jsp?id=<%=ids.get(i)%>"><%=results.get(i) %> </a> </p> 
 		<%	
 	}
 }
