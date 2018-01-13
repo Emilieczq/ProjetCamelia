@@ -37,10 +37,10 @@ public class RechercheServlet extends HttpServlet {
 			statement = connexion.createStatement();
 			
 			String recherche = request.getParameter("search");
+//			recherche.toLowerCase(null);
 			System.out.println(recherche);
 			
 			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
 			List<String> results = new ArrayList<String>();
 			List<String> ids = new ArrayList<String>();
 			if (recherche != null ) {
@@ -48,11 +48,11 @@ public class RechercheServlet extends HttpServlet {
 				 * we can search any students by email or firstName+" "+lastName or lastName+" "+firstName
 				 * ignore we write in upper case or in lower case
 				 */
-				rset = statement.executeQuery("select distinct * from Users where exists (select * from Students where id_User= Users.id_Use)r"
-						+ "and (email like '%"+recherche+"%' or lower(concat(firstName,'' '',lastName)) like '%"+recherche+"%' "
-								+ "or lower(concat(lastName,'' '',firstName)) like '%"+recherche+"%'"
-										+ ");");
-				
+				rset = statement.executeQuery("select distinct * from Users where"
+						+ "(email like '%"+recherche+"%' "
+						+ "or lower(concat(firstName,'' '',lastName)) like '%"+recherche+"%'" // no need for only firstName or only lastName, because they are included in this case and the following case
+						+ "or lower(concat(lastName,'' '',firstName)) like '%"+recherche+"%'"
+						+ ");");
 						
 				while (rset.next()){
 					System.out.println("result" + rset.getString( "firstName" )); // à supprimer
@@ -60,17 +60,6 @@ public class RechercheServlet extends HttpServlet {
 					ids.add(rset.getInt( "id_User" )+"");
 				}
 			}
-			
-			/*
-			 * for AJAX, not success
-			 */
-//			if(results.size()==0) {
-//				out.println("Il n'y a aucun résultat associé.");
-//			}else {
-//				for(String result:results) {
-//					out.println(result);
-//				}
-//			}
 			
 			request.setAttribute("results", results); 
 			request.setAttribute("ids", ids);

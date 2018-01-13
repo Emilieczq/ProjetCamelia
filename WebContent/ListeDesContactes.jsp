@@ -49,9 +49,12 @@
 	List<String> idEtudiants = new ArrayList<String>();
 	DatabaseConnection dbc = null;
 	Connection connexion = null;
-	Statement statement1 = null, statement2 = null,statement3 = null;
+	Statement statement1 = null, statement2 = null,statement3 = null,statement4=null,statement5=null;
 	
-	ResultSet rset = null, rset2 = null, rset3 = null;
+	ResultSet rset = null, rset2 = null, rset3 = null,rset4=null,rset5=null;
+	int ajout;
+	
+	
 	
 	try{
 		dbc = new DatabaseConnection();
@@ -59,72 +62,99 @@
 		statement1 = connexion.createStatement();
 		statement2 = connexion.createStatement();
 		statement3 = connexion.createStatement();
+		statement4 = connexion.createStatement();
+		statement5 = connexion.createStatement();
 	
-		rset = statement1.executeQuery("select * from Camelia.RDV where id_Teacher = (select id_Teacher from Camelia.Teachers where id_User =" + id_User + ");");
 		
+		
+		
+		int id_RDV=0;
 		List<String> buts = new ArrayList<String>();
-		
-		while (rset.next()) {
-			int id_Student = rset.getInt("id_Student");
-			rset2 = statement2.executeQuery("select * from Students where id_Student=" + id_Student+";");
-			rset3 = statement3.executeQuery("select * from Users where id_User = (select id_User from Students where id_Student = "+ id_Student+");");
-			
-			while (rset3.next()) {
-%>
-	<tr>
-		<td><%= rset3.getString("firstName")%></td>
-		<td><%= rset3.getString("lastName")%></td>
-		<td><%= rset3.getString("email")%></td>
-		
-		<% 
-			if(rset2.next()){
-		%>
-		<td><%= rset2.getString("studyyear")%></td>
-		<td><%= rset2.getString("parcours")%></td>
-		<td> <%= rset.getString("subject")%></td>
-	</tr>
-
-<% 			
-				}
+		rset5 = statement5.executeQuery("select * from Camelia.RDV where id_Teacher = (select id_Teacher from Camelia.Teachers where id_User =" + id_User + ");");
+		if(request.getParameter("id")!=null){
+			id_RDV=Integer.parseInt(request.getParameter("id"));
+			System.out.println(id_RDV);
+			while(rset5.next()){
+				
+				ajout = statement4.executeUpdate( "UPDATE RDV SET status ='1' where id_RDV="+id_RDV+";");
 			}
 		}
-	} catch (Exception e) {
-		System.out.println("Exception declenchee");
-		e.printStackTrace();
-	}
-	finally {
+		
+		rset = statement1.executeQuery("select * from Camelia.RDV where id_Teacher = (select id_Teacher from Camelia.Teachers where id_User =" + id_User + ");");
+				while (rset.next()) {
+					
+					if(rset.getInt("status")==0){
+					int id_Student = rset.getInt("id_Student");
+					rset2 = statement2.executeQuery("select * from Students where id_Student=" + id_Student+";");
+					rset3 = statement3.executeQuery("select * from Users where id_User = (select id_User from Students where id_Student = "+ id_Student+");");
+					
+					while (rset3.next()) {
+		%>
+			<tr>
+				<td><%= rset3.getString("firstName")%></td>
+				<td><%= rset3.getString("lastName")%></td>
+				<td><%= rset3.getString("email")%></td>
+				
+				<% 
+					if(rset2.next()){
+				%>
+				<td><%= rset2.getString("studyyear")%></td>
+				<td><%= rset2.getString("parcours")%></td>
+				<td> <%= rset.getString("subject")%></td>
+				<td><a href="http://localhost:8080/ProjetCamelia/ListeDesContactes.jsp?id=<%=rset.getInt("id_RDV")%>"> <div class="close">X</div></a></td>
+				
+				
+			</tr>
 
-		if ( rset != null ) {
+		<%
+					}
+
+				}
+			}
+				}
+					
+			
+				
+			
+				
+				
+
+			} catch (Exception e) {
+				System.out.println("Exception declenchee");
+				e.printStackTrace();
+			}
+			finally {
+
+				if ( rset != null ) {
 			try {
 				rset.close();
 				System.out.println("Fermeture du resultat");
 			} catch ( SQLException ignore ) {
 			}
-		}
-		if ( statement1 != null ) {
+				}
+				if ( statement1 != null ) {
 			try {
 				statement1.close();
 				System.out.println("Fermeture du statement");
 			} catch ( SQLException ignore ) {
 			}
-		}
-		if ( statement2 != null ) {
+				}
+				if ( statement2 != null ) {
 			try {
 				statement2.close();
 				System.out.println("Fermeture du statement");
 			} catch ( SQLException ignore ) {
 			}
-		}
-		if ( statement3 != null ) {
+				}
+				if ( statement3 != null ) {
 			try {
 				statement3.close();
 				System.out.println("Fermeture du statement");
 			} catch ( SQLException ignore ) {
 			}
-		}
-	}
-
-%>
+				}
+			}
+		%>
 
 </table>
 </center>
