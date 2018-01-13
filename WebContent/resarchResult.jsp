@@ -8,15 +8,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="profilPourEleve.css">
+<link rel="stylesheet" type="text/css" href="resarchResult.css">
 <title>Insert title here</title>
 </head>
 <body>
-<img src="pictures/try.jpg" border='0'width='100%' height='100%' style='position: absolute;left:0px;top:0px;z-index: -1'/>
 <%@ include file = "menu.jsp" %>
 <br><br><br><br><br><br>
-      
+
+<img src="pictures/blue3.png" width="1300" height="100" />     
 <center>
+
 <%
 List<String> results = (ArrayList<String>)request.getAttribute("results");
 List<String> ids = (ArrayList<String>)request.getAttribute("ids");
@@ -24,18 +25,22 @@ List<String> types = (ArrayList<String>)request.getAttribute("types");
 		
 if(results.isEmpty()){
 %>
-	<p>Il n'y a aucun résultat associé.</p> <!-- need to modify css -->
+	<p class="tips">Il n'y a aucun résultat associé.</p> <!-- need to modify css -->
 
 <% 	
 }
 else{
 %>
-	<p>Il y a <%=results.size()%> résultats.</p>
+	<p class="tips">Il y a <%=results.size()%> résultats.</p>
+	
+	<br>
 <% 
 	for(int i=0; i<results.size();i++) {
 		System.out.println(ids.get(i));
 		%>
-				<p><%=i+1 %> : <a href="http://localhost:8080/ProjetCamelia/profil.jsp?id=<%=ids.get(i)%>&type=<%=types.get(i)%>"><%=results.get(i) %> </a> </p> 
+		
+		<div class="result"><a class = "lien" href="http://localhost:8080/ProjetCamelia/profil.jsp?id=<%=ids.get(i)%>&type=<%=types.get(i)%>"><%=results.get(i) %> </a><br><br> </div> 
+		
 		<%	
 	}
 }

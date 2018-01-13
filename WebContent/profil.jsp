@@ -33,7 +33,6 @@
 			
 			while (rset.next()) {
  %>
- <p><%=id %></p>
  <table>
  	<tr>
  		<td>Nom</td>
