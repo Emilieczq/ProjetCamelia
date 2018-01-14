@@ -11,6 +11,7 @@ ul,li{
 a{text-decoration : none; color : #428bca}
 a:hover{color:black;}
 
+
 .title{
 	height:40px;
 	background:#4d70ab;
@@ -99,7 +100,8 @@ height: 35px;
 	display:block;
 }
 .act{border-bottom:solid 2px #a4b9dd;
-	 color:#a4b9dd}
+	 color:#a4b9dd
+	 }
 	  
 .nav-con{
 	clear:both;
