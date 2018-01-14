@@ -74,14 +74,10 @@ public class InscriptionServlet extends HttpServlet {
 					ajout2 = statement3.executeUpdate(
 							"Insert into Students(id_User, parcours, studyyear, alternance) values ('" + idUtilisateur
 									+ "','" + iParcours + "','" + iAnnee + "', '" + iAlternance + "');");
-					for(int i=2; i<4; i++){
-						ajout3 = statement4.executeUpdate("Insert into Stages(id_User, sYear) values ('" + idUtilisateur + "', 'A"+i+"');");
-
-					}
-					for(int i=2; i<4; i++){
-						ajout3 = statement5.executeUpdate("Insert into Echange(id_User, eYear) values ('" + idUtilisateur + "', 'A"+i+"');");
-
-					}
+//					for(int i=2; i<4; i++){
+//						ajout3 = statement4.executeUpdate("Insert into Stages(id_User, sYear) values ('" + idUtilisateur + "', 'A"+i+"');");
+//						ajout3 = statement5.executeUpdate("Insert into Echange(id_User, eYear) values ('" + idUtilisateur + "', 'A"+i+"');");
+//					}
 				}
 			}
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");

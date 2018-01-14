@@ -28,11 +28,11 @@ public class EleveModifierServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DatabaseConnection dbc = null;
 	private Connection connexion = null;
-	private Statement statement = null, statement2=null,statement3=null,statement4=null,statement5=null,statement6=null,statement7=null;
+	private Statement statement = null, statement2=null,statement3=null,statement4=null,statement5=null,statement6=null,statement7=null,statement8=null;
 	private Statement statementbis = null;
 //	private Statement statementidstud = null;
 	private Statement statementcheckstage = null;
-	private ResultSet resultat = null,resultat2 =null, resultat3=null,resultat4=null,resultat5 =null, resultat6=null,resultat7=null;
+	private ResultSet resultat = null,resultat2 =null, resultat3=null,resultat4=null,resultat5 =null, resultat6=null,resultat7=null,resultat8=null;
 	private ResultSet resultatstage = null;
 //	private ResultSet checkstage = null;
 	private int modif;
@@ -55,6 +55,7 @@ public class EleveModifierServlet extends HttpServlet {
 			statement5 = connexion.createStatement();
 			statement6 = connexion.createStatement();
 			statement7 = connexion.createStatement();
+			statement8 = connexion.createStatement();
 			statementbis = connexion.createStatement();
 //			statementidstud = connexion.createStatement();
 			statementcheckstage = connexion.createStatement();
@@ -84,6 +85,8 @@ public class EleveModifierServlet extends HttpServlet {
 			String s1Salary = request.getParameter("s1Salary");
 			String s1Start = request.getParameter("s1Start");
 			String s1End = request.getParameter("s1End");
+			String competences1 = request.getParameter("competences1");
+			String mission1 = request.getParameter("mission1");
 			
 			String s2Firm = request.getParameter("s2Firm");
 			String s2Job = request.getParameter("s2Job");
@@ -92,6 +95,8 @@ public class EleveModifierServlet extends HttpServlet {
 			String s2Salary = request.getParameter("s2Salary");
 			String s2Start = request.getParameter("s2Start");
 			String s2End = request.getParameter("s2End");
+			String competences2 = request.getParameter("competences2");
+			String mission2 = request.getParameter("mission2");
 
 			
 			
@@ -107,89 +112,111 @@ public class EleveModifierServlet extends HttpServlet {
 //			resultat = statement.executeQuery("select id_User from Users where email = '" + iemail + "';");
 
 
-				if (mPromo != null) {
-					modif = statementbis.executeUpdate(
-							"Update Students set studyyear = '" + mPromo + "' where id_User = '" + idUser + "';"); 
-					etudiant.setAnnee(mPromo);
-				}
-				if (mParcours != null) {
-					modif = statementbis.executeUpdate(
-							"Update Students set parcours = '" + mParcours + "' where id_User = '" + idUser + "';");
-					etudiant.setParcours(mParcours.replace("''", "'")); 
-				}
-				if (mToeic != null && !mToeic.equals("")) {
-					modif = statementbis.executeUpdate(
-							"Update Students set toeic = '" + mToeic + "' where id_User = '" + idUser + "';");
-					etudiant.setToeic(Integer.parseInt(mToeic));
-				}
-				if (sAlternance.equals("1")|| sAlternance.equals("0")){
-					modif = statementbis.executeUpdate(
-							"Update Students set alternance = '" + sAlternance + "' where id_User = '" + idUser + "';");
-					etudiant.setAlternance(Integer.parseInt(sAlternance));
-				}
-				
-				/**
-				 * check if the firm exists already in the database:
-				 * if yes, get the id_Firm add use it in the table Stages;
-				 * if not, create new row in the table Firms and get the new id_Firm to use in the table Stages
-				 */
-				int id_Firm1=0, id_Firm2=0;
-				
-				resultat2 = statement2.executeQuery("select * from Firms where fname= " + s1Firm
-						 + "&& ville= "+ s1Town + "&& pays="+s1Country+";");
+			if (mPromo != null) {
+				modif = statementbis.executeUpdate(
+						"Update Students set studyyear = '" + mPromo + "' where id_User = '" + idUser + "';"); 
+				etudiant.setAnnee(mPromo);
+			}
+			if (mParcours != null) {
+				modif = statementbis.executeUpdate(
+						"Update Students set parcours = '" + mParcours + "' where id_User = '" + idUser + "';");
+				etudiant.setParcours(mParcours.replace("''", "'")); 
+			}
+			if (mToeic != null && !mToeic.equals("")) {
+				modif = statementbis.executeUpdate(
+						"Update Students set toeic = '" + mToeic + "' where id_User = '" + idUser + "';");
+				etudiant.setToeic(Integer.parseInt(mToeic));
+			}
+			if (sAlternance.equals("1")|| sAlternance.equals("0")){
+				modif = statementbis.executeUpdate(
+						"Update Students set alternance = '" + sAlternance + "' where id_User = '" + idUser + "';");
+				etudiant.setAlternance(Integer.parseInt(sAlternance));
+			}
+			
+			/**
+			 * check if the firm exists already in the database:
+			 * if yes, get the id_Firm add use it in the table Stages;
+			 * if not, create new row in the table Firm and get the new id_Firm to use in the table Stages
+			 */
+			int id_Firm1=0, id_Firm2=0;
+			
+			if(s1Firm !="" && s1Job !="" && s1Salary != "" && s1Start !="" && s1End !="" && competences1!="" && mission1!=""){
+				resultat2 = statement2.executeQuery("select * from Firm where fname= '" + s1Firm + "' && fville= '"+ s1Town + "' && fpays='"+s1Country+"';");
+				System.out.println("-------------------------after resultat2----------");
 				if(resultat2.next()) {
-					resultat3 = statement3.executeQuery("insert into Firms(fname, ville, pays) values("+s1Firm+"," + s1Town+"," +s1Country+");");
+					id_Firm1 = resultat2.getInt("id_Firm");
+					
+					System.out.println("---------idFirm1=" + id_Firm1);
+				}else {
+					statement3.executeUpdate("insert into Firm(fname, fville, fpays) values('"+s1Firm+"','" + s1Town+"','" +s1Country+"');");
+					System.out.println("-------------------------after resultat2 and 3 (insert)----------");
+					resultat5 = statement5.executeQuery("select * from Firm where fname= '" + s1Firm + "' && fville= '"+ s1Town + "' && fpays='"+s1Country+"';");
+					if(resultat5.next()) {
+						id_Firm1 = resultat5.getInt("id_Firm");
+						System.out.println("---------idFirm1=" + id_Firm1 +"------");
+						System.out.println("-------------------------after resultat5 ----------");
+					}
 				}
-				
-				resultat4 = statement4.executeQuery("select * from Firms where fname= " + s1Firm
-						 + "&& ville= "+ s1Town + "&& pays="+s1Country+";");
-				if(resultat4.next()) {
-					id_Firm1 = resultat4.getInt("id_Firm");
-				}
-				
-				
-				if(s1Firm !=null && s1Job !=null && s1Salary != "" && s1Start !=null && s1End !=null){
-					stagemodif = statementcheckstage.executeUpdate(
-							"Update Stages set sJob = '" + s1Job + "',"
-							+ "id_Firm = '" + id_Firm1
-							+ "sSalary = '" + s1Salary + "',"
-							+ "sStart = '" + s1Start + "',"
-							+ "sEnd = '" + s1End + "' "
-							+ "where id_User = '" + idUser + "' and sYear =  'A2';");
-				}
-				
-				resultat5 = statement5.executeQuery("select * from Firms where fname= " + s1Firm
-						 + "&& ville= "+ s1Town + "&& pays="+s1Country+";");
-				if(resultat5.next()) {
-					resultat6 = statement3.executeQuery("insert into Firms(fname, ville, pays) values("+s1Firm+"," + s1Town+"," +s1Country+");");
-				}
-				
-				resultat7 = statement7.executeQuery("select * from Firms where fname= " + s2Firm
-						 + "&& ville= "+ s2Town + "&& pays="+s2Country+";");
+				resultat7 =statement7.executeQuery("select * from Stages where id_User= '" + idUser + "' && sYear= 'A2';");
 				if(resultat7.next()) {
-					id_Firm2 = resultat7.getInt("id_Firm");
+					int id_Stage = resultat7.getInt("id_Stage");
+					statementcheckstage.executeUpdate("update Stages set sJob='"+s1Job+"', sSalary='"+ s1Salary+"', competences='"
+							+competences1+"', mission='" + mission1+"' where id_Stage ='" +id_Stage+"';");
+				}else {
+					statementcheckstage.executeUpdate(
+							/**
+							 * for now ignore date 
+							 */
+	//						"insert into Stages(sJob,id_Firm,sSalary,sStart,sEnd,id_User,sYear,competences, mission) values ('" + s1Job + "','"+id_Firm1+"','"+ s1Salary 
+	//						+ "','" +s1Start + "','"+ s1End + "','"+idUser + "','A2','"+ competences1 +"','"+mission1+"');");
+							"insert into Stages(sJob,id_Firm,sSalary,id_User,sYear,competences, mission) values ('" + s1Job + "','"+id_Firm1+"','"+ s1Salary 
+							+ "','"+idUser + "','A2','"+ competences1 +"','"+mission1+"');");
+					System.out.println("-------------------------after stagemodif (A2)----------");
 				}
-				
-				if(s2Firm !=null && s2Job !=null && s2Salary != "" && s2Start !=null && s2End !=null){
-					stagemodif = statementcheckstage.executeUpdate(
-							"Update Stages set sJob = '" + s1Job + "',"
-							+ "id_Firm = '" + id_Firm2
-							+ "sSalary = '" + s2Salary + "',"
-							+ "sStart = '" + s2Start + "',"
-							+ "sEnd = '" + s2End + "' "
-							+ "where id_User = '" + idUser + "' and sYear =  'A3';");
+			}
+			if(s2Firm !="" && s2Job !="" && s2Salary != "" && s2Start !="" && s2End !="" && competences2!="" && mission2!=""){
+				resultat4 = statement4.executeQuery("select * from Firm where fname= '" + s2Firm+ "' && fville= '"+ s2Town + "' && fpays='"+s2Country+"';");
+				System.out.println("-------------------------after resultat5----------");
+				if(resultat4.next()) {
+					id_Firm2= resultat4.getInt("id_Firm");
+					System.out.println("---------idFirm2=" + id_Firm1 );
+					System.out.println("-------------------------after resultat4 and 6 (update)----------");
+				}else {
+					statement6.executeUpdate("insert into Firm(fname, fville, fpays) values('"+s2Firm+"','" + s2Town+"','" +s2Country+"');");
+					System.out.println("-------------------------after resultat4 and 5 (insert)----------");
+					resultat6 = statement6.executeQuery("select * from Firm where fname= '" + s2Firm+ "' && fville= '"+ s2Town + "' && fpays='"+s2Country+"';");
+					if(resultat6.next()) {
+						id_Firm2 = resultat6.getInt("id_Firm");
+						System.out.println("---------idFirm2=" + id_Firm2 +"------");
+						System.out.println("-------------------------after resultat6 ----------");
+					}
 				}
+				resultat8 =statement8.executeQuery("select * from Stages where id_User= '" + idUser + "' && sYear= 'A3';");
+				if(resultat8.next()) {
+					int id_Stage = resultat8.getInt("id_Stage");
+					statementcheckstage.executeUpdate("update Stages set sJob='"+s2Job+"', sSalary='"+ s2Salary+"', competences='"
+							+competences2+"', mission='" + mission2+"' where id_Stage ='" +id_Stage+"';");
+				}else {
+					statementcheckstage.executeUpdate(
+							/**
+							 * ignore date
+							 */
+	//						"insert into Stages(sJob,id_Firm,sSalary,sStart,sEnd,id_User,sYear,competences, mission) values ('" + s2Job + "','"+id_Firm2+"','"+ s2Salary 
+	//						+ "','" +s2Start + "','"+ s2End + "','"+idUser + "','A3','"+ competences2 +"','"+mission2+"');");
+							"insert into Stages(sJob,id_Firm,sSalary,id_User,sYear,competences, mission) values ('" + s2Job + "','"+id_Firm2+"','"+ s2Salary 
+							+ "','"+idUser + "','A3','"+ competences2 +"','"+mission2+"');");
+					System.out.println("-------------------------after stagemodif (A3)----------");
+				}
+			}
 				
-//				if (s2Firm !=null && s2Job !=null && s2Salary != "" && s1Start !=null && s1End !=null){
-//					stagemodif2 = statementcheckstage.executeUpdate("Update Stages set sFirm = '" + s2Firm + "',sJob = '" + s2Job + "',sSalary = '" + s2Salary + "',sStart = '" + s2Start + "',sEnd = '" + s2End + "' where id_User = '" + idUser + "' and sYear =  'A3';");
-//				}
-				
+			System.out.println("--------test user--------" + user.toString());
+			System.out.println("---------test etudiant-------" + etudiant.toString());
 			session.setAttribute("user", user);
 			session.setAttribute("etudiant", etudiant);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProfilPourEleve.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
-			System.out.println("Exception declenchee");
+			System.out.println("Exception declenchee 2");
 			e.printStackTrace();
 		} finally {
 			if (resultat != null) {

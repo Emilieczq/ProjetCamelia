@@ -185,51 +185,53 @@
 			statement3 = connexion.createStatement();
 			statement4 = connexion.createStatement();
 			
-			rset1 = statement1.executeQuery("select * from Camelia.Stages where id_User =" + id_User + " && sYear= 'A2';");
-			
+			rset1 = statement1.executeQuery("select * from Camelia.Stages where id_User ='" + id_User + "' && sYear= 'A2';");
 			if(rset1.next()){
-					
-					s1Job = rset1.getString("sJob");
-					s1Salary = rset1.getString("sSalary");
-					s1Start = rset1.getString("sStart");
-					s1End = rset1.getString("sEnd");
-					id_Firm1 = rset1.getInt("id_Firm");
-					competences1 = rset2.getString("competences1");
-					mission1 = rset2.getString("mission1");
+				s1Job = rset1.getString("sJob")==null ? "" :rset1.getString("sJob");
+				System.out.println("*****sJob*******"+s1Job);
+				s1Salary = rset1.getString("sSalary")==null ? "" :rset1.getString("sSalary");
+				System.out.println("*****sSalary*******"+s1Salary);
+				s1Start = rset1.getString("sStart")==null ? "" :rset1.getString("sStart");
+				s1End = rset1.getString("sEnd")==null ? "" :rset1.getString("sEnd");
+				competences1 = rset1.getString("competences")==null ? "" :rset1.getString("competences");
+				mission1 = rset1.getString("mission")==null ? "" :rset1.getString("mission");
+				
+				id_Firm1 = rset1.getInt("id_Firm");
+				System.out.println("*****id_Firm1*******"+id_Firm1);
+				rset2 = statement2.executeQuery("select * from Camelia.Firm where id_Firm ='" + id_Firm1 + "';");
+				
+				if(rset2.next()){
+					s1Firm = rset2.getString("fname")==null ? "" :rset2.getString("fname");
+					s1Town = rset2.getString("fville")==null ? "" :rset2.getString("fville");
+					s1Country = rset2.getString("fpays")==null ? "" :rset2.getString("fpays");
+				}
 			}
 			
-			rset2 = statement2.executeQuery("select * from Camelia.Firms where id_Firm =" + id_Firm1 + ";");
-			
-			if(rset2.next()){
-				s1Firm = rset2.getString("fName");
-				s1Town = rset2.getString("ville");
-				s1Country = rset2.getString("pays");
-			}
-			
-			rset3 = statement3.executeQuery("select * from Camelia.Stages where id_User =" + id_User + " && sYear= 'A3';");
-			
+			rset3 = statement3.executeQuery("select * from Camelia.Stages where id_User ='" + id_User + "' && sYear= 'A3';");
 			if(rset3.next()){
-					s2Job = rset3.getString("sJob");
-					s2Salary = rset3.getString("sSalary");
-					s2Start = rset3.getString("sStart");
-					s2End = rset3.getString("sEnd");
-					id_Firm2 = rset3.getInt("id_Firm");
-					competences1 = rset3.getString("competences1");
-					mission1 = rset3.getString("mission1");
+				s2Job = rset3.getString("sJob")==null ? "" :rset3.getString("sJob");
+				s2Salary = rset3.getString("sSalary")==null ? "" :rset3.getString("sSalary");
+				s2Start = rset3.getString("sStart")==null ? "" :rset3.getString("sStart");
+				s2End = rset3.getString("sEnd")==null ? "" :rset3.getString("sEnd");
+				competences2 = rset3.getString("competences")==null ? "" :rset3.getString("competences");
+				mission2 = rset3.getString("mission")==null ? "" :rset3.getString("mission");
+				
+				id_Firm2 = rset3.getInt("id_Firm");
+				System.out.println("*****id_Firm2*******"+id_Firm2);
+				rset4 = statement4.executeQuery("select * from Camelia.Firm where id_Firm ='" + id_Firm2 + "';");
+				
+				if(rset4.next()){
+					s2Firm = rset4.getString("fname")==null ? "" :rset4.getString("fname");
+					s2Town = rset4.getString("fville")==null ? "" :rset4.getString("fville");
+					s2Country = rset4.getString("fpays")==null ? "" :rset4.getString("fpays");
+				}
 			}
 			
-			rset4 = statement4.executeQuery("select * from Camelia.Firms where id_Firm =" + id_Firm2 + ";");
-			
-			if(rset4.next()){
-				s2Firm = rset4.getString("fName");
-				s2Town = rset4.getString("ville");
-				s2Country = rset4.getString("pays");
-			}
 			
 			
 		}catch(Exception e) {
 			System.out.println("Exception declenchee");
-			e.printStackTrace();
+// 			e.printStackTrace();
 		}
 		finally {
 
@@ -302,7 +304,7 @@
 	<label>Pays :</label><input id = "s1Country" type="text" name="s1Country" class="normal" value="<%=s1Country %>"/><br><br>
 	<label>Salaire :</label><input id = "s1Salary" type="text" name="s1Salary" class="normal" value="<%=s1Salary %>"/><br><br>
 	<label>Compétences :</label><input id = "competences1" type="text" name="competences1" class="normal" value="<%=competences1 %>"/><br><br>
-	<label>Missions principales :</label><input id="missions1" type="text" name="missions1" class="normal" value="<%=mission1 %>"/><br><br>
+	<label>Missions principales :</label><input id="mission1" type="text" name="mission1" class="normal" value="<%=mission1 %>"/><br><br>
 	<label>Début du stage :</label><input id = "s1Start" type="date" name="s1Start" class="normal" value="<%=s1Start %>"/><br><br>
 	<label>Fin du stage :</label><input id = "s1End" type="date" name="s1End" class="normal" value="<%=s1End %>"/><br><br><br><br>
 	
@@ -315,7 +317,7 @@
 	<label>Pays :</label><input id = "s2Country" type="text" name="s2Country" class="normal" value="<%=s2Country %>"/><br><br>
 	<label>Salaire :</label><input id = "s2Salary" type="text" name="s2Salary" class="normal" value="<%=s2Salary %>"/><br><br>
 	<label>Compétences :</label><input id = "competences2" type="text" name="competences2" class="normal" value="<%=competences2 %>"/><br><br>
-	<label>Missions principales :</label><input id="missions2" type="text" name="missions2" class="normal" value="<%=mission2 %>"/><br><br>
+	<label>Missions principales :</label><input id="mission2" type="text" name="mission2" class="normal" value="<%=mission2 %>"/><br><br>
 	<label>Début du stage :</label><input id = "s2Start" type="date" name="s2Start" class="normal" value="<%=s2Start %>"/><br><br>
 	<label>Fin du stage :</label><input id = "s2End" type="date" name="s2End" class="normal" value="<%=s2End %>"/><br><br><br><br>
 </div>
