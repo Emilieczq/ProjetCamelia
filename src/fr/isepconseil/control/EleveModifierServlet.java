@@ -160,7 +160,7 @@ public class EleveModifierServlet extends HttpServlet {
 				resultat7 =statement7.executeQuery("select * from Stages where id_User= '" + idUser + "' && sYear= 'A2';");
 				if(resultat7.next()) {
 					int id_Stage = resultat7.getInt("id_Stage");
-					statementcheckstage.executeUpdate("update Stages set sJob='"+s1Job+"', sSalary='"+ s1Salary+"', competences='"
+					statementcheckstage.executeUpdate("update Stages set sJob='"+s1Job+"', sSalary='"+ s1Salary+"',sStart='"+ s1Start+"',sEnd='"+ s1End+"', competences='"
 							+competences1+"', mission='" + mission1+"' where id_Stage ='" +id_Stage+"';");
 				}else {
 					statementcheckstage.executeUpdate(
@@ -169,8 +169,8 @@ public class EleveModifierServlet extends HttpServlet {
 							 */
 	//						"insert into Stages(sJob,id_Firm,sSalary,sStart,sEnd,id_User,sYear,competences, mission) values ('" + s1Job + "','"+id_Firm1+"','"+ s1Salary 
 	//						+ "','" +s1Start + "','"+ s1End + "','"+idUser + "','A2','"+ competences1 +"','"+mission1+"');");
-							"insert into Stages(sJob,id_Firm,sSalary,id_User,sYear,competences, mission) values ('" + s1Job + "','"+id_Firm1+"','"+ s1Salary 
-							+ "','"+idUser + "','A2','"+ competences1 +"','"+mission1+"');");
+							"insert into Stages(sJob,id_Firm,sSalary,id_User,sYear, sStart, sEnd, competences, mission) values ('" + s1Job + "','"+id_Firm1+"','"+ s1Salary 
+							+ "','"+idUser + "','A2','"+ s1Start +"','"+ s1End +"','"+ competences1 +"','"+mission1+"');");
 					System.out.println("-------------------------after stagemodif (A2)----------");
 				}
 			}
@@ -194,7 +194,7 @@ public class EleveModifierServlet extends HttpServlet {
 				resultat8 =statement8.executeQuery("select * from Stages where id_User= '" + idUser + "' && sYear= 'A3';");
 				if(resultat8.next()) {
 					int id_Stage = resultat8.getInt("id_Stage");
-					statementcheckstage.executeUpdate("update Stages set sJob='"+s2Job+"', sSalary='"+ s2Salary+"', competences='"
+					statementcheckstage.executeUpdate("update Stages set sJob='"+s2Job+"', sSalary='"+ s2Salary+"',sStart='"+ s2Start+"',sEnd='"+ s2End+"', competences='"
 							+competences2+"', mission='" + mission2+"' where id_Stage ='" +id_Stage+"';");
 				}else {
 					statementcheckstage.executeUpdate(
@@ -203,8 +203,8 @@ public class EleveModifierServlet extends HttpServlet {
 							 */
 	//						"insert into Stages(sJob,id_Firm,sSalary,sStart,sEnd,id_User,sYear,competences, mission) values ('" + s2Job + "','"+id_Firm2+"','"+ s2Salary 
 	//						+ "','" +s2Start + "','"+ s2End + "','"+idUser + "','A3','"+ competences2 +"','"+mission2+"');");
-							"insert into Stages(sJob,id_Firm,sSalary,id_User,sYear,competences, mission) values ('" + s2Job + "','"+id_Firm2+"','"+ s2Salary 
-							+ "','"+idUser + "','A3','"+ competences2 +"','"+mission2+"');");
+							"insert into Stages(sJob,id_Firm,sSalary,id_User,sYear,sStart, sEnd,competences, mission) values ('" + s2Job + "','"+id_Firm2+"','"+ s2Salary 
+							+ "','"+idUser + "','A3','"+ s2Start +"','"+ s2End +"','"+ competences2 +"','"+mission2+"');");
 					System.out.println("-------------------------after stagemodif (A3)----------");
 				}
 			}
