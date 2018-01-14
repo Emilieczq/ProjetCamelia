@@ -85,3 +85,21 @@
 	border-left:transparent;
 	
 }
+.ligne{
+	border-top: solid 3px #033076;
+	border-top-left-radius: 20%;
+	border-top-right-radius: 50%;
+	float:left;
+	width:40%;
+	height:50px;
+	
+}
+.ligne1{
+	border-bottom: solid 2px #033076;
+	border-bottom-left-radius: 20%;
+	border-bottom-right-radius: 50%;
+	float:left;
+	width:60%;
+	height:50px;
+	
+}

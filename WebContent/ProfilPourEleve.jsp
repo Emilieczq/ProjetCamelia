@@ -10,7 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<img src="pictures/try.jpg" border='0'width='100%' height='100%' style='position: absolute;left:0px;top:0px;z-index: -1'/>
 <%@ include file = "menu.jsp" %>
 <%
 
@@ -42,7 +41,14 @@
 </div>
 <div class = "white">
 </div>
+<div class = "ligne"></div>
+<div class = "ligne1"></div>
+<div class = "white">
+</div>
+<div class = "white">
+</div>
 <div align = center>
+
 <p><%=eprenom %> <%=enom %></p>
 <br>
 <p><%=eemail%></p><br>
