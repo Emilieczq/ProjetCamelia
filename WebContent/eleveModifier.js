@@ -1,6 +1,7 @@
 /**
  * 
  */
+
 function change() {
     var pic = document.getElementById("preview"),
         file = document.getElementById("f");

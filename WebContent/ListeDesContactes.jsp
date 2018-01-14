@@ -64,9 +64,6 @@
 		statement3 = connexion.createStatement();
 		statement4 = connexion.createStatement();
 		statement5 = connexion.createStatement();
-	
-		
-		
 		
 		int id_RDV=0;
 		List<String> buts = new ArrayList<String>();
@@ -107,18 +104,10 @@
 			</tr>
 
 		<%
+							}
+						}
 					}
-
 				}
-			}
-				}
-					
-			
-				
-			
-				
-				
-
 			} catch (Exception e) {
 				System.out.println("Exception declenchee");
 				e.printStackTrace();
@@ -126,32 +115,32 @@
 			finally {
 
 				if ( rset != null ) {
-			try {
-				rset.close();
-				System.out.println("Fermeture du resultat");
-			} catch ( SQLException ignore ) {
-			}
+					try {
+						rset.close();
+						System.out.println("Fermeture du resultat");
+					} catch ( SQLException ignore ) {
+					}
 				}
 				if ( statement1 != null ) {
-			try {
-				statement1.close();
-				System.out.println("Fermeture du statement");
-			} catch ( SQLException ignore ) {
-			}
-				}
+					try {
+						statement1.close();
+						System.out.println("Fermeture du statement");
+					} catch ( SQLException ignore ) {
+					}
+					}
 				if ( statement2 != null ) {
-			try {
-				statement2.close();
-				System.out.println("Fermeture du statement");
-			} catch ( SQLException ignore ) {
-			}
+					try {
+						statement2.close();
+						System.out.println("Fermeture du statement");
+					} catch ( SQLException ignore ) {
+					}
 				}
 				if ( statement3 != null ) {
-			try {
-				statement3.close();
-				System.out.println("Fermeture du statement");
-			} catch ( SQLException ignore ) {
-			}
+					try {
+						statement3.close();
+						System.out.println("Fermeture du statement");
+					} catch ( SQLException ignore ) {
+					}
 				}
 			}
 		%>
