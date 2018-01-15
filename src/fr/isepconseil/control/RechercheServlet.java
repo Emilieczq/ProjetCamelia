@@ -51,7 +51,7 @@ public class RechercheServlet extends HttpServlet {
 				 */
 				rset = statement.executeQuery("select distinct * from Users where"
 						+ "(email like '%"+recherche+"%' "
-						+ "or lower(concat(firstName,'' '',lastName)) like '%"+recherche+"%'" // no need for only firstName or only lastName, because they are included in this case and the following case
+						+ "or lower(concat(firstName,'' '',lastName)) like '%"+recherche+"%'" 
 						+ "or lower(concat(lastName,'' '',firstName)) like '%"+recherche+"%'"
 						+ ");");
 						
