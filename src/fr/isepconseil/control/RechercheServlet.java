@@ -1,7 +1,6 @@
 package fr.isepconseil.control;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,7 +37,6 @@ public class RechercheServlet extends HttpServlet {
 			statement2 = connexion.createStatement();
 			
 			String recherche = request.getParameter("search");
-//			recherche.toLowerCase();
 			System.out.println(recherche);
 			
 			response.setContentType("text/html");
@@ -50,15 +48,15 @@ public class RechercheServlet extends HttpServlet {
 				/*
 				 * we can search any students by email or firstName+" "+lastName or lastName+" "+firstName
 				 * ignore we write in upper case or in lower case
+				 * no need for only firstName or only lastName, because they are included in this case and the following case
 				 */
 				rset = statement.executeQuery("select distinct * from Users where"
 						+ "(email like '%"+recherche+"%' "
-						+ "or lower(concat(firstName,'' '',lastName)) like '%"+recherche+"%'" // no need for only firstName or only lastName, because they are included in this case and the following case
+						+ "or lower(concat(firstName,'' '',lastName)) like '%"+recherche+"%'" 
 						+ "or lower(concat(lastName,'' '',firstName)) like '%"+recherche+"%'"
 						+ ");");
 						
 				while (rset.next()){
-					System.out.println("result" + rset.getString( "firstName" )); // à supprimer
 					results.add(rset.getString( "firstName" ) + " " + rset.getString( "lastName" ));
 					ids.add(rset.getInt( "id_User" )+"");
 					
@@ -74,8 +72,6 @@ public class RechercheServlet extends HttpServlet {
 			request.setAttribute("results", results); 
 			request.setAttribute("ids", ids);
 			request.setAttribute("types", types);
-			
-			System.out.println(types); // à supprimer
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/resarchResult.jsp"); 
 			dispatcher.forward(request, response);

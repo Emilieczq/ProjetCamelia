@@ -29,10 +29,6 @@ public class InscriptionServlet extends HttpServlet {
 	private Statement statement4 = null;
 	private Statement statement5 = null;
 	private ResultSet resultat;
-	private int ajout;
-	private int ajout2;
-	private int ajout3;
-	private int ajout4;
 
 	public InscriptionServlet() {
 		super();
@@ -66,12 +62,12 @@ public class InscriptionServlet extends HttpServlet {
 
 			if (iPrenom != null || iNom != null || iEmail != null || iPassword != null || sAlternance != null
 					|| iParcours != null || iAnnee != null) {
-				ajout = statement1.executeUpdate("Insert into Users(email, password,firstName, lastName) values ('"
+				statement1.executeUpdate("Insert into Users(email, password,firstName, lastName) values ('"
 						+ iEmail + "','" + iPassword + "', '" + iPrenom + "','" + iNom + "');");
 				resultat = statement2.executeQuery("select id_User from Users where email = '" + iEmail + "';");
 				while (resultat.next()) {
 					int idUtilisateur = resultat.getInt("id_User");
-					ajout2 = statement3.executeUpdate(
+					statement3.executeUpdate(
 							"Insert into Students(id_User, parcours, studyyear, alternance) values ('" + idUtilisateur
 									+ "','" + iParcours + "','" + iAnnee + "', '" + iAlternance + "');");
 				}
@@ -87,7 +83,6 @@ public class InscriptionServlet extends HttpServlet {
 
 					resultat.close();
 					System.out.println("Fermeture du resulset");
-
 				} catch (SQLException ignore) {
 				}
 			}
@@ -103,7 +98,6 @@ public class InscriptionServlet extends HttpServlet {
 				try {
 					statement2.close();
 					System.out.println("Fermeture du statement");
-
 				} catch (SQLException ignore) {
 				}
 			}
@@ -111,7 +105,6 @@ public class InscriptionServlet extends HttpServlet {
 				try {
 					statement3.close();
 					System.out.println("Fermeture du statement");
-
 				} catch (SQLException ignore) {
 				}
 			}
@@ -119,7 +112,6 @@ public class InscriptionServlet extends HttpServlet {
 				try {
 					statement4.close();
 					System.out.println("Fermeture du statement");
-
 				} catch (SQLException ignore) {
 				}
 			}
@@ -135,7 +127,6 @@ public class InscriptionServlet extends HttpServlet {
 				try {
 					connexion.close();
 					System.out.println("Fermeture du connection");
-
 				} catch (SQLException ignore) {
 				}
 			}

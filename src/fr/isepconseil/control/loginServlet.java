@@ -1,8 +1,6 @@
 package fr.isepconseil.control;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.isepconseil.dao.UserDAOI;
-import fr.isepconseil.dbc.DatabaseConnection;
 import fr.isepconseil.vo.Etudiant;
 import fr.isepconseil.vo.Professeur;
 import fr.isepconseil.vo.User;
@@ -24,9 +21,6 @@ import fr.isepconseil.vo.User;
 @WebServlet("/loginServlet")
 public class loginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private DatabaseConnection dbc = null;
-	private Connection connexion = null;
-	private Statement statement1 = null;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -54,19 +48,18 @@ public class loginServlet extends HttpServlet {
 			user.setPassword(password);
 
 			try {
-				if (userDAO.findLogin(user)) {
-					System.out.println("right login and password"); // to be deleted
-					// check the user is teacher or student or old student
+				if (userDAO.findLogin(user)) { // make sure that the user is professor
 					if (userDAO.defineType(user)=="Professeur") {
 						Professeur professeur = new Professeur();
 						userDAO.setProfesseur(user, professeur);
 						professeur = userDAO.getProfesseur();
 						user.setType("teacher");
-						session.setAttribute("professeur", professeur); //session
+						session.setAttribute("professeur", professeur);
 						
 						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/recherchePourProf.jsp");
 						dispatcher.forward(request, response);
-					} else {
+					} else { // make sure that the user is student
+						// check the user is teacher or student or old student => not done
 						Etudiant etudiant = new Etudiant();
 						userDAO.setEtudiant(user, etudiant);
 						etudiant = userDAO.getEtudiant();

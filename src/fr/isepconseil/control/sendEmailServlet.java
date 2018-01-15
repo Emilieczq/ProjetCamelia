@@ -1,7 +1,6 @@
 package fr.isepconseil.control;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -46,22 +45,24 @@ public class sendEmailServlet extends HttpServlet {
 		
 
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
 		RequestDispatcher dispatcher = null;
 		
 		if (checkEmail(email)) {
-			//out.print("Votre mot de passe a bien envoyé à votre email !");
 			dispatcher = request.getRequestDispatcher("forgetSucced.html");
 			sendEmail(email);
 		} else {
 			dispatcher = request.getRequestDispatcher("forgetWrong.html");
-			//out.print("Cette adresse est invalide.");
 		}
 		dispatcher.forward(request, response);
 	}
 	
 	private void sendEmail(String to) { // (to do) send a link to reset password, not send the password directly
 		// Sender's email ID needs to be mentioned
+		/*
+		 * We create a public gmail
+		 * login: cameliaprojet@gmail.com
+		 * password: cameliaprojet5:
+		 */
 		String from = "cameliaprojet@gmail.com";
 		final String username = "cameliaprojet@gmail.com";// change accordingly
 		final String password = "cameliaprojet5";// change accordingly
@@ -104,7 +105,7 @@ public class sendEmailServlet extends HttpServlet {
 	
 	private boolean checkEmail(String email) { // check if the entered email exists in the database
 		try {
-			// connect to mysql server
+			// connect to MySQL server
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con = DriverManager.getConnection(DB_URL, USER, PASSWORD);
 			

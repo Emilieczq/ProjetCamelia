@@ -70,7 +70,6 @@
 		rset5 = statement5.executeQuery("select * from Camelia.RDV where id_Teacher = (select id_Teacher from Camelia.Teachers where id_User =" + id_User + ");");
 		if(request.getParameter("id")!=null){
 			id_RDV=Integer.parseInt(request.getParameter("id"));
-			System.out.println(id_RDV);
 			while(rset5.next()){
 				
 				ajout = statement4.executeUpdate( "UPDATE RDV SET status ='1' where id_RDV="+id_RDV+";");
@@ -84,7 +83,6 @@
 					int id_Student = rset.getInt("id_Student");
 					rset2 = statement2.executeQuery("select * from Students where id_Student=" + id_Student+";");
 					rset3 = statement3.executeQuery("select * from Users where id_User = (select id_User from Students where id_Student = "+ id_Student+");");
-					
 					while (rset3.next()) {
 		%>
 			<tr>
@@ -99,8 +97,6 @@
 				<td><%= rset2.getString("parcours")%></td>
 				<td> <%= rset.getString("subject")%></td>
 				<td><a href="http://localhost:8080/ProjetCamelia/ListeDesContactes.jsp?id=<%=rset.getInt("id_RDV")%>"> <div class="close">X</div></a></td>
-				
-				
 			</tr>
 
 		<%
@@ -138,6 +134,20 @@
 				if ( statement3 != null ) {
 					try {
 						statement3.close();
+						System.out.println("Fermeture du statement");
+					} catch ( SQLException ignore ) {
+					}
+				}
+				if ( statement4 != null ) {
+					try {
+						statement4.close();
+						System.out.println("Fermeture du statement");
+					} catch ( SQLException ignore ) {
+					}
+				}
+				if ( statement5 != null ) {
+					try {
+						statement5.close();
 						System.out.println("Fermeture du statement");
 					} catch ( SQLException ignore ) {
 					}

@@ -134,7 +134,6 @@ public class UserDAOI {
 				etudiant.setEmail(user.getEmail());
 				etudiant.setAlternance(rSet.getInt("alternance"));
 				etudiant.setToeic(rSet.getInt("toeic"));
-				
 			}
 			
 			pstmt2 = conn.prepareStatement(sql2);

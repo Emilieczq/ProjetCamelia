@@ -54,8 +54,7 @@
 
 <center>
 <p class="tips">Eleve</p>
-<div class = "white">
-</div>
+<div class = "white"></div>
 <div class="carreau">
  <table class="table-student">
     <tr>
@@ -105,6 +104,7 @@
 <br><div class = "white"></div>
 	<div class="carreau">
 	<p class="tips">Echange d'A3</p>
+	<div class = "white"></div>
 	 <table class="table-student">
 	    <tr>
 	 		<td></td>
@@ -147,6 +147,7 @@
 			<br><div class = "white"></div><br>
 			<div class="carreau">
 			<p class="tips">Stage d'A2</p>
+			<div class = "white"></div>
 			 <table class="table-student">
 			    <tr>
 			 		<td></td>
@@ -187,6 +188,7 @@
 		<br><div class = "white"></div><br>
 			<div class="carreau">
 			<p class="tips">Stage d'A3</p>
+			<div class = "white"></div>
 			 <table class="table-student">
 			    <tr>
 			 		<td></td>
@@ -352,7 +354,6 @@
  <br><br> 
  
  <%
-
  if(user.getType().equals("student")) {
  %>
  	<input type="button" value="Return" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/recherchePourEleve.jsp'" />

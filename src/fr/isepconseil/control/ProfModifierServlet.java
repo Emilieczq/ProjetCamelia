@@ -1,7 +1,6 @@
 package fr.isepconseil.control;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.isepconseil.dbc.DatabaseConnection;
-import fr.isepconseil.vo.Etudiant;
 import fr.isepconseil.vo.Professeur;
 import fr.isepconseil.vo.User;
 
@@ -31,27 +29,14 @@ public class ProfModifierServlet extends HttpServlet {
 	private Statement statement = null;   
 	private Statement statementbis = null;
 	private ResultSet resultat = null;
-	private int modif;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public ProfModifierServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		try {
 			dbc = new DatabaseConnection();
 			connexion = dbc.getConnection();
@@ -81,19 +66,19 @@ public class ProfModifierServlet extends HttpServlet {
 			while (resultat.next()) {
 				if (pPoste != null && !pPoste.equals("")) {
 					int idUser = resultat.getInt("id_User");
-					modif = statementbis.executeUpdate(
+					statementbis.executeUpdate(
 							"Update Teachers set poste = '" + pPoste + "' where id_User = '" + idUser + "';"); 
 					professeur.setPoste(pPoste);
 				}
 				if (pBureau != null && !pBureau.equals("")) {
 					int idUser = resultat.getInt("id_User");
-					modif = statementbis.executeUpdate(
+					statementbis.executeUpdate(
 							"Update Teachers set office = '" + pBureau + "' where id_User = '" + idUser + "';");
 					professeur.setBureau(pBureau); 
 				}
 				if (pTel != null && !pTel.equals("")) {
 					int idUser = resultat.getInt("id_User");
-					modif = statementbis.executeUpdate(
+					statementbis.executeUpdate(
 							"Update Teachers set phone = '" + pTel + "' where id_User = '" + idUser + "';");
 					professeur.setTel(pTel);
 				}
@@ -110,41 +95,32 @@ public class ProfModifierServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		finally {
-
 			if ( resultat != null ) {
 				try {
-
 					statement.close();
 					System.out.println("Fermeture du resultat");
 
 				} catch ( SQLException ignore ) {
 				}
-
 			}
 			if ( statement != null ) {
 				try {
-
 					statement.close();
 					System.out.println("Fermeture du statement");
-
 				} catch ( SQLException ignore ) {
 				}
 			}
 			if ( statementbis != null ) {
 				try {
-
 					statementbis.close();
 					System.out.println("Fermeture du statement");
-
 				} catch ( SQLException ignore ) {
 				}
 			}
 			if ( connexion != null ) {
 				try {
-
 					connexion.close();
 					System.out.println("Fermeture du connection");
-
 				} catch ( SQLException ignore ) {
 				}
 			}

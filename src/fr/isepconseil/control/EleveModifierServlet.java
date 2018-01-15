@@ -2,7 +2,6 @@ package fr.isepconseil.control;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,7 +17,6 @@ import javax.servlet.http.HttpSession;
 import fr.isepconseil.dbc.DatabaseConnection;
 import fr.isepconseil.vo.Etudiant;
 import fr.isepconseil.vo.User;
-import fr.isepconseil.dao.UserDAOI;
 
 /**
  * Servlet implementation class EleveModifierServlet
@@ -31,15 +29,10 @@ public class EleveModifierServlet extends HttpServlet {
 	private Statement statement = null, statement2=null,statement3=null,statement4=null,statement5=null,
 			statement6=null,statement7=null,statement8=null, statement9=null, statement10=null, statement11=null;
 	private Statement statementbis = null;
-	//	private Statement statementidstud = null;
 	private Statement statementcheckstage = null;
 	private ResultSet resultat = null,resultat2 =null, resultat3=null,resultat4=null,resultat5 =null, 
 			resultat6=null,resultat7=null,resultat8=null, resultat9=null, resultat10=null, resultat11=null;
 	private ResultSet resultatstage = null;
-	//	private ResultSet checkstage = null;
-	private int modif;
-	private int stagemodif;
-	private int stagemodif2;
 
 	public EleveModifierServlet() {
 		super();
@@ -63,14 +56,12 @@ public class EleveModifierServlet extends HttpServlet {
 			statement11 = connexion.createStatement();
 
 			statementbis = connexion.createStatement();
-			//			statementidstud = connexion.createStatement();
 			statementcheckstage = connexion.createStatement();
 
 			HttpSession session = request.getSession(true);
 
 
 			//Info profil eleve
-
 			String mPromo = request.getParameter("promotion");
 			String mParcours = request.getParameter("parcours");
 			String mToeic = request.getParameter("toeic");
@@ -81,9 +72,6 @@ public class EleveModifierServlet extends HttpServlet {
 			int idUser = user.getId();
 
 			//Info Stage
-			// ATTENTION SALARY A ETE CHANGE DANS LA BDD A VARCHAR MAIS A ESSAYER FLOAT ET INT
-			// AVEC PARSEINT OU PARSEFLOAT SUR LE STRING
-
 			String s1Firm = request.getParameter("s1Firm"); 
 			String s1Job = request.getParameter("s1Job");
 			String s1Town =  request.getParameter("s1Town");
@@ -104,8 +92,6 @@ public class EleveModifierServlet extends HttpServlet {
 			String competences2 = request.getParameter("competences2");
 			String mission2 = request.getParameter("mission2");
 
-
-
 			// Info Echange
 			String e1Ecole = request.getParameter("e1Etablissement");
 			String e1Ville = request.getParameter("e1Town");
@@ -113,29 +99,24 @@ public class EleveModifierServlet extends HttpServlet {
 			String e1Start = request.getParameter("e1Start");
 			String e1End = request.getParameter("e1End");
 
-			//			String e2Start = request.getParameter("debut2");
-			//			String e2End = request.getParameter("fin2");
-
-
-
 
 			if (mPromo != null) {
-				modif = statementbis.executeUpdate(
+				statementbis.executeUpdate(
 						"Update Students set studyyear = '" + mPromo + "' where id_User = '" + idUser + "';"); 
 				etudiant.setAnnee(mPromo);
 			}
 			if (mParcours != null) {
-				modif = statementbis.executeUpdate(
+				statementbis.executeUpdate(
 						"Update Students set parcours = '" + mParcours + "' where id_User = '" + idUser + "';");
 				etudiant.setParcours(mParcours.replace("''", "'")); 
 			}
 			if (mToeic != null && !mToeic.equals("")) {
-				modif = statementbis.executeUpdate(
+				statementbis.executeUpdate(
 						"Update Students set toeic = '" + mToeic + "' where id_User = '" + idUser + "';");
 				etudiant.setToeic(Integer.parseInt(mToeic));
 			}
 			if (sAlternance.equals("1")|| sAlternance.equals("0")){
-				modif = statementbis.executeUpdate(
+				statementbis.executeUpdate(
 						"Update Students set alternance = '" + sAlternance + "' where id_User = '" + idUser + "';");
 				etudiant.setAlternance(Integer.parseInt(sAlternance));
 			}
@@ -151,7 +132,6 @@ public class EleveModifierServlet extends HttpServlet {
 				resultat9 = statement9.executeQuery("select * from Ecole where Ename= '" + e1Ecole + "' && eVille= '"+ e1Ville + "' && ePays='"+e1Pays+"';");
 				if(resultat9.next()){
 					id_Ecole = resultat9.getInt("id_Ecole");
-					System.out.println("SITUATION 2 !!!");
 				}else {
 					statement10.executeUpdate("insert into Ecole(Ename, eVille, ePays) values('"+e1Ecole+"','" + e1Ville+"','" +e1Pays+"');");
 					resultat10 = statement10.executeQuery("select * from Ecole where Ename= '" + e1Ecole + "' && eVille= '"+ e1Ville + "' && ePays='"+e1Pays+"';");
@@ -160,13 +140,10 @@ public class EleveModifierServlet extends HttpServlet {
 					}
 				}
 				resultat11 =statement11.executeQuery("select * from Echange where id_User= '" + idUser + "' && eYear= 'A3';");
-				System.out.println("SITUATION 3 !!!");
 
 				if(resultat11.next()) {
 					int id_Echange = resultat11.getInt("id_Echange");
 					statementcheckstage.executeUpdate("update Echange set eStart='"+ e1Start+"',eEnd='"+ e1End+"' where id_Echange ='" +id_Echange+"';");
-					System.out.println("SITUATION 4 !!!");
-
 				}else {
 					statementcheckstage.executeUpdate(
 							"insert into Echange(id_Ecole,id_User,eYear, eStart, eEnd) values ('"+id_Ecole+"','"+idUser + "','A3','"+ e1Start +"','"+ e1End +"');");
@@ -182,19 +159,13 @@ public class EleveModifierServlet extends HttpServlet {
 
 			if(s1Firm !="" && s1Job !="" && s1Salary != "" && s1Start !="" && s1End !="" && competences1!="" && mission1!=""){
 				resultat2 = statement2.executeQuery("select * from Firm where fname= '" + s1Firm + "' && fville= '"+ s1Town + "' && fpays='"+s1Country+"';");
-				System.out.println("-------------------------after resultat2----------");
 				if(resultat2.next()) {
 					id_Firm1 = resultat2.getInt("id_Firm");
-
-					System.out.println("---------idFirm1=" + id_Firm1);
 				}else {
 					statement3.executeUpdate("insert into Firm(fname, fville, fpays) values('"+s1Firm+"','" + s1Town+"','" +s1Country+"');");
-					System.out.println("-------------------------after resultat2 and 3 (insert)----------");
 					resultat5 = statement5.executeQuery("select * from Firm where fname= '" + s1Firm + "' && fville= '"+ s1Town + "' && fpays='"+s1Country+"';");
 					if(resultat5.next()) {
 						id_Firm1 = resultat5.getInt("id_Firm");
-						System.out.println("---------idFirm1=" + id_Firm1 +"------");
-						System.out.println("-------------------------after resultat5 ----------");
 					}
 				}
 				resultat7 =statement7.executeQuery("select * from Stages where id_User= '" + idUser + "' && sYear= 'A2';");
@@ -204,29 +175,19 @@ public class EleveModifierServlet extends HttpServlet {
 							+competences1+"', mission='" + mission1+"' where id_Stage ='" +id_Stage+"';");
 				}else {
 					statementcheckstage.executeUpdate(
-
-							//						"insert into Stages(sJob,id_Firm,sSalary,sStart,sEnd,id_User,sYear,competences, mission) values ('" + s1Job + "','"+id_Firm1+"','"+ s1Salary 
-							//						+ "','" +s1Start + "','"+ s1End + "','"+idUser + "','A2','"+ competences1 +"','"+mission1+"');");
 							"insert into Stages(sJob,id_Firm,sSalary,id_User,sYear, sStart, sEnd, competences, mission) values ('" + s1Job + "','"+id_Firm1+"','"+ s1Salary 
 							+ "','"+idUser + "','A2','"+ s1Start +"','"+ s1End +"','"+ competences1 +"','"+mission1+"');");
-					System.out.println("-------------------------after stagemodif (A2)----------");
 				}
 			}
 			if(s2Firm !="" && s2Job !="" && s2Salary != "" && s2Start !="" && s2End !="" && competences2!="" && mission2!=""){
 				resultat4 = statement4.executeQuery("select * from Firm where fname= '" + s2Firm+ "' && fville= '"+ s2Town + "' && fpays='"+s2Country+"';");
-				System.out.println("-------------------------after resultat5----------");
 				if(resultat4.next()) {
 					id_Firm2= resultat4.getInt("id_Firm");
-					System.out.println("---------idFirm2=" + id_Firm1 );
-					System.out.println("-------------------------after resultat4 and 6 (update)----------");
 				}else {
 					statement6.executeUpdate("insert into Firm(fname, fville, fpays) values('"+s2Firm+"','" + s2Town+"','" +s2Country+"');");
-					System.out.println("-------------------------after resultat4 and 5 (insert)----------");
 					resultat6 = statement6.executeQuery("select * from Firm where fname= '" + s2Firm+ "' && fville= '"+ s2Town + "' && fpays='"+s2Country+"';");
 					if(resultat6.next()) {
 						id_Firm2 = resultat6.getInt("id_Firm");
-						System.out.println("---------idFirm2=" + id_Firm2 +"------");
-						System.out.println("-------------------------after resultat6 ----------");
 					}
 				}
 				resultat8 =statement8.executeQuery("select * from Stages where id_User= '" + idUser + "' && sYear= 'A3';");
@@ -238,18 +199,14 @@ public class EleveModifierServlet extends HttpServlet {
 					statementcheckstage.executeUpdate(
 							"insert into Stages(sJob,id_Firm,sSalary,id_User,sYear,sStart, sEnd,competences, mission) values ('" + s2Job + "','"+id_Firm2+"','"+ s2Salary 
 							+ "','"+idUser + "','A3','"+ s2Start +"','"+ s2End +"','"+ competences2 +"','"+mission2+"');");
-					System.out.println("-------------------------after stagemodif (A3)----------");
 				}
 			}
-
-			System.out.println("--------test user--------" + user.toString());
-			System.out.println("---------test etudiant-------" + etudiant.toString());
 			session.setAttribute("user", user);
 			session.setAttribute("etudiant", etudiant);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProfilPourEleve.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
-			System.out.println("Exception declenchee 2");
+			System.out.println("Exception declenchee dans EleveModifierServlet");
 			e.printStackTrace();
 		} finally {
 			if (resultat != null) {
@@ -258,7 +215,6 @@ public class EleveModifierServlet extends HttpServlet {
 					System.out.println("Fermeture du resulset");
 				} catch (SQLException ignore) {
 				}
-
 			}
 			if (resultat2 != null) {
 				try {
@@ -266,7 +222,6 @@ public class EleveModifierServlet extends HttpServlet {
 					System.out.println("Fermeture du resulset");
 				} catch (SQLException ignore) {
 				}
-
 			}
 			if (resultat3 != null) {
 				try {
@@ -274,7 +229,6 @@ public class EleveModifierServlet extends HttpServlet {
 					System.out.println("Fermeture du resulset");
 				} catch (SQLException ignore) {
 				}
-
 			}
 			if (resultat4 != null) {
 				try {
@@ -282,7 +236,6 @@ public class EleveModifierServlet extends HttpServlet {
 					System.out.println("Fermeture du resulset");
 				} catch (SQLException ignore) {
 				}
-
 			}
 			if (resultat5 != null) {
 				try {
@@ -290,7 +243,6 @@ public class EleveModifierServlet extends HttpServlet {
 					System.out.println("Fermeture du resulset");
 				} catch (SQLException ignore) {
 				}
-
 			}
 			if (resultat6 != null) {
 				try {
@@ -298,7 +250,6 @@ public class EleveModifierServlet extends HttpServlet {
 					System.out.println("Fermeture du resulset");
 				} catch (SQLException ignore) {
 				}
-
 			}
 			if (resultat7 != null) {
 				try {
@@ -306,7 +257,6 @@ public class EleveModifierServlet extends HttpServlet {
 					System.out.println("Fermeture du resulset");
 				} catch (SQLException ignore) {
 				}
-
 			}
 			if (resultat8 != null) {
 				try {
@@ -314,7 +264,6 @@ public class EleveModifierServlet extends HttpServlet {
 					System.out.println("Fermeture du resulset");
 				} catch (SQLException ignore) {
 				}
-
 			}
 			if (resultat9 != null) {
 				try {
@@ -322,7 +271,6 @@ public class EleveModifierServlet extends HttpServlet {
 					System.out.println("Fermeture du resulset");
 				} catch (SQLException ignore) {
 				}
-
 			}
 			if (resultat10 != null) {
 				try {
@@ -330,7 +278,6 @@ public class EleveModifierServlet extends HttpServlet {
 					System.out.println("Fermeture du resulset");
 				} catch (SQLException ignore) {
 				}
-
 			}
 			if (resultat11 != null) {
 				try {
@@ -338,7 +285,6 @@ public class EleveModifierServlet extends HttpServlet {
 					System.out.println("Fermeture du resulset");
 				} catch (SQLException ignore) {
 				}
-
 			}
 			if (resultatstage != null) {
 				try {
@@ -346,7 +292,6 @@ public class EleveModifierServlet extends HttpServlet {
 					System.out.println("Fermeture du resulset");
 				} catch (SQLException ignore) {
 				}
-
 			}
 			if (statementbis != null) {
 				try {
@@ -434,8 +379,6 @@ public class EleveModifierServlet extends HttpServlet {
 				} catch (SQLException ignore) {
 				}
 			}
-
-
 			if (connexion != null) {
 				try {
 					connexion.close();

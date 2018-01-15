@@ -24,7 +24,6 @@ public class EleveContactServlet extends HttpServlet {
 	private Statement statement1 = null;
 	private Statement statement2 = null;
 	private ResultSet resultat;
-	private int ajout;
        
     public EleveContactServlet() {
         super();
@@ -46,7 +45,7 @@ public class EleveContactServlet extends HttpServlet {
 				resultat = statement1.executeQuery("SELECT id_Teacher from Camelia.Teachers where id_User = (select id_User from Camelia.Users where concat(firstName,' ',lastName)='"+profName+"');");	
 				while(resultat.next()){
 					int idTeacher = resultat.getInt( "id_Teacher" );
-					ajout = statement2.executeUpdate( "Insert into RDV(id_Teacher, id_Student,subject) values ('" +idTeacher+"', '"+idStudent+"','"+ but+"');");
+					statement2.executeUpdate( "Insert into RDV(id_Teacher, id_Student,subject) values ('" +idTeacher+"', '"+idStudent+"','"+ but+"');");
 				}
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ContactSuccess.html");
 				dispatcher.forward(request, response);
@@ -59,7 +58,6 @@ public class EleveContactServlet extends HttpServlet {
 
 					resultat.close();
 					System.out.println("Fermeture du resulset");
-
 				} catch (SQLException ignore) {
 				}
 			}
@@ -67,7 +65,6 @@ public class EleveContactServlet extends HttpServlet {
 				try {
 					statement1.close();
 					System.out.println("Fermeture du statement");
-
 				} catch (SQLException ignore) {
 				}
 			}
@@ -75,7 +72,6 @@ public class EleveContactServlet extends HttpServlet {
 				try {
 					statement2.close();
 					System.out.println("Fermeture du statement");
-
 				} catch (SQLException ignore) {
 				}
 			}
@@ -83,7 +79,6 @@ public class EleveContactServlet extends HttpServlet {
 				try {
 					connexion.close();
 					System.out.println("Fermeture du connection");
-
 				} catch (SQLException ignore) {
 				}
 			}
