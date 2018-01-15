@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="resarchResult.css">
-<title>Insert title here</title>
+<title>ISEP Conseil - Resultat de votre recherche</title>
 </head>
 <body>
 <% User user = (User) request.getSession().getAttribute("user");

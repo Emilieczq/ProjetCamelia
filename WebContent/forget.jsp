@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="indexStyle.css">
-<title>ISEP Conseil - Forget your password</title>
+<title>ISEP Conseil - Retrouver votre mot de passe</title>
 </head>
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"  type="text/css"  href="recherchePourEleve.css"/>
-<title>Insert title here</title>
+<title>ISEP Conseil - Rechercher une information</title>
 </head>
 <body>
 <%@ include file = "menu.jsp" %>

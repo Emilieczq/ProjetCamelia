@@ -13,7 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="eleveModifier.css">
-<title>Editer son profil</title>
+<title>ISEP Conseil - Editer son profil</title>
 </head>
 <body>
 <script src="eleveModifier.js"></script>

@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="eleveModifier.css">
 <script src="eleveMotifier.js" type="text/javascript"></script>
-<title>Le profil de prof</title>
+<title>ISEP Conseil - Modifier votre profil professeur</title>
 </head>
 <body>
 <%@ include file = "MenuPourProf.jsp" %>
