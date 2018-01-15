@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="indexStyle.css">
-<title>ISEP Conseil - Login</title>
+<title>ISEP Conseil - Authentification</title>
 </head>
 <body>
 <img src="pictures/login3.jpg" border='0'width='100%' height='100%' style='position: absolute;left:0px;top:0px;z-index: -1'/>

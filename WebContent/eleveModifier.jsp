@@ -13,18 +13,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="eleveModifier.css">
-<title>Editer son profil</title>
+<title>ISEP Conseil - Editer son profil</title>
 </head>
 <body>
-<script src="eleveModifier.js"></script>
+<%@ include file = "menu.jsp" %>
+<div class = "white">
+</div>
+<div class = "white"></div>
+<div class = "ligne"></div>
+<div class = "ligne1"></div>
+<div class = "white"></div>
+
 <br><div class = "white"></div>
-<center>
-<form>
-<img id = "preview" src="pictures/people.png"width="100"height="103" name = "pic" alt=""><br>
-<input  id = "f" type="file" accept="image/*" onchange="change()"/>
-</form>
-<br><br>
-</center>
+
 
 <%
 
@@ -279,9 +280,8 @@
 <br>
 <div class = "droit">
 
-<br><br>
 <div id = "HEchange" >
-<p class = "subTitle">Mon échange d'A3</p><br><br>
+<p class = "title1">Mon échange d'A3</p><br><br>
 <!-- <label>Année d’étude :</label>
 		<select name = "annee1" class="select">
 			<option value="" disabled selected></option> 
@@ -293,8 +293,8 @@
 <label>Etablissement :</label><input type="text" name="e1Etablissement" class="normal" value="<%=e1Ecole %>"/><br><br>
 <label>Ville :</label><input type="text" name="e1Town" class="normal"value="<%=e1Town %>"/><br><br>
 <label>Pays :</label><input type="text" name="e1Country" class="normal"value="<%=e1Country %>"/><br><br>
-<label>Début de l'échange :</label><input type="date" name="e1Start" class="normal"value="<%=e1Start %>"/><br><br>
-<label>Fin de l'échange :</label><input type="date" name="e1End" class="normal"value="<%=e1End %>"/><br><br><br><br>
+<label>Début de l'échange :</label><input type="date" name="e1Start" placeholder="xx/xx/xxxx" class="normal"value="<%=e1Start %>"/><br><br>
+<label>Fin de l'échange :</label><input type="date" name="e1End" placeholder="xx/xx/xxxx" class="normal"value="<%=e1End %>"/><br><br><br><br>
 
 <!-- 
 <p class = "subTitle">Mon deuxième échange</p><br><br>
@@ -315,11 +315,11 @@
 </div>
 
 
-<br><br>
+<br>
 
 <div id = "HStage">
-	<p class = "subTitle">Mon premier Stage (A2)</p>
-	<p> Merci d'entrer l'intégralité des données demandées</p><br><br>
+	<p class = "title1">Mon premier Stage (A2)</p><br>
+	<p class="subTitle"> Merci d'entrer l'intégralité des données demandées</p><br><br>
 	
 	<label>Entreprise :</label><input id="s1Firm" type="text" name="s1Firm" class="normal" value="<%=s1Firm %>"/><br><br>
 	<label>Poste :</label><input id="s1Job" type="text" name="s1Job" class="normal" value="<%=s1Job %>"/><br><br>
@@ -331,8 +331,8 @@
 	<label>Début du stage :</label><input id = "s1Start" type="date" name="s1Start" class="normal" value="<%=s1Start %>"/><br><br>
 	<label>Fin du stage :</label><input id = "s1End" type="date" name="s1End" class="normal" value="<%=s1End %>"/><br><br><br><br>
 	
-	<p class = "subTitle">Mon deuxième stage (A3)</p>
-	<p> Merci d'entrer l'intégralité des données demandées</p><br><br>
+	<p class = "title1">Mon deuxième stage (A3)</p><br>
+	<p class = "subTitle"> Merci d'entrer l'intégralité des données demandées</p><br><br>
 	
 	<label>Entreprise :</label><input id="s2Firm" type="text" name="s2Firm" class="normal" value="<%=s2Firm %>"/><br><br>
 	<label>Poste :</label><input id="s2Job" type="text" name="s2Job" class="normal" value="<%=s2Job %>"/><br><br>
@@ -341,8 +341,8 @@
 	<label>Salaire :</label><input id = "s2Salary" type="text" name="s2Salary" class="normal" value="<%=s2Salary %>"/><br><br>
 	<label>Compétences :</label><input id = "competences2" type="text" name="competences2" class="normal" value="<%=competences2 %>"/><br><br>
 	<label>Missions principales :</label><input id="mission2" type="text" name="mission2" class="normal" value="<%=mission2 %>"/><br><br>
-	<label>Début du stage :</label><input id = "s2Start" type="date" name="s2Start" class="normal" value="<%=s2Start %>"/><br><br>
-	<label>Fin du stage :</label><input id = "s2End" type="date" name="s2End" class="normal" value="<%=s2End %>"/><br><br><br><br>
+	<label>Début du stage :</label><input id = "s2Start" type="date" placeholder="dd/mm/yyyy" name="s2Start" class="normal" value="<%=s2Start %>"/><br><br>
+	<label>Fin du stage :</label><input id = "s2End" type="date" placeholder="dd/mm/yyyy" name="s2End" class="normal" value="<%=s2End %>"/><br><br><br><br>
 </div>
 
 

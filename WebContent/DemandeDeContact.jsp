@@ -16,7 +16,7 @@
 <script type="text/javascript" src="DemandeDeContact.js"></script>
 <script type="text/javascript" src="inscriptionCheck.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>ISEP Conseil - Prendre rendez-vous</title>
 </head>
 <body>
 	<%@ include file="menu.jsp"%>

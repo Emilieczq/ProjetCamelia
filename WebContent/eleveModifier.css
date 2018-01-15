@@ -97,9 +97,8 @@ body{
 	margin-right:120px;
 }
 .subTitle{
-	padding-right : 75px;
+
 	color:#4d70ab;
-	font-size : 25px;
 }
 .select{
 	margin-left:50px;
@@ -121,4 +120,30 @@ body{
     background-position:  175px 10px, 183px 10px, right top, 167px top;
     
 	
+}
+.ligne{
+	border-top: solid 3px #033076;
+	border-top-left-radius: 20%;
+	border-top-right-radius: 50%;
+	float:left;
+	width:40%;
+	height:50px;
+	
+}
+.ligne1{
+	border-bottom: solid 2px #033076;
+	border-bottom-left-radius: 20%;
+	border-bottom-right-radius: 50%;
+	float:left;
+	width:60%;
+	height:50px;
+	
+}
+.title1{
+	padding-right : 40px;
+	font-size : 30px;
+	color: transparent;
+	background-color : black;
+	text-shadow : rgba(255,255,255,0.5) 0 5px 6px, rgba(255,255,255,0.2) 1px 3px 3px;
+	-webkit-background-clip : text;
 }

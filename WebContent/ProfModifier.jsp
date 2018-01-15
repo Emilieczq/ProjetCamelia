@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="eleveModifier.css">
 <script src="eleveMotifier.js" type="text/javascript"></script>
-<title>Le profil de prof</title>
+<title>ISEP Conseil - Modifier votre profil professeur</title>
 </head>
 <body>
 <%@ include file = "MenuPourProf.jsp" %>
@@ -17,15 +17,7 @@
 <div class = "white">
 </div>
 <br>
-<center>
 
-<form>
-<img id = "preview" src="pictures/people.png"width="100"height="103" name = "pic" alt="">
-<br>
-
-<input  id = "f" type="file" accept="image/*" onchange="change()"/>
-</form>
-</center>
 
 
 <%
