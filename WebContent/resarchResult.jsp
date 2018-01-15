@@ -28,7 +28,7 @@
 
 <%
 List<String> results = (ArrayList<String>)request.getAttribute("results");
-List<String> ids = (ArrayList<String>)request.getAttribute("ids");
+List<Integer> ids = (ArrayList<Integer>)request.getAttribute("ids");
 List<String> types = (ArrayList<String>)request.getAttribute("types");
 		
 if(results.isEmpty()){
