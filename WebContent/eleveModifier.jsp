@@ -85,96 +85,22 @@
 	
 %>
 
-<form id = "myForm" name="elevemodifier" method="post" action="EleveModifierServlet">
-		<div class="droit">
-			<label>Prénom :</label> <input type="text" value= <%= eprenom %> class="normal_nochange" disabled/><br><br>
-			<label>Nom :</label> <input type="text" value= <%= enom %> class="normal_nochange" disabled/><br><br>
-			<label>Email :</label> <input type="text" value= <%= eemail %> class="normal_nochange" disabled/><br><br>
-			<label for="promotion">Année d’étude : </label>
-			<select id="annee" name="promotion" class="select">
-				<option value="" <%= a0 %>></option>
-				<option value="A1" <%= a1 %>>A1</option>
-				<option value="A2" <%= a2 %>>A2</option>
-				<option value="A3" <%= a3 %>>A3</option>
-			</select> <br><br> 
-			<label for="parcours">Parcours :</label> <select
-				id="parcours" name="parcours" class="selectlong">
-				<option value="" <%= s0 %>></option>
-				<option value="ARCHITECTE DES SYSTEMES D''INFORMATION" <%= s1 %>>ARCHITECTE DES SYSTÈMES D’INFORMATION</option>
-				<option value="INGENIEUR EN BUSINESS INTELLIGENCE" <%= s2 %>> INGÉNIEUR EN BUSINESS INTELLIGENCE</option>
-				<option value="INGENIEUR LOGICIEL" <%= s3 %>> INGÉNIEUR LOGICIEL</option>
-				<option value="INGENIEUR NUMERIQUE ET SANTE" <%= s4 %>> INGÉNIEUR NUMÉRIQUE ET SANTÉ</option>
-				<option value="ARCHITECTE TELECOM & IOT" <%= s5 %>> ARCHITECTE TÉLÉCOM & IOT</option>
-				<option value="INGENIEUR EN SECURITE NUMERIQUE ET RESEAUX" <%= s6 %>> INGÉNIEUR EN SÉCURITÉ NUMÉRIQUE ET RÉSEAUX</option>
-				<option value="CONCEPTEUR DE SYSTEMES EMBARQUES" <%= s7 %>> CONCEPTEUR DE SYSTÈMES EMBARQUÉS</option>
-				<option value="INNOVATION ET CREATION D''ENTREPRISE" <%= s8 %>> INNOVATION ET CRÉATION D’ENTREPRISE</option>
-			</select> <br><br>
-
-			<div id="alternancechoisir">
-
-				<input type="radio" id="alternance" name="alternance" value="1" checked =<%= al1 %>>
-				<label for="alternance" >Alternance</label>
-				<input type="radio" id="non_alternance" name="alternance" value="0" checked =<%= al0 %>> 
-				<label for="non_alternance" >Non Alternance</label>
-			</div>
-			<br> <label for="toeic">Toeic :</label> <input id="toeic"
-				type="text" name="toeic" class="normal" value= "<%=etudiant.getToeic() %>" />
-		</div>
-		<br><br><br>
-<div class = "droit"></div>
-<br>
-<div class = "droit">
-
-<br><br>
-<div id = "HEchange" >
-<p class = "subTitle">Mon premier échange</p><br><br>
-<label>Année d’étude :</label>
-		<select name = "annee1" class="select">
-			<option value="" disabled selected></option> 
-  			<option value="A1">A1</option>
-  			<option value="A2">A2</option>
-  			<option value="A3">A3</option>
-		</select>
-		<br><br>
-<label>Etablissement :</label><input type="text" name="e1Etablissement" class="normal"/><br><br>
-<label>Ville :</label><input type="text" name="e1Town" class="normal"/><br><br>
-<label>Pays :</label><input type="text" name="eCountry" class="normal"/><br><br>
-<label>Début de l'échange :</label><input type="date" name="e1Start" class="normal"/><br><br>
-<label>Fin de l'échange :</label><input type="date" name="e1End" class="normal"/><br><br><br><br>
-
-
-<p class = "subTitle">Mon deuxième échange</p><br><br>
-<label>Année d’étude :</label>
-		<select name = "annee2" class="select">
-			<option value="" disabled selected></option> 
-  			<option value="A1">A1</option>
-  			<option value="A2">A2</option>
-  			<option value="A3">A3</option>
-		</select>
-		<br><br>
-<label>Etablissement :</label><input type="text" name="e1Etablissement" class="normal"/><br><br>
-<label>Ville :</label><input type="text" name="e2Town" class="normal"/><br><br>
-<label>Pays :</label><input type="text" name="e2Country" class="normal"/><br><br>
-<label>Début de l'échange :</label><input type="date" name="e2Start" class="normal"/><br><br>
-<label>Fin de l'échange :</label><input type="date" name="e2End" class="normal"/>
-<br><br>
-</div>
-
-
-<br><br>
 <%
 //for the information of stages, need to connect to the database
+//same for echange
 		User user = (User)request.getSession().getAttribute("user");
 		int id_User = user.getId();
 		System.out.println("------id_User--------"+id_User); //à supprimer
 
 		DatabaseConnection dbc = null;
 		Connection connexion = null;
-		Statement statement1 = null, statement2=null,statement3 = null, statement4=null;
-		ResultSet rset1 = null, rset2=null,rset3 = null, rset4=null;
+		Statement statement1 = null, statement2=null,statement3 = null, statement4=null, statement5 = null, statement6=null;
+		ResultSet rset1 = null, rset2=null,rset3 = null, rset4=null, rset5=null, rset6=null;
 		
 		String s1Firm="",s1Job="",s1Town="", s1Country="", competences1="", mission1="", s1Salary="", s1Start="", s1End="";
 		String s2Firm="",s2Job="",s2Town="", s2Country="", competences2="", mission2="", s2Salary="", s2Start="", s2End="";
+		String e1Ecole="", e1Town="", e1Country="", e1Start="",e1End="";
+		int id_Ecole=0;
 		int id_Firm1=0, id_Firm2=0;
 
 		try{
@@ -184,6 +110,8 @@
 			statement2 = connexion.createStatement();
 			statement3 = connexion.createStatement();
 			statement4 = connexion.createStatement();
+			statement5 = connexion.createStatement();
+			statement6 = connexion.createStatement();
 			
 			rset1 = statement1.executeQuery("select * from Camelia.Stages where id_User ='" + id_User + "' && sYear= 'A2';");
 			if(rset1.next()){
@@ -224,6 +152,22 @@
 					s2Firm = rset4.getString("fname")==null ? "" :rset4.getString("fname");
 					s2Town = rset4.getString("fville")==null ? "" :rset4.getString("fville");
 					s2Country = rset4.getString("fpays")==null ? "" :rset4.getString("fpays");
+				}
+			}
+			rset5 = statement5.executeQuery("select * from Camelia.Echange where id_User ='" + id_User + "' && eYear= 'A3';");
+			if(rset5.next()){
+
+				e1Start = rset5.getString("eStart")==null ? "" :rset5.getString("eStart");
+				e1End = rset5.getString("eEnd")==null ? "" :rset5.getString("eEnd");
+				
+				id_Ecole = rset5.getInt("id_Ecole");
+				rset6 = statement6.executeQuery("select * from Camelia.Ecole where id_Ecole ='" + id_Ecole + "';");
+				
+				if(rset6.next()){
+					e1Town = rset6.getString("eVille")==null ? "" :rset6.getString("eVille");
+					e1Country = rset6.getString("ePays")==null ? "" :rset6.getString("ePays");
+					e1Ecole = rset6.getString("Ename")==null ? "" :rset6.getString("Ename");
+
 				}
 			}
 			
@@ -294,6 +238,85 @@
 		}
 		
 %>
+
+<form id = "myForm" name="elevemodifier" method="post" action="EleveModifierServlet">
+		<div class="droit">
+			<label>Prénom :</label> <input type="text" value= <%= eprenom %> class="normal_nochange" disabled/><br><br>
+			<label>Nom :</label> <input type="text" value= <%= enom %> class="normal_nochange" disabled/><br><br>
+			<label>Email :</label> <input type="text" value= <%= eemail %> class="normal_nochange" disabled/><br><br>
+			<label for="promotion">Année d’étude : </label>
+			<select id="annee" name="promotion" class="select">
+				<option value="" <%= a0 %>></option>
+				<option value="A1" <%= a1 %>>A1</option>
+				<option value="A2" <%= a2 %>>A2</option>
+				<option value="A3" <%= a3 %>>A3</option>
+			</select> <br><br> 
+			<label for="parcours">Parcours :</label> <select
+				id="parcours" name="parcours" class="selectlong">
+				<option value="" <%= s0 %>></option>
+				<option value="ARCHITECTE DES SYSTEMES D''INFORMATION" <%= s1 %>>ARCHITECTE DES SYSTÈMES D’INFORMATION</option>
+				<option value="INGENIEUR EN BUSINESS INTELLIGENCE" <%= s2 %>> INGÉNIEUR EN BUSINESS INTELLIGENCE</option>
+				<option value="INGENIEUR LOGICIEL" <%= s3 %>> INGÉNIEUR LOGICIEL</option>
+				<option value="INGENIEUR NUMERIQUE ET SANTE" <%= s4 %>> INGÉNIEUR NUMÉRIQUE ET SANTÉ</option>
+				<option value="ARCHITECTE TELECOM & IOT" <%= s5 %>> ARCHITECTE TÉLÉCOM & IOT</option>
+				<option value="INGENIEUR EN SECURITE NUMERIQUE ET RESEAUX" <%= s6 %>> INGÉNIEUR EN SÉCURITÉ NUMÉRIQUE ET RÉSEAUX</option>
+				<option value="CONCEPTEUR DE SYSTEMES EMBARQUES" <%= s7 %>> CONCEPTEUR DE SYSTÈMES EMBARQUÉS</option>
+				<option value="INNOVATION ET CREATION D''ENTREPRISE" <%= s8 %>> INNOVATION ET CRÉATION D’ENTREPRISE</option>
+			</select> <br><br>
+
+			<div id="alternancechoisir">
+
+				<input type="radio" id="alternance" name="alternance" value="1" checked =<%= al1 %>>
+				<label for="alternance" >Alternance</label>
+				<input type="radio" id="non_alternance" name="alternance" value="0" checked =<%= al0 %>> 
+				<label for="non_alternance" >Non Alternance</label>
+			</div>
+			<br> <label for="toeic">Toeic :</label> <input id="toeic"
+				type="text" name="toeic" class="normal" value= "<%=etudiant.getToeic() %>" />
+		</div>
+		<br><br><br>
+<div class = "droit"></div>
+<br>
+<div class = "droit">
+
+<br><br>
+<div id = "HEchange" >
+<p class = "subTitle">Mon échange d'A3</p><br><br>
+<!-- <label>Année d’étude :</label>
+		<select name = "annee1" class="select">
+			<option value="" disabled selected></option> 
+  			<option value="A1">A1</option>
+  			<option value="A2">A2</option>
+  			<option value="A3">A3</option>
+		</select>
+		<br><br> -->
+<label>Etablissement :</label><input type="text" name="e1Etablissement" class="normal" value="<%=e1Ecole %>"/><br><br>
+<label>Ville :</label><input type="text" name="e1Town" class="normal"value="<%=e1Town %>"/><br><br>
+<label>Pays :</label><input type="text" name="e1Country" class="normal"value="<%=e1Country %>"/><br><br>
+<label>Début de l'échange :</label><input type="date" name="e1Start" class="normal"value="<%=e1Start %>"/><br><br>
+<label>Fin de l'échange :</label><input type="date" name="e1End" class="normal"value="<%=e1End %>"/><br><br><br><br>
+
+<!-- 
+<p class = "subTitle">Mon deuxième échange</p><br><br>
+<label>Année d’étude :</label>
+		<select name = "annee2" class="select">
+			<option value="" disabled selected></option> 
+  			<option value="A1">A1</option>
+  			<option value="A2">A2</option>
+  			<option value="A3">A3</option>
+		</select>
+		<br><br>
+<label>Etablissement :</label><input type="text" name="e1Etablissement" class="normal"/><br><br>
+<label>Ville :</label><input type="text" name="e2Town" class="normal"/><br><br>
+<label>Pays :</label><input type="text" name="e2Country" class="normal"/><br><br>
+<label>Début de l'échange :</label><input type="date" name="e2Start" class="normal"/><br><br>
+<label>Fin de l'échange :</label><input type="date" name="e2End" class="normal"/>
+<br><br> -->
+</div>
+
+
+<br><br>
+
 <div id = "HStage">
 	<p class = "subTitle">Mon premier Stage (A2)</p>
 	<p> Merci d'entrer l'intégralité des données demandées</p><br><br>

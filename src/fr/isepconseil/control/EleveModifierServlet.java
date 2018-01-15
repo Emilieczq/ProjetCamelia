@@ -28,13 +28,15 @@ public class EleveModifierServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DatabaseConnection dbc = null;
 	private Connection connexion = null;
-	private Statement statement = null, statement2=null,statement3=null,statement4=null,statement5=null,statement6=null,statement7=null,statement8=null;
+	private Statement statement = null, statement2=null,statement3=null,statement4=null,statement5=null,
+			statement6=null,statement7=null,statement8=null, statement9=null, statement10=null, statement11=null;
 	private Statement statementbis = null;
-//	private Statement statementidstud = null;
+	//	private Statement statementidstud = null;
 	private Statement statementcheckstage = null;
-	private ResultSet resultat = null,resultat2 =null, resultat3=null,resultat4=null,resultat5 =null, resultat6=null,resultat7=null,resultat8=null;
+	private ResultSet resultat = null,resultat2 =null, resultat3=null,resultat4=null,resultat5 =null, 
+			resultat6=null,resultat7=null,resultat8=null, resultat9=null, resultat10=null, resultat11=null;
 	private ResultSet resultatstage = null;
-//	private ResultSet checkstage = null;
+	//	private ResultSet checkstage = null;
 	private int modif;
 	private int stagemodif;
 	private int stagemodif2;
@@ -56,28 +58,32 @@ public class EleveModifierServlet extends HttpServlet {
 			statement6 = connexion.createStatement();
 			statement7 = connexion.createStatement();
 			statement8 = connexion.createStatement();
+			statement9 = connexion.createStatement();
+			statement10= connexion.createStatement();
+			statement11 = connexion.createStatement();
+
 			statementbis = connexion.createStatement();
-//			statementidstud = connexion.createStatement();
+			//			statementidstud = connexion.createStatement();
 			statementcheckstage = connexion.createStatement();
 
 			HttpSession session = request.getSession(true);
 
-			
+
 			//Info profil eleve
-			
+
 			String mPromo = request.getParameter("promotion");
 			String mParcours = request.getParameter("parcours");
 			String mToeic = request.getParameter("toeic");
 			String sAlternance = request.getParameter("alternance");
-			
+
 			User user = (User)session.getAttribute("user");
 			Etudiant etudiant = (Etudiant) session.getAttribute("etudiant");
 			int idUser = user.getId();
-			
+
 			//Info Stage
 			// ATTENTION SALARY A ETE CHANGE DANS LA BDD A VARCHAR MAIS A ESSAYER FLOAT ET INT
 			// AVEC PARSEINT OU PARSEFLOAT SUR LE STRING
-			
+
 			String s1Firm = request.getParameter("s1Firm"); 
 			String s1Job = request.getParameter("s1Job");
 			String s1Town =  request.getParameter("s1Town");
@@ -87,7 +93,7 @@ public class EleveModifierServlet extends HttpServlet {
 			String s1End = request.getParameter("s1End");
 			String competences1 = request.getParameter("competences1");
 			String mission1 = request.getParameter("mission1");
-			
+
 			String s2Firm = request.getParameter("s2Firm");
 			String s2Job = request.getParameter("s2Job");
 			String s2Town =  request.getParameter("s2Town");
@@ -98,18 +104,19 @@ public class EleveModifierServlet extends HttpServlet {
 			String competences2 = request.getParameter("competences2");
 			String mission2 = request.getParameter("mission2");
 
-			
-			
-			// Info Echange
-//			
-//			String e1Start = request.getParameter("debut1");
-//			String e1End = request.getParameter("fin1");
-//			
-//			String e2Start = request.getParameter("debut2");
-//			String e2End = request.getParameter("fin2");
-			
 
-//			resultat = statement.executeQuery("select id_User from Users where email = '" + iemail + "';");
+
+			// Info Echange
+			String e1Ecole = request.getParameter("e1Etablissement");
+			String e1Ville = request.getParameter("e1Town");
+			String e1Pays = request.getParameter("e1Country");
+			String e1Start = request.getParameter("e1Start");
+			String e1End = request.getParameter("e1End");
+
+			//			String e2Start = request.getParameter("debut2");
+			//			String e2End = request.getParameter("fin2");
+
+
 
 
 			if (mPromo != null) {
@@ -132,20 +139,53 @@ public class EleveModifierServlet extends HttpServlet {
 						"Update Students set alternance = '" + sAlternance + "' where id_User = '" + idUser + "';");
 				etudiant.setAlternance(Integer.parseInt(sAlternance));
 			}
-			
+
+			/**
+			 * check if the school exists already in the database:
+			 * if yes, get the id_Ecole and use it in the table Stages;
+			 * if not, create new row in the table Ecole and get the new id_Ecole to use in the table Echange
+			 */
+
+			int id_Ecole= 0;
+			if(e1Ecole !="" && e1Ville!= "" && e1Pays !="" && e1Start != "" && e1End !="" ){
+				resultat9 = statement9.executeQuery("select * from Ecole where Ename= '" + e1Ecole + "' && eVille= '"+ e1Ville + "' && ePays='"+e1Pays+"';");
+				if(resultat9.next()){
+					id_Ecole = resultat9.getInt("id_Ecole");
+					System.out.println("SITUATION 2 !!!");
+				}else {
+					statement10.executeUpdate("insert into Ecole(Ename, eVille, ePays) values('"+e1Ecole+"','" + e1Ville+"','" +e1Pays+"');");
+					resultat10 = statement10.executeQuery("select * from Ecole where Ename= '" + e1Ecole + "' && eVille= '"+ e1Ville + "' && ePays='"+e1Pays+"';");
+					if(resultat10.next()) {
+						id_Ecole = resultat10.getInt("id_Ecole");
+					}
+				}
+				resultat11 =statement11.executeQuery("select * from Echange where id_User= '" + idUser + "' && eYear= 'A3';");
+				System.out.println("SITUATION 3 !!!");
+
+				if(resultat11.next()) {
+					int id_Echange = resultat11.getInt("id_Echange");
+					statementcheckstage.executeUpdate("update Echange set eStart='"+ e1Start+"',eEnd='"+ e1End+"' where id_Echange ='" +id_Echange+"';");
+					System.out.println("SITUATION 4 !!!");
+
+				}else {
+					statementcheckstage.executeUpdate(
+							"insert into Echange(id_Ecole,id_User,eYear, eStart, eEnd) values ('"+id_Ecole+"','"+idUser + "','A3','"+ e1Start +"','"+ e1End +"');");
+				}
+			}
+
 			/**
 			 * check if the firm exists already in the database:
-			 * if yes, get the id_Firm add use it in the table Stages;
+			 * if yes, get the id_Firm and use it in the table Stages;
 			 * if not, create new row in the table Firm and get the new id_Firm to use in the table Stages
 			 */
 			int id_Firm1=0, id_Firm2=0;
-			
+
 			if(s1Firm !="" && s1Job !="" && s1Salary != "" && s1Start !="" && s1End !="" && competences1!="" && mission1!=""){
 				resultat2 = statement2.executeQuery("select * from Firm where fname= '" + s1Firm + "' && fville= '"+ s1Town + "' && fpays='"+s1Country+"';");
 				System.out.println("-------------------------after resultat2----------");
 				if(resultat2.next()) {
 					id_Firm1 = resultat2.getInt("id_Firm");
-					
+
 					System.out.println("---------idFirm1=" + id_Firm1);
 				}else {
 					statement3.executeUpdate("insert into Firm(fname, fville, fpays) values('"+s1Firm+"','" + s1Town+"','" +s1Country+"');");
@@ -164,11 +204,9 @@ public class EleveModifierServlet extends HttpServlet {
 							+competences1+"', mission='" + mission1+"' where id_Stage ='" +id_Stage+"';");
 				}else {
 					statementcheckstage.executeUpdate(
-							/**
-							 * for now ignore date 
-							 */
-	//						"insert into Stages(sJob,id_Firm,sSalary,sStart,sEnd,id_User,sYear,competences, mission) values ('" + s1Job + "','"+id_Firm1+"','"+ s1Salary 
-	//						+ "','" +s1Start + "','"+ s1End + "','"+idUser + "','A2','"+ competences1 +"','"+mission1+"');");
+
+							//						"insert into Stages(sJob,id_Firm,sSalary,sStart,sEnd,id_User,sYear,competences, mission) values ('" + s1Job + "','"+id_Firm1+"','"+ s1Salary 
+							//						+ "','" +s1Start + "','"+ s1End + "','"+idUser + "','A2','"+ competences1 +"','"+mission1+"');");
 							"insert into Stages(sJob,id_Firm,sSalary,id_User,sYear, sStart, sEnd, competences, mission) values ('" + s1Job + "','"+id_Firm1+"','"+ s1Salary 
 							+ "','"+idUser + "','A2','"+ s1Start +"','"+ s1End +"','"+ competences1 +"','"+mission1+"');");
 					System.out.println("-------------------------after stagemodif (A2)----------");
@@ -201,14 +239,14 @@ public class EleveModifierServlet extends HttpServlet {
 							/**
 							 * ignore date
 							 */
-	//						"insert into Stages(sJob,id_Firm,sSalary,sStart,sEnd,id_User,sYear,competences, mission) values ('" + s2Job + "','"+id_Firm2+"','"+ s2Salary 
-	//						+ "','" +s2Start + "','"+ s2End + "','"+idUser + "','A3','"+ competences2 +"','"+mission2+"');");
+							//						"insert into Stages(sJob,id_Firm,sSalary,sStart,sEnd,id_User,sYear,competences, mission) values ('" + s2Job + "','"+id_Firm2+"','"+ s2Salary 
+							//						+ "','" +s2Start + "','"+ s2End + "','"+idUser + "','A3','"+ competences2 +"','"+mission2+"');");
 							"insert into Stages(sJob,id_Firm,sSalary,id_User,sYear,sStart, sEnd,competences, mission) values ('" + s2Job + "','"+id_Firm2+"','"+ s2Salary 
 							+ "','"+idUser + "','A3','"+ s2Start +"','"+ s2End +"','"+ competences2 +"','"+mission2+"');");
 					System.out.println("-------------------------after stagemodif (A3)----------");
 				}
 			}
-				
+
 			System.out.println("--------test user--------" + user.toString());
 			System.out.println("---------test etudiant-------" + etudiant.toString());
 			session.setAttribute("user", user);
@@ -222,6 +260,86 @@ public class EleveModifierServlet extends HttpServlet {
 			if (resultat != null) {
 				try {
 					resultat.close();
+					System.out.println("Fermeture du resulset");
+				} catch (SQLException ignore) {
+				}
+
+			}
+			if (resultat2 != null) {
+				try {
+					resultat2.close();
+					System.out.println("Fermeture du resulset");
+				} catch (SQLException ignore) {
+				}
+
+			}
+			if (resultat3 != null) {
+				try {
+					resultat3.close();
+					System.out.println("Fermeture du resulset");
+				} catch (SQLException ignore) {
+				}
+
+			}
+			if (resultat4 != null) {
+				try {
+					resultat4.close();
+					System.out.println("Fermeture du resulset");
+				} catch (SQLException ignore) {
+				}
+
+			}
+			if (resultat5 != null) {
+				try {
+					resultat5.close();
+					System.out.println("Fermeture du resulset");
+				} catch (SQLException ignore) {
+				}
+
+			}
+			if (resultat6 != null) {
+				try {
+					resultat6.close();
+					System.out.println("Fermeture du resulset");
+				} catch (SQLException ignore) {
+				}
+
+			}
+			if (resultat7 != null) {
+				try {
+					resultat7.close();
+					System.out.println("Fermeture du resulset");
+				} catch (SQLException ignore) {
+				}
+
+			}
+			if (resultat8 != null) {
+				try {
+					resultat8.close();
+					System.out.println("Fermeture du resulset");
+				} catch (SQLException ignore) {
+				}
+
+			}
+			if (resultat9 != null) {
+				try {
+					resultat9.close();
+					System.out.println("Fermeture du resulset");
+				} catch (SQLException ignore) {
+				}
+
+			}
+			if (resultat10 != null) {
+				try {
+					resultat11.close();
+					System.out.println("Fermeture du resulset");
+				} catch (SQLException ignore) {
+				}
+
+			}
+			if (resultat11 != null) {
+				try {
+					resultat11.close();
 					System.out.println("Fermeture du resulset");
 				} catch (SQLException ignore) {
 				}
@@ -292,7 +410,37 @@ public class EleveModifierServlet extends HttpServlet {
 				} catch (SQLException ignore) {
 				}
 			}
-			
+			if (statement8 != null) {
+				try {
+					statement8.close();
+					System.out.println("Fermeture du statement");
+				} catch (SQLException ignore) {
+				}
+			}
+
+			if (statement9 != null) {
+				try {
+					statement9.close();
+					System.out.println("Fermeture du statement");
+				} catch (SQLException ignore) {
+				}
+			}
+			if (statement10 != null) {
+				try {
+					statement10.close();
+					System.out.println("Fermeture du statement");
+				} catch (SQLException ignore) {
+				}
+			}
+			if (statement11 != null) {
+				try {
+					statement11.close();
+					System.out.println("Fermeture du statement");
+				} catch (SQLException ignore) {
+				}
+			}
+
+
 			if (connexion != null) {
 				try {
 					connexion.close();
