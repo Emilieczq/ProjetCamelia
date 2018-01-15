@@ -24,7 +24,7 @@ import fr.isepconseil.vo.User;
 @WebServlet("/EleveModifierServlet")
 public class EleveModifierServlet extends HttpServlet {
 
-	// creation des statements et resultset pour les query sql
+	// creation of statement and resultset for sql queries
 	private static final long serialVersionUID = 1L;
 	private DatabaseConnection dbc = null;
 	private Connection connexion = null;
@@ -303,8 +303,8 @@ public class EleveModifierServlet extends HttpServlet {
 			}
 			session.setAttribute("user", user);
 			session.setAttribute("etudiant", etudiant);
-			
-			//Redirect to the profil eleve page
+
+			// Redirect to the profil eleve page
 			RequestDispatcher dispatcher = getServletContext()
 					.getRequestDispatcher("/ProfilPourEleve.jsp");
 			dispatcher.forward(request, response);

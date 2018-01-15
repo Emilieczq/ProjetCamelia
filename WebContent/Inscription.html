@@ -5,84 +5,94 @@
 <title>ISEP Conseil - Inscription</title>
 <link rel="stylesheet" type="text/css" href="inscription.css">
 <script type="text/javascript" src="inscriptionCheck.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+	
 </script>
 
 
 
 </head>
 <body>
-<img src="pictures/inscription.jpg" border='0'width='100%' height='100%' style='position: absolute;left:0px;top:0px;z-index: -1'/>
-<br>
-<center><p class="title">Inscription<p></center>
-
-<div class="droit">
-	<form name="inscription" id ="signupForm" method="post" action="InscriptionServlet">
-	
-	
-	<div id = "normal">
-		<label for="prenom">Prénom:</label>
-		<input id="prenom" type="text" name="prenom" class="normal" required />
-		<br><br>
-		<label for="nom">Nom:</label>
-		<input id="nom" type="text" name="nom" class="normal" required/>
-		<br><br>
-	</div>
-	
-		<label for="annee">Année d’étude:</label>
-		<select id = "annee" name = "annee" class="select" onclick="check()" required>
-			<option value="" disabled selected></option> 
-  			<option value="A1">A1</option>
-  			<option value="A2">A2</option>
-  			<option value="A3">A3</option>
-		</select>
-		
-		<br><br>
-		<div id="alternancechoisir">
-			<input type="radio" id="alternance" name="alternance" required>
-	    		<label for="alternance">Alternance</label>
-	    		<input type="radio" id="non_alternance" name="alternance" >
-	    		<label for="non_alternance">Non Alternance</label>
-    		</div>
-    	<br>
-
-		<label for="parcours">Parcours:</label>
-		<select id = "parcours" name = "parcours" class="selectlong"  required>
-			<option value=""></option> 
-			<option value="PAS DE PARCOURS">--</option> 
-  			<option value ="ARCHITECTE DES SYSTEMES D''INFORMATION">ARCHITECTE DES SYSTÈMES D’INFORMATION</option>
-  			<option value ="INGENIEUR EN BUSINESS INTELLIGENCE"> INGÉNIEUR EN BUSINESS INTELLIGENCE</option>
-  			<option value ="INGENIEUR LOGICIEL"> INGÉNIEUR LOGICIEL</option>
-  			<option value ="INGENIEUR NUMERIQUE ET SANTE"> INGÉNIEUR NUMÉRIQUE ET SANTÉ</option>
-  			<option value ="ARCHITECTE TELECOM & IOT"> ARCHITECTE TÉLÉCOM & IOT</option>
-  			<option value ="INGENIEUR EN SECURITE NUMERIQUE ET RESEAUX"> INGÉNIEUR EN SÉCURITÉ NUMÉRIQUE ET RÉSEAUX</option>
-  			<option value ="CONCEPTEUR DE SYSTEMES EMBARQUES"> CONCEPTEUR DE SYSTÈMES EMBARQUÉS</option>
-  			<option value ="INNOVATION ET CREATION D''ENTREPRISE"> INNOVATION ET CRÉATION D’ENTREPRISE</option>
-		</select>
-		<br><br>
-		<label for="email">Email ISEP:</label>
-		<input id="email" type="text" name="email" class="normal" required/>
-		<br><br>
-    	<label for="password">Mot de passe:</label>
-		<input id="password" type="password" name="password" class="normal" required/>
-		<br>
-		
-		<div id="tips">
-			<p id="addEspace">Au moins 1 minuscule et 1 majuscule;</p>
-			<p id ="addEspace1">Au moins 1 chiffre;</p>
-			<p id ="addEspace2">Au moins 1 caractère spécial;</p>
-			<p id ="addEspace3">Au moins 8 caractères;</p>
-		</div>
-		<label for="ConfirmationPassword">Confirmation du mot de passe:</label>
-		<input id="ConfirmationPassword" type="password" name="confirmationPassword" class="normal"  required />
-		 <div id="msg" style="color:red;"></div>
-		
+	<img src="pictures/inscription.jpg" border='0' width='100%'
+		height='100%'
+		style='position: absolute; left: 0px; top: 0px; z-index: -1' />
 	<br>
-		
-	 <input id="submit" type="submit" value="Enregistrer" class = "button" onclick="return validatePassword();"/>
-	 <input type="button" value="Retour" class = "button" onclick="location.href='http://localhost:8080/ProjetCamelia/index.jsp'"  />
-	</form>
-</div>
+	<center>
+		<p class="title">Inscription
+		<p>
+	</center>
+
+	<div class="droit">
+		<form name="inscription" id="signupForm" method="post"
+			action="InscriptionServlet">
+
+
+			<div id="normal">
+				<label for="prenom">Prénom:</label> <input id="prenom" type="text"
+					name="prenom" class="normal" required /> <br>
+				<br> <label for="nom">Nom:</label> <input id="nom" type="text"
+					name="nom" class="normal" required /> <br>
+				<br>
+			</div>
+
+			<label for="annee">Année d’étude:</label> <select id="annee"
+				name="annee" class="select" onclick="check()" required>
+				<option value="" disabled selected></option>
+				<option value="A1">A1</option>
+				<option value="A2">A2</option>
+				<option value="A3">A3</option>
+			</select> <br>
+			<br>
+			<div id="alternancechoisir">
+				<input type="radio" id="alternance" name="alternance" required>
+				<label for="alternance">Alternance</label> <input type="radio"
+					id="non_alternance" name="alternance"> <label
+					for="non_alternance">Non Alternance</label>
+			</div>
+			<br> <label for="parcours">Parcours:</label> <select
+				id="parcours" name="parcours" class="selectlong" required>
+				<option value=""></option>
+				<option value="PAS DE PARCOURS">--</option>
+				<option value="ARCHITECTE DES SYSTEMES D''INFORMATION">ARCHITECTE
+					DES SYSTÈMES D’INFORMATION</option>
+				<option value="INGENIEUR EN BUSINESS INTELLIGENCE">
+					INGÉNIEUR EN BUSINESS INTELLIGENCE</option>
+				<option value="INGENIEUR LOGICIEL">INGÉNIEUR LOGICIEL</option>
+				<option value="INGENIEUR NUMERIQUE ET SANTE">INGÉNIEUR
+					NUMÉRIQUE ET SANTÉ</option>
+				<option value="ARCHITECTE TELECOM & IOT">ARCHITECTE TÉLÉCOM
+					& IOT</option>
+				<option value="INGENIEUR EN SECURITE NUMERIQUE ET RESEAUX">
+					INGÉNIEUR EN SÉCURITÉ NUMÉRIQUE ET RÉSEAUX</option>
+				<option value="CONCEPTEUR DE SYSTEMES EMBARQUES">
+					CONCEPTEUR DE SYSTÈMES EMBARQUÉS</option>
+				<option value="INNOVATION ET CREATION D''ENTREPRISE">
+					INNOVATION ET CRÉATION D’ENTREPRISE</option>
+			</select> <br>
+			<br> <label for="email">Email ISEP:</label> <input id="email"
+				type="text" name="email" class="normal" required /> <br>
+			<br> <label for="password">Mot de passe:</label> <input
+				id="password" type="password" name="password" class="normal"
+				required /> <br>
+
+			<div id="tips">
+				<p id="addEspace">Au moins 1 minuscule et 1 majuscule;</p>
+				<p id="addEspace1">Au moins 1 chiffre;</p>
+				<p id="addEspace2">Au moins 1 caractère spécial;</p>
+				<p id="addEspace3">Au moins 8 caractères;</p>
+			</div>
+			<label for="ConfirmationPassword">Confirmation du mot de
+				passe:</label> <input id="ConfirmationPassword" type="password"
+				name="confirmationPassword" class="normal" required />
+			<div id="msg" style="color: red;"></div>
+
+			<br> <input id="submit" type="submit" value="Enregistrer"
+				class="button" onclick="return validatePassword();" /> <input
+				type="button" value="Retour" class="button"
+				onclick="location.href='http://localhost:8080/ProjetCamelia/index.jsp'" />
+		</form>
+	</div>
 
 </body>
 </html>

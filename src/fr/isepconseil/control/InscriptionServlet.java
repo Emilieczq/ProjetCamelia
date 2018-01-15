@@ -21,6 +21,8 @@ import fr.isepconseil.dbc.DatabaseConnection;
 @WebServlet("/InscriptionServlet")
 public class InscriptionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	// creation of statement and resultset for sql queries
 	private DatabaseConnection dbc = null;
 	private Connection connexion = null;
 	private Statement statement1 = null;
@@ -46,6 +48,7 @@ public class InscriptionServlet extends HttpServlet {
 			statement4 = connexion.createStatement();
 			statement5 = connexion.createStatement();
 
+			// information from the form the the inscription of the student
 			String iPrenom = request.getParameter("prenom");
 			String iNom = request.getParameter("nom");
 			String iAnnee = request.getParameter("annee");
@@ -55,7 +58,6 @@ public class InscriptionServlet extends HttpServlet {
 			if (sAlternance == "alternance") {
 				iAlternance = 1;
 			}
-
 			String iParcours = request.getParameter("parcours");
 			String iEmail = request.getParameter("email");
 			String iPassword = request.getParameter("password");

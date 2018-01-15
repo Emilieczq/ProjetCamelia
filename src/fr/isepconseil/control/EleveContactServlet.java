@@ -24,30 +24,45 @@ public class EleveContactServlet extends HttpServlet {
 	private Statement statement1 = null;
 	private Statement statement2 = null;
 	private ResultSet resultat;
-       
-    public EleveContactServlet() {
-        super();
-    }
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	public EleveContactServlet() {
+		super();
+	}
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		try {
 			dbc = new DatabaseConnection();
 			connexion = dbc.getConnection();
 			statement1 = connexion.createStatement();
 			statement2 = connexion.createStatement();
-			
+
 			String profName = request.getParameter("profName");
 			String but = request.getParameter("but");
-			
-			Etudiant etudiant = (Etudiant)request.getSession().getAttribute("etudiant");
+
+			// retrieve session to get id studend
+			Etudiant etudiant = (Etudiant) request.getSession().getAttribute(
+					"etudiant");
 			int idStudent = etudiant.getIdEtudiant();
 			
-			if(profName!=null && but!=null){
-				resultat = statement1.executeQuery("SELECT id_Teacher from Camelia.Teachers where id_User = (select id_User from Camelia.Users where concat(firstName,' ',lastName)='"+profName+"');");	
-				while(resultat.next()){
-					int idTeacher = resultat.getInt( "id_Teacher" );
-					statement2.executeUpdate( "Insert into RDV(id_Teacher, id_Student,subject) values ('" +idTeacher+"', '"+idStudent+"','"+ but+"');");
+			
+			//add the request to the RDV table with the appropriate teacher, student and subject
+			if (profName != null && but != null) {
+				resultat = statement1
+						.executeQuery("SELECT id_Teacher from Camelia.Teachers where id_User = (select id_User from Camelia.Users where concat(firstName,' ',lastName)='"
+								+ profName + "');");
+				while (resultat.next()) {
+					int idTeacher = resultat.getInt("id_Teacher");
+					statement2
+							.executeUpdate("Insert into RDV(id_Teacher, id_Student,subject) values ('"
+									+ idTeacher
+									+ "', '"
+									+ idStudent
+									+ "','"
+									+ but + "');");
 				}
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ContactSuccess.html");
+				RequestDispatcher dispatcher = getServletContext()
+						.getRequestDispatcher("/ContactSuccess.html");
 				dispatcher.forward(request, response);
 			}
 		} catch (Exception e) {

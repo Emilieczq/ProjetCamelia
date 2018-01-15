@@ -26,7 +26,7 @@ public class UserDAOI {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean findLogin(User user) {
 		boolean flag = false;
 		try {
@@ -52,14 +52,14 @@ public class UserDAOI {
 		}
 		return flag;
 	}
-	
+
 	public String defineType(User user) {
 		try {
 			String sql = "select Students.id_Student from Students, Users where UserS.email=? and Users.id_User=Students.id_User ;";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, user.getEmail());
 			ResultSet rSet = pstmt.executeQuery();
-			
+
 			if (rSet.next()) {
 				user.setType("Etudiant");
 				return "Etudiant";
@@ -78,6 +78,7 @@ public class UserDAOI {
 		}
 		return "Professeur";
 	}
+
 	public void setProfesseur(User user, Professeur professeur) {
 		String sql1 = "select * from Teachers where Id_User = (Select Id_User from Users where Email = ?);";
 		String sql2 = "select * from Users where Email = ?;";
@@ -85,25 +86,25 @@ public class UserDAOI {
 			pstmt = conn.prepareStatement(sql1);
 			pstmt.setString(1, user.getEmail());
 			ResultSet rSet = pstmt.executeQuery();
-			
+
 			if (rSet.next()) {
 				professeur.setBureau(rSet.getString("office"));
-				professeur.setTel( rSet.getString("phone"));
+				professeur.setTel(rSet.getString("phone"));
 				user.setId(rSet.getInt("id_User"));
 				professeur.setEmail(user.getEmail());
 				professeur.setPoste(rSet.getString("poste"));
-				
+
 			}
-			
+
 			pstmt2 = conn.prepareStatement(sql2);
 			pstmt2.setString(1, user.getEmail());
 			ResultSet rSet2 = pstmt2.executeQuery();
-			
-			if(rSet2.next()) {
+
+			if (rSet2.next()) {
 				professeur.setPrenom(rSet2.getString("firstName"));
 				professeur.setNom(rSet2.getString("lastName"));
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -117,7 +118,7 @@ public class UserDAOI {
 		}
 		this.professeur = professeur;
 	}
-	
+
 	public void setEtudiant(User user, Etudiant etudiant) {
 		String sql1 = "select * from Students where Id_User = (Select Id_User from Users where Email = ?);";
 		String sql2 = "select * from Users where Email = ?;";
@@ -125,26 +126,26 @@ public class UserDAOI {
 			pstmt = conn.prepareStatement(sql1);
 			pstmt.setString(1, user.getEmail());
 			ResultSet rSet = pstmt.executeQuery();
-			
+
 			if (rSet.next()) {
 				etudiant.setIdEtudiant(rSet.getInt("id_Student"));
 				etudiant.setParcours(rSet.getString("parcours"));
-				etudiant.setAnnee( rSet.getString("studyyear"));
+				etudiant.setAnnee(rSet.getString("studyyear"));
 				user.setId(rSet.getInt("id_User"));
 				etudiant.setEmail(user.getEmail());
 				etudiant.setAlternance(rSet.getInt("alternance"));
 				etudiant.setToeic(rSet.getInt("toeic"));
 			}
-			
+
 			pstmt2 = conn.prepareStatement(sql2);
 			pstmt2.setString(1, user.getEmail());
 			ResultSet rSet2 = pstmt2.executeQuery();
-			
-			if(rSet2.next()) {
+
+			if (rSet2.next()) {
 				etudiant.setPrenom(rSet2.getString("firstName"));
 				etudiant.setNom(rSet2.getString("lastName"));
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -158,10 +159,12 @@ public class UserDAOI {
 		}
 		this.etudiant = etudiant;
 	}
+
 	public Professeur getProfesseur() {
 		return professeur;
 	}
-	public Etudiant getEtudiant(){
+
+	public Etudiant getEtudiant() {
 		return etudiant;
 	}
 
