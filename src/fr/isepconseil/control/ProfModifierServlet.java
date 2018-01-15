@@ -26,17 +26,19 @@ public class ProfModifierServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DatabaseConnection dbc = null;
 	private Connection connexion = null;
-	private Statement statement = null;   
+	private Statement statement = null;
 	private Statement statementbis = null;
 	private ResultSet resultat = null;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ProfModifierServlet() {
-        super();
-    }
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ProfModifierServlet() {
+		super();
+	}
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		try {
 			dbc = new DatabaseConnection();
 			connexion = dbc.getConnection();
@@ -45,6 +47,7 @@ public class ProfModifierServlet extends HttpServlet {
 
 			HttpSession session = request.getSession(true);
 
+			// information for the professor
 			String pPoste = request.getParameter("poste");
 			String pBureau = request.getParameter("bureau");
 			String pTel = request.getParameter("tel");
@@ -52,76 +55,76 @@ public class ProfModifierServlet extends HttpServlet {
 			System.out.println(pTel);
 			System.out.println(pBureau);
 
-
-			
 			User user = new User();
-			Professeur professeur = (Professeur) request.getSession().getAttribute("professeur");
+			Professeur professeur = (Professeur) request.getSession()
+					.getAttribute("professeur");
 			String iemail = professeur.getEmail();
 
-
-			resultat = statement.executeQuery("select id_User from Users where email = '" + iemail + "';");
+			resultat = statement
+					.executeQuery("select id_User from Users where email = '"
+							+ iemail + "';");
 
 			System.out.println("Marche1"); // test a delete
-			
+
 			while (resultat.next()) {
 				if (pPoste != null && !pPoste.equals("")) {
 					int idUser = resultat.getInt("id_User");
-					statementbis.executeUpdate(
-							"Update Teachers set poste = '" + pPoste + "' where id_User = '" + idUser + "';"); 
+					statementbis.executeUpdate("Update Teachers set poste = '"
+							+ pPoste + "' where id_User = '" + idUser + "';");
 					professeur.setPoste(pPoste);
 				}
 				if (pBureau != null && !pBureau.equals("")) {
 					int idUser = resultat.getInt("id_User");
-					statementbis.executeUpdate(
-							"Update Teachers set office = '" + pBureau + "' where id_User = '" + idUser + "';");
-					professeur.setBureau(pBureau); 
+					statementbis.executeUpdate("Update Teachers set office = '"
+							+ pBureau + "' where id_User = '" + idUser + "';");
+					professeur.setBureau(pBureau);
 				}
 				if (pTel != null && !pTel.equals("")) {
 					int idUser = resultat.getInt("id_User");
-					statementbis.executeUpdate(
-							"Update Teachers set phone = '" + pTel + "' where id_User = '" + idUser + "';");
+					statementbis.executeUpdate("Update Teachers set phone = '"
+							+ pTel + "' where id_User = '" + idUser + "';");
 					professeur.setTel(pTel);
 				}
 			}
-			
+
 			user.setEmail(iemail);
-			session.setAttribute("user", user); 
+			session.setAttribute("user", user);
 			session.setAttribute("professeur", professeur);
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/ProfilPourProf.jsp"); 
+			RequestDispatcher dispatcher = getServletContext()
+					.getRequestDispatcher("/ProfilPourProf.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("Exception declenchee");
 			e.printStackTrace();
-		}
-		finally {
-			if ( resultat != null ) {
+		} finally {
+			if (resultat != null) {
 				try {
 					statement.close();
 					System.out.println("Fermeture du resultat");
 
-				} catch ( SQLException ignore ) {
+				} catch (SQLException ignore) {
 				}
 			}
-			if ( statement != null ) {
+			if (statement != null) {
 				try {
 					statement.close();
 					System.out.println("Fermeture du statement");
-				} catch ( SQLException ignore ) {
+				} catch (SQLException ignore) {
 				}
 			}
-			if ( statementbis != null ) {
+			if (statementbis != null) {
 				try {
 					statementbis.close();
 					System.out.println("Fermeture du statement");
-				} catch ( SQLException ignore ) {
+				} catch (SQLException ignore) {
 				}
 			}
-			if ( connexion != null ) {
+			if (connexion != null) {
 				try {
 					connexion.close();
 					System.out.println("Fermeture du connection");
-				} catch ( SQLException ignore ) {
+				} catch (SQLException ignore) {
 				}
 			}
 		}
