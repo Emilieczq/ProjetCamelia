@@ -50,12 +50,8 @@
 		
  %>
 
-<br>
-<div class = "white">
-</div>
-<div class = "white">
-</div>
-<br>
+<br><div class = "white"></div><br><div class = "white"></div>
+
 <center>
 <p class="tips">Eleve</p>
 <div class = "white">
@@ -106,18 +102,14 @@
 			while (rset3.next()) {
 %>
 
-	<br><div class = "white"></div>
-	<div class = "white"></div>
-	<br>
-	<div class = "white">
-	</div>
+<br><div class = "white"></div>
 	<div class="carreau">
+	<p class="tips">Echange d'A3</p>
 	 <table class="table-student">
 	    <tr>
 	 		<td></td>
 	 		<td></td>
 	 	</tr>
-	 	<p>Echange d'A3</p>
 	 	<tr>
 	 		<td>Etablissement</td>
 	 		<td><%=rset3.getString("Ename") %></td>
@@ -152,9 +144,9 @@
 		while (rset4.next()) {
 %>
 
-			<br><div class = "white"></div><br><div class = "white"></div><br><div class = "white"></div><br>
+			<br><div class = "white"></div><br>
 			<div class="carreau">
-			<p>Stage d'A2</p>
+			<p class="tips">Stage d'A2</p>
 			 <table class="table-student">
 			    <tr>
 			 		<td></td>
@@ -192,9 +184,9 @@
 				+" and Stages.id_User= "+id+" and Stages.id_Firm=Firm.id_Firm and sYear='A3';");
 		while (rset5.next()) {
 %>
-		<br><div class = "white"></div><br><div class = "white"></div><br><div class = "white"></div><br>
+		<br><div class = "white"></div><br>
 			<div class="carreau">
-			<p>Stage d'A3</p>
+			<p class="tips">Stage d'A3</p>
 			 <table class="table-student">
 			    <tr>
 			 		<td></td>
@@ -236,7 +228,7 @@
 		while (rset2.next()) {
  %>
  </center>
-<br><div class = "white"></div><br><div class = "white"></div><br><div class = "white"></div><br>
+<br><div class = "white"></div><br>
 <center>
 <p class="tips">Professeur</p>
 <div class = "white">

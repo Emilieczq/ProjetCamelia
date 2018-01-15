@@ -236,11 +236,6 @@ public class EleveModifierServlet extends HttpServlet {
 							+competences2+"', mission='" + mission2+"' where id_Stage ='" +id_Stage+"';");
 				}else {
 					statementcheckstage.executeUpdate(
-							/**
-							 * ignore date
-							 */
-							//						"insert into Stages(sJob,id_Firm,sSalary,sStart,sEnd,id_User,sYear,competences, mission) values ('" + s2Job + "','"+id_Firm2+"','"+ s2Salary 
-							//						+ "','" +s2Start + "','"+ s2End + "','"+idUser + "','A3','"+ competences2 +"','"+mission2+"');");
 							"insert into Stages(sJob,id_Firm,sSalary,id_User,sYear,sStart, sEnd,competences, mission) values ('" + s2Job + "','"+id_Firm2+"','"+ s2Salary 
 							+ "','"+idUser + "','A3','"+ s2Start +"','"+ s2End +"','"+ competences2 +"','"+mission2+"');");
 					System.out.println("-------------------------after stagemodif (A3)----------");
