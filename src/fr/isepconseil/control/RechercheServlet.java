@@ -22,9 +22,9 @@ public class RechercheServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DatabaseConnection dbc = null;
 	private Connection connexion = null;
-	private Statement statement = null, statement2 = null, statement3=null;
+	private Statement statement = null, statement2 = null;
 	
-	private ResultSet rset, rset2, rset3;
+	private ResultSet rset, rset2;
 
 	public RechercheServlet() {
 		super();
@@ -35,10 +35,8 @@ public class RechercheServlet extends HttpServlet {
 			connexion = dbc.getConnection();
 			statement = connexion.createStatement();
 			statement2 = connexion.createStatement();
-			statement3 = connexion.createStatement();
 			
 			String recherche = request.getParameter("search");
-			System.out.println(recherche);
 			
 			response.setContentType("text/html");
 			List<String> results = new ArrayList<String>();
@@ -51,34 +49,21 @@ public class RechercheServlet extends HttpServlet {
 				 * ignore we write in upper case or in lower case
 				 * no need for only firstName or only lastName, because they are included in this case and the following case
 				 */
-				rset = statement.executeQuery("select distinct Users.id_User from Users, Firm,Ecole,Echange,Stages where"
-						+ "((email like '%"+recherche+"%' "
-						+ "or lower(concat(firstName,'' '',lastName)) like '%"+recherche+"%'" 
-						+ "or lower(concat(lastName,'' '',firstName)) like '%"+recherche+"%')"
-						+ "or lower(Firm.fname) like '%"+recherche+"%'"
-						+ "or lower(Ecole.Ename) like '%"+recherche+"%'"
-						+ "or lower(Firm.fpays) like '%"+recherche+"%'"
-						+ "or lower(Ecole.ePays) like '%"+recherche+"%'"
-						+ "and Users.id_User=Stages.id_User and Users.id_User=Echange.id_User "
-						+ "and Stages.id_Firm = Firm.id_Firm and Echange.id_Ecole=Ecole.id_Ecole"
+				rset = statement.executeQuery("select distinct * from Users where"
+						+ "(email like '%"+recherche+"%' "
+						+ "or lower(concat(firstName,'' '',lastName)) like '%"+recherche+"%'" // no need for only firstName or only lastName, because they are included in this case and the following case
+						+ "or lower(concat(lastName,'' '',firstName)) like '%"+recherche+"%'"
 						+ ");");
-						System.out.println("*******1");
 						
 				while (rset.next()){
+					results.add(rset.getString( "firstName" ) + " " + rset.getString( "lastName" ));
 					ids.add(rset.getInt( "id_User" ));
-				}
-				for(int i:ids) {
-					rset3 = statement3.executeQuery("select * from Users where id_User=" + i +";");
-					if(rset3.next()) {
-						results.add(rset3.getString( "firstName" ) + " " + rset3.getString( "lastName" ));
-						
-						
-						rset2 = statement2.executeQuery("select * from Students where id_User=" + i +";");
-						if(rset2.next()) {
-							types.add("student");
-						}else {
-							types.add("teacher");
-						}
+					
+					rset2 = statement2.executeQuery("select * from Students where id_User=" + rset.getInt( "id_User" ) +";");
+					if(rset2.next()) {
+						types.add("student");
+					}else {
+						types.add("teacher");
 					}
 				}
 			}
